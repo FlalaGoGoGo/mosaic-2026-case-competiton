@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stanley 1913 Finance Appendix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1011;
+      --bg-soft: #16181b;
+      --panel: rgba(255, 255, 255, 0.06);
+      --panel-strong: rgba(255, 255, 255, 0.08);
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --text: #f5f7fa;
+      --muted: #b5bcc7;
+      --ey: #ffe600;
+      --ey-deep: #f6d500;
+      --cyan: #78dce8;
+      --steel: #7c8799;
+      --danger: #ff8b6a;
+      --success: #91f1a4;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255,230,0,0.08), transparent 28%),
+        radial-gradient(circle at 0% 20%, rgba(120,220,232,0.10), transparent 26%),
+        linear-gradient(180deg, #0f1011 0%, #131518 100%);
+      color: var(--text);
+    }
+    a { color: inherit; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(15, 16, 17, 0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+    .brand-logo {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+    .brand-copy small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      transition: 180ms ease;
+    }
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 34px 28px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255,230,0,0.06), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      border: 1px solid var(--panel-border);
+      box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -70px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255,230,0,0.16), transparent 68%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ey);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--ey);
+      display: block;
+    }
+    .hero h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 820px;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .hero-kicker {
+      margin-top: 20px;
+      color: #dfe4eb;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .metric-card,
+    .panel,
+    .option-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .metric-card {
+      padding: 18px;
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .metric-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .metric-value {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.05;
+      margin-top: 10px;
+    }
+    .metric-value.highlight { color: var(--ey); }
+    .section {
+      margin-top: 28px;
+    }
+    .section-head {
+      display: flex;
+      gap: 18px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .section-head p {
+      margin: 8px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .panel {
+      padding: 22px;
+    }
+    .panel-title {
+      margin: 0 0 8px;
+      font-size: 21px;
+      letter-spacing: -0.02em;
+    }
+    .panel-copy {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .question-kicker {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ey);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .panel-subtitle {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .so-what {
+      margin: 12px 0 18px;
+      color: #edf1f6;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .chart-shell,
+    .mini-chart-shell,
+    .inspector-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .legend span {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .ranking,
+    .source-filters,
+    .reference-stack {
+      display: grid;
+      gap: 12px;
+    }
+    .option-card {
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    }
+    .option-card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .rank-badge,
+    .tag-badge,
+    .scenario-badge,
+    .source-pill,
+    .trace-chip,
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-decoration: none;
+    }
+    .rank-badge {
+      color: #111;
+      background: var(--ey);
+      border-color: transparent;
+      font-weight: 800;
+    }
+    .tag-badge {
+      color: var(--ey);
+      background: rgba(255,230,0,0.10);
+    }
+    .scenario-badge {
+      color: var(--muted);
+      background: rgba(255,255,255,0.06);
+    }
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .stat-chip {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-width: 0;
+    }
+    .stat-chip strong {
+      display: block;
+      font-size: clamp(20px, 2.4vw, 28px);
+      margin-top: 8px;
+      overflow-wrap: anywhere;
+    }
+    .track {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--ey), #fff5a5);
+    }
+    .fill.alt-cyan { background: linear-gradient(90deg, #78dce8, #9af6ff); }
+    .fill.alt-steel { background: linear-gradient(90deg, #7c8799, #a7b1bf); }
+    .fill.alt-danger { background: linear-gradient(90deg, #ff8b6a, #ffc2ad); }
+    .tabs,
+    .scenario-tabs,
+    .source-jumps,
+    .filter-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+    button:hover { background: rgba(255,255,255,0.09); }
+    button.active {
+      background: var(--ey);
+      color: #141414;
+      border-color: transparent;
+    }
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .module-stack {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .module-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .module-card.highlight {
+      background: linear-gradient(180deg, rgba(255,230,0,0.10), rgba(255,255,255,0.04));
+      border-color: rgba(255,230,0,0.20);
+    }
+    .module-card h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ey);
+    }
+    .module-card p {
+      margin: 0;
+      line-height: 1.6;
+      color: #e7ebf2;
+    }
+    .module-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #e7ebf2;
+      line-height: 1.6;
+    }
+    .module-list li + li {
+      margin-top: 8px;
+    }
+    .list-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .list-card h4 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ey);
+    }
+    .list-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #dfe4eb;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .driver-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .driver-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .driver-row:last-child { border-bottom: 0; }
+    .driver-row strong { color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      text-align: left;
+      padding: 11px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      vertical-align: top;
+    }
+    th {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+    }
+    .data-table-wrap {
+      margin-top: 16px;
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+    .subsection-block + .subsection-block {
+      margin-top: 18px;
+    }
+    .price-ladder-list,
+    .benchmark-grid,
+    .signal-grid,
+    .platform-grid,
+    .research-grid,
+    .assumption-top-grid,
+    .scenario-summary-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .price-ladder-list {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .benchmark-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .platform-grid,
+    .research-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .signal-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .assumption-top-grid,
+    .scenario-summary-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .price-row,
+    .platform-card,
+    .benchmark-card,
+    .signal-card,
+    .research-card,
+    .swing-card,
+    .scenario-summary-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .scenario-summary-card {
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+    .scenario-summary-card:hover,
+    .scenario-summary-card.active {
+      border-color: rgba(255,230,0,0.35);
+      transform: translateY(-1px);
+    }
+    .price-top,
+    .platform-top,
+    .benchmark-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .price-brand,
+    .platform-brand,
+    .benchmark-brand {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .price-product,
+    .platform-copy,
+    .benchmark-note,
+    .scenario-summary-card p {
+      margin: 0;
+      color: #edf1f6;
+      line-height: 1.5;
+    }
+    .price-product {
+      font-size: 16px;
+      line-height: 1.35;
+    }
+    .price-value,
+    .platform-value,
+    .signal-value {
+      font-size: clamp(24px, 2.8vw, 32px);
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+    .price-row .price-value {
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1;
+      white-space: nowrap;
+      flex: 0 0 auto;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .price-top > div:first-child,
+    .platform-top > div:first-child,
+    .benchmark-top > div:first-child {
+      min-width: 0;
+    }
+    .price-row {
+      min-height: 120px;
+    }
+    @media (max-width: 780px) {
+      .price-top {
+        grid-template-columns: 1fr;
+      }
+      .price-row .price-value {
+        margin-top: 6px;
+        text-align: left;
+      }
+    }
+    .research-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .research-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    .signal-card h4 {
+      margin: 10px 0 8px;
+      font-size: 16px;
+    }
+    .signal-card p,
+    .swing-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
+    }
+    .benchmark-metrics {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .benchmark-metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: #e7ebf2;
+    }
+    .details-toggle {
+      margin-top: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+    }
+    .details-toggle > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      font-weight: 700;
+      color: #edf1f6;
+    }
+    .details-toggle > summary::-webkit-details-marker {
+      display: none;
+    }
+    .details-toggle[open] > summary {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footnote-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .source-prefix {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .footnote-row .trace-chip {
+      font-size: 10px;
+      padding: 5px 9px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+    }
+    .matrix-axis-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .option-detail-head h3 {
+      margin: 8px 0 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.1;
+    }
+    .option-status {
+      color: var(--ey);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    .assumption-count-card .metric-value {
+      font-size: 24px;
+    }
+    .team-footer {
+      margin-top: 18px;
+      opacity: 0.92;
+    }
+    .trace-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .trace-chip {
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      cursor: pointer;
+      font: inherit;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .trace-chip:hover {
+      color: var(--text);
+      border-color: rgba(255,230,0,0.28);
+    }
+    .scenario-summary {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .scenario-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .sensitivity-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .sensitivity-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 100px;
+      gap: 12px;
+      align-items: center;
+    }
+    .sensitivity-track {
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+    }
+    .sensitivity-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #78dce8, #9af6ff);
+    }
+    .sensitivity-fill.negative {
+      background: linear-gradient(90deg, #ff8b6a, #ffc2ad);
+    }
+    .class-pill {
+      display: inline-flex;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .hard_fact {
+      color: #173c26;
+      background: #b5f2c2;
+    }
+    .derived_estimate {
+      color: #524000;
+      background: #fff2a8;
+    }
+    .assumption {
+      color: #622f1f;
+      background: #ffc4b4;
+    }
+    .source-pill {
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+    }
+    .source-pill:hover {
+      color: var(--text);
+      border-color: rgba(255,230,0,0.28);
+    }
+    .ref-anchor {
+      scroll-margin-top: 90px;
+    }
+    .ref-meta {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+    .ref-link {
+      color: var(--ey);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .ref-link:hover { text-decoration: underline; }
+    .reference-stack {
+      margin-top: 18px;
+      display: grid;
+      gap: 18px;
+    }
+    .source-group h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+    .source-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .ref-card {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      transition: 180ms ease;
+      padding: 16px;
+      min-width: 0;
+      position: relative;
+    }
+    .ref-card.is-highlighted,
+    .trace-chip.is-highlighted,
+    .source-pill.is-highlighted,
+    .filter-pill.is-highlighted {
+      border-color: rgba(255,230,0,0.45);
+      background: rgba(255,230,0,0.10);
+      color: var(--text);
+      box-shadow: 0 0 0 1px rgba(255,230,0,0.12) inset;
+    }
+    .ref-card.is-muted {
+      opacity: 0.48;
+    }
+    .ref-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .ref-kind {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ey);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .ref-title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    .ref-body {
+      margin-top: 10px;
+    }
+    .ref-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .ref-trace-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 11px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+    .ref-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: var(--ey);
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+    .ref-icon-link:hover {
+      border-color: rgba(255,230,0,0.32);
+      background: rgba(255,230,0,0.08);
+    }
+    .ref-icon-link svg {
+      width: 15px;
+      height: 15px;
+    }
+    .filter-pill {
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+    }
+    .filter-pill.active {
+      color: #101010;
+      background: var(--ey);
+      border-color: transparent;
+    }
+    .source-toolbar {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .source-summary {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .inspector {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      width: min(380px, calc(100vw - 28px));
+      display: none;
+    }
+    .inspector.is-open { display: block; }
+    .inspector-card {
+      box-shadow: 0 18px 42px rgba(0,0,0,0.34);
+      backdrop-filter: blur(18px);
+    }
+    .inspector-close {
+      background: transparent;
+      border: 0;
+      color: var(--muted);
+      padding: 0;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .inspector-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .inspector-value {
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 800;
+      margin-top: 8px;
+      overflow-wrap: anywhere;
+    }
+    .inspector-copy {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .team-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+      min-height: 118px;
+      overflow: hidden;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .team-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ey), rgba(255, 230, 0, 0));
+      opacity: 0.85;
+    }
+    .team-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 230, 0, 0.18);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+    }
+    .team-avatar {
+      display: block;
+      width: 68px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 230, 0, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.02);
+    }
+    .team-card__body {
+      display: grid;
+      min-width: 0;
+      gap: 0;
+    }
+    .team-section .section-head {
+      margin-bottom: 16px;
+    }
+    .team-card__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .team-card__heading h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+    }
+    .team-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .team-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.035);
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .team-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 230, 0, 0.32);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .team-link::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%) translateY(4px);
+      padding: 5px 8px;
+      border-radius: 8px;
+      background: rgba(12, 13, 14, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 0.72rem;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+    .team-link:hover::after,
+    .team-link:focus-visible::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .team-link__icon {
+      width: 14px;
+      height: 14px;
+      color: var(--ey);
+    }
+    .chart-shell .chart-point,
+    .mini-chart-shell .chart-point {
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+    .chart-shell .chart-point:hover,
+    .mini-chart-shell .chart-point:hover,
+    .chart-shell .chart-point.is-active,
+    .mini-chart-shell .chart-point.is-active {
+      r: 6.5;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.35));
+    }
+    .value-exact {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .footer-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    @media (max-width: 720px) {
+      .topbar { position: static; }
+      .topbar-inner,
+      .wrap { padding-left: 14px; padding-right: 14px; }
+      .topbar-inner {
+        display: block;
+      }
+      .nav {
+        display: none;
+      }
+      .hero { padding: 24px 18px 20px; }
+      .metric-value { font-size: 24px; }
+      .driver-row,
+      .sensitivity-row,
+      .source-toolbar {
+        grid-template-columns: 1fr;
+      }
+      .inspector {
+        right: 12px;
+        left: 12px;
+        width: auto;
+      }
+    }
+    @media (max-width: 1120px) {
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 720px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      .team-card {
+        grid-template-columns: 60px minmax(0, 1fr);
+      }
+      .team-avatar {
+        width: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img class="brand-logo" src="06_brand_assets/02_stanley_logo_white_v01.png" alt="Stanley 1913 logo">
+        <div class="brand-copy">
+          Stanley 1913 Finance Appendix
+          <small>Decision-first finance drilldown</small>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#team">Team</a>
+        <a href="#overview">Overview</a>
+        <a href="#proof">Proof</a>
+        <a href="#options">Options</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#assumptions">Assumptions</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="top">
+      <div class="eyebrow">Finance decision</div>
+      <h1 id="hero-title"></h1>
+      <p id="hero-question"></p>
+      <p id="hero-headline"></p>
+      <div class="cards" id="overview-cards"></div>
+      <div class="footnote-row" id="footnote-hero"></div>
+    </section>
+
+    <section class="section team-section" id="team">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Team</div>
+          <h2>Case team</h2>
+        </div>
+      </div>
+      <div class="team-grid" id="team-grid"></div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Decision evidence</div>
+          <h2>Two exhibits answer the decision before the drilldown starts</h2>
+          <p id="overview-copy"></p>
+        </div>
+      </div>
+      <article class="panel">
+        <div class="question-kicker" id="matrix-question"></div>
+        <h3 class="panel-title">Return vs execution complexity</h3>
+        <p class="panel-copy" id="matrix-copy"></p>
+        <div class="so-what" id="matrix-implication"></div>
+        <div class="chart-shell" id="matrix-chart"></div>
+        <div class="footnote-row" id="footnote-matrix"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <div class="question-kicker" id="cash-question"></div>
+        <h3 class="panel-title">5-year cash, payback, and ranking rationale</h3>
+        <p class="panel-copy" id="cash-comparison-copy"></p>
+        <div class="so-what" id="cash-implication"></div>
+        <div class="ranking" id="option-ranking"></div>
+        <div class="footnote-row" id="footnote-comparison"></div>
+      </article>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Proof stack</div>
+          <h2>Why Option 2 behaves like a financeable platform, not a one-SKU bet</h2>
+          <p id="proof-copy"></p>
+        </div>
+      </div>
+      <article class="panel">
+        <div class="question-kicker" id="platform-question"></div>
+        <h3 class="panel-title">Platform breadth and price-position proof</h3>
+        <p class="panel-copy" id="platform-copy"></p>
+        <div class="so-what" id="platform-implication"></div>
+        <div class="platform-grid" id="platform-grid"></div>
+        <div class="subsection-block">
+          <div class="panel-subtitle">Premium lunch / foodware price ladder</div>
+          <div class="price-ladder-list" id="price-ladder"></div>
+        </div>
+        <div class="footnote-row" id="footnote-platform-proof"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <div class="question-kicker" id="channel-question"></div>
+        <h3 class="panel-title">Channel economics and public-peer guardrails</h3>
+        <p class="panel-copy" id="channel-copy"></p>
+        <div class="so-what" id="channel-implication"></div>
+        <div class="benchmark-grid" id="peer-benchmarks"></div>
+        <div class="signal-grid" id="channel-signals"></div>
+        <div class="footnote-row" id="footnote-channel-proof"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <div class="question-kicker" id="cash-proof-question"></div>
+        <h3 class="panel-title">Cash conversion and working-capital guardrails</h3>
+        <p class="panel-copy" id="cash-proof-copy"></p>
+        <div class="so-what" id="cash-proof-implication"></div>
+        <div class="benchmark-grid" id="cash-conversion-grid"></div>
+        <div class="footnote-row" id="footnote-cash-conversion"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <div class="question-kicker" id="consumer-question"></div>
+        <h3 class="panel-title">Relevance pressure from official consulting research</h3>
+        <p class="panel-copy" id="consumer-copy"></p>
+        <div class="so-what" id="consumer-implication"></div>
+        <div class="signal-grid" id="consumer-signals"></div>
+        <div class="footnote-row" id="footnote-consumer-proof"></div>
+      </article>
+    </section>
+
+    <section class="section" id="options">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Option drilldown</div>
+          <h2>Why Option 2 wins and where each alternative breaks</h2>
+          <p>Each tab defaults to the decision call, the proof, the breakpoints, and the recommendation. Deeper tables stay collapsed until someone actually needs them.</p>
+        </div>
+      </div>
+      <div class="tabs" id="option-tabs"></div>
+      <article class="panel" style="margin-top:16px;">
+        <div id="option-detail"></div>
+      </article>
+    </section>
+
+    <section class="section" id="scenarios">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Scenario lab</div>
+          <h2>Option 2 survives the base case, but demand-side drivers carry the most risk</h2>
+          <p id="scenario-copy"></p>
+        </div>
+      </div>
+      <article class="panel" style="margin-top:16px;">
+        <h3 class="panel-title">3-case summary and cumulative cash path</h3>
+        <p class="panel-copy">Base, upside, and pressure are shown together so judges can see what breaks the answer and what still holds.</p>
+        <div class="scenario-summary-grid" id="scenario-summary"></div>
+        <div class="legend" id="scenario-legend"></div>
+        <div class="chart-shell" id="scenario-chart"></div>
+        <div class="footnote-row" id="footnote-scenarios"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <h3 class="panel-title">Top swing factors</h3>
+        <p class="panel-copy">These are the assumptions that move the five-year cash case the most and therefore deserve the most scrutiny in Q&A.</p>
+        <div class="sensitivity-list" id="sensitivity-list"></div>
+      </article>
+    </section>
+
+    <section class="section" id="assumptions">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Audit trail</div>
+          <h2>Assumption quality and full traceability</h2>
+          <p id="assumption-copy"></p>
+        </div>
+      </div>
+      <article class="panel">
+        <div class="metric-row" id="assumption-class-counts"></div>
+        <div class="assumption-top-grid" id="top-swing-grid"></div>
+        <div class="footnote-row" id="footnote-assumptions"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <div class="filter-row" id="assumption-filters"></div>
+        <details class="details-toggle">
+          <summary>Detailed assumption register</summary>
+          <div class="data-table-wrap">
+            <table id="assumptions-table"></table>
+          </div>
+        </details>
+      </article>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Reference library</div>
+          <h2>Source groups and summary proof</h2>
+          <p>Core exhibits keep only short footnotes. The library below shows what each source supports and lets judges open the original source directly.</p>
+        </div>
+      </div>
+      <article class="panel">
+        <div class="source-toolbar">
+          <div class="filter-row" id="reference-filters"></div>
+          <div class="source-summary" id="reference-summary"></div>
+        </div>
+        <div class="reference-stack" id="reference-stack"></div>
+      </article>
+      <article class="panel" style="margin-top:16px;">
+        <div class="question-kicker">About the research</div>
+        <h3 class="panel-title">How the appendix was built</h3>
+        <p class="panel-copy">This page uses a consulting-style evidence stack: case materials define the ask, official company and product pages define the platform reality, filings define the financial guardrails, and official consulting research sharpens the relevance lens.</p>
+        <div class="research-grid" id="about-research-grid"></div>
+        <div class="footnote-row" id="footnote-about-research"></div>
+      </article>
+    </section>
+
+  </main>
+
+  <aside class="inspector" id="inspector">
+    <div class="inspector-card">
+      <div class="inspector-header">
+        <div>
+          <div class="eyebrow" style="margin-bottom:10px;">Data inspector</div>
+          <h3 class="panel-title" id="inspector-title" style="margin:0;"></h3>
+        </div>
+        <button class="inspector-close" id="inspector-close" aria-label="Close inspector">×</button>
+      </div>
+      <div class="inspector-value" id="inspector-value"></div>
+      <div class="value-exact" id="inspector-exact"></div>
+      <div class="inspector-copy" id="inspector-copy"></div>
+      <div class="trace-row" id="inspector-traces"></div>
+    </div>
+  </aside>
+
+  <script>
+    const DATA = {"meta": {"title": "Stanley 1913 Finance Appendix", "subtitle": "Decision-first QR appendix for judge drilldown and source-traceable finance defense", "kicker": "QR finance companion"}, "team": [{"name": "Flala Zhang", "photo": "07_team_assets/01_flala_zhang_square_v01.jpg", "linkedin": "https://www.linkedin.com/in/flala/", "role": ""}, {"name": "Lily Wang", "photo": "07_team_assets/02_lily_wang_square_v01.jpg", "linkedin": "https://www.linkedin.com/in/xueying-lily-wang/", "role": ""}, {"name": "Marcus Yu", "photo": "07_team_assets/03_marcus_yu_square_v01.jpg", "linkedin": "https://www.linkedin.com/in/marcus-cf-yu/", "role": ""}, {"name": "Jiayi Liu", "photo": "07_team_assets/04_jiayi_liu_square_v01.jpg", "linkedin": "https://www.linkedin.com/in/jiayi-liu-9743b793/", "role": ""}], "overview": {"business_question": "Which option creates the strongest five-year finance case for Stanley?", "headline": "Option 2 creates the strongest 5-year cash profile with lower execution drag than Options 1 and 3.", "why_now": "Stanley needs a second growth engine, but the winning path is the one that converts adjacent scale into defendable cash inside five years while staying disciplined on channel mix and working-capital support.", "cards": [{"label": "Recommended option", "value": "Option 2", "type": "text"}, {"label": "Year 5 sales", "value": 104044493, "type": "currency"}, {"label": "5-year cumulative cash", "value": 45605414, "type": "currency"}, {"label": "Payback", "value": 3, "type": "years"}], "top_refs": ["mdl-judge-output", "src-fc02", "src-fc03", "src-fc04", "src-fc06", "src-fc07"], "evidence_sentence": "Option 2 reaches Year 3 payback, holds about 53.0% Year 5 gross margin, and keeps net working-capital support inside a 6.9%-7.8% sales range instead of hiding cash requirements."}, "decisionVisuals": {"matrix": {"business_question": "Which option balances return and execution burden best?", "decision_headline": "Option 2 sits in the strongest risk-adjusted zone: the highest cumulative value among the options that can still be executed inside Stanley's current system.", "why_it_matters": "Execution complexity is a transparent comparative index combining channel change, supply-chain change, and upfront-spend intensity.", "implication": "So what for Stanley: the recommendation should maximize cash and learning speed before it maximizes geographic stretch.", "chart_footnote": "Higher and left is better: more value with less execution burden.", "points": [{"key": "option_2", "label": "Option 2", "x": 48, "y": 45605414, "size": 104044493, "read": "Highest five-year cash with manageable complexity.", "refs": ["mdl-judge-output", "mdl-option2-pnl", "mdl-option2-cost", "src-sc05", "src-sc06", "src-sc15", "src-sc16", "src-fc02", "src-fc03", "src-fc04"]}, {"key": "option_3", "label": "Option 3", "x": 34, "y": 27500480, "size": 59400000, "read": "Low complexity and fast payback, but smaller upside.", "refs": ["mdl-judge-output", "mdl-option3-light", "src-ec06", "src-ec07"]}, {"key": "option_1", "label": "Option 1", "x": 86, "y": -10492352, "size": 81712800, "read": "Largest market-size story, but still negative five-year cash.", "refs": ["mdl-judge-output", "mdl-option1-light", "src-fc01", "src-lc01"]}]}, "cashComparison": {"business_question": "What does the five-year cash and payback picture actually look like?", "decision_headline": "Only Option 2 turns scale into a meaningfully superior cumulative-cash outcome without waiting beyond the case horizon.", "implication": "So what for Stanley: the option with the biggest headline TAM should not beat the option with the best risk-adjusted cash conversion.", "chart_footnote": "Scorecard uses Year 5 sales, cumulative cash, and payback together rather than letting one large market-size number dominate the answer."}, "waterfall": {"business_question": "How does Option 2 turn revenue into finance value?", "decision_headline": "The Year 5 bridge shows that Option 2 is not just a sales story. It retains enough gross profit after launch costs to generate material operating profit.", "implication": "So what for Stanley: the recommendation is defendable because the margin stack survives after real operating costs, not before them.", "chart_footnote": "Waterfall is based on Year 5 model outputs for Option 2.", "steps": [{"label": "Year 5 sales", "value": 104044493, "type": "start"}, {"label": "COGS", "value": -48858954, "type": "delta"}, {"label": "Gross profit", "value": 55185538, "type": "subtotal"}, {"label": "Operating costs", "value": -23225077, "type": "delta"}, {"label": "Operating profit", "value": 31960462, "type": "end"}], "refs": ["mdl-option2-cost", "mdl-option2-pnl", "src-fc02", "src-fc03", "src-fc04", "src-fc05"]}, "platformProof": {"business_question": "Are premium lunch adjacencies sold as single items or as systems?", "decision_headline": "Premium peers do not treat lunch and foodware as a one-SKU idea. They sell systems with compatible components, storage, and carry accessories.", "implication": "So what for Stanley: Option 2 should be modeled as a platform with multiple components and bundle behavior, not as a single lunch box launch.", "chart_footnote": "System-component counts are minimum official components explicitly surfaced on referenced product and category pages.", "items": [{"brand": "Stanley", "components": 5, "priceBand": "$35-$175", "read": "Food jars, lunch boxes, a nested Useful Box, and an official bottle+lunch set already show Stanley's platform grammar.", "refs": ["src-sc05", "src-sc06", "src-sc15", "src-sc16", "src-sc17"]}, {"brand": "Hydro Flask", "components": 4, "priceBand": "$39.95-$59.95", "read": "Food jar, lunch boxes, carry formats, and lunch accessories support the ecosystem logic in premium lunch.", "refs": ["src-sc11"]}, {"brand": "YETI", "components": 6, "priceBand": "$35-$80", "read": "Food jars, food storage, Daytrip lunch boxes and bags, ice sheets, and shoulder straps reinforce a modular system model.", "refs": ["src-sc12", "src-sc18", "src-sc19", "src-sc20"]}]}, "priceLadder": {"business_question": "Can Stanley credibly sit inside a premium lunch / foodware price band?", "decision_headline": "Yes. Stanley's current food jar and lunch box pricing already sits inside the same premium band as Hydro Flask, YETI, and Bentgo.", "implication": "So what for Stanley: ASP assumptions should be anchored to a defendable premium band, not to mass-storage pricing.", "chart_footnote": "Official product pages only. Used to anchor ASP and price-position logic, not to claim market share.", "items": [{"brand": "Stanley", "product": "Adventure To-Go Food Jar", "category": "Food jar", "price": 35.0, "refs": ["src-sc05"]}, {"brand": "Stanley", "product": "All Day Mini Lunch Box", "category": "Lunch box", "price": 45.0, "refs": ["src-sc06"]}, {"brand": "Hydro Flask", "product": "20 oz Food Jar", "category": "Food jar", "price": 39.95, "refs": ["src-sc11"]}, {"brand": "Hydro Flask", "product": "5 L Carry Out Lunch Box", "category": "Lunch box", "price": 59.95, "refs": ["src-sc11"]}, {"brand": "YETI", "product": "8 oz Insulated Food Jar", "category": "Food jar", "price": 35.0, "refs": ["src-sc12"]}, {"brand": "YETI", "product": "16 oz Insulated Food Jar", "category": "Food jar", "price": 45.0, "refs": ["src-sc12"]}, {"brand": "Bentgo", "product": "Kids Stainless Steel Lunch Box", "category": "Lunch box", "price": 49.99, "refs": ["src-sc13"]}, {"brand": "Bentgo", "product": "Insulated Lunch Bag", "category": "Lunch bag", "price": 34.99, "refs": ["src-sc14"]}]}, "peerBenchmarks": {"business_question": "Do public peers support the premium-margin logic behind Option 2?", "decision_headline": "Yes. Public peers suggest that premium insulated or housewares systems can sustain materially stronger gross-margin profiles than broad mass-housewares portfolios.", "implication": "So what for Stanley: Option 2 should be framed as a focused premium platform, not as broad undifferentiated storage.", "chart_footnote": "Benchmarks are directional guardrails, not one-to-one Stanley comparables.", "items": [{"brand": "YETI", "revenue": 1830000000, "grossMargin": 58.1, "opMargin": 16.8, "note": "Premium insulated peer margin ceiling with majority-DTC channel proof still visible in the latest year", "refs": ["src-fc02", "src-fc03", "src-fc06"]}, {"brand": "Helen of Troy", "revenue": 1900000000, "grossMargin": 47.9, "opMargin": 13.2, "note": "Hydro Flask / housewares benchmark with inventory and marketing reinvestment context", "refs": ["src-fc04"]}, {"brand": "Newell Brands", "revenue": 7600000000, "grossMargin": 33.6, "opMargin": 8.2, "note": "Mass-housewares baseline showing the cost of breadth without premium moat", "refs": ["src-fc05", "src-fc07"]}]}, "channelProof": {"business_question": "Why is a DTC-first staged launch financially rational?", "decision_headline": "Public premium peers show that DTC is not a side channel. It is a major revenue engine, a pricing-quality lever, and a way to learn before wholesale scale adds receivables and inventory burden.", "implication": "So what for Stanley: start DTC-heavy, but earn the right to widen wholesale only after price, attach, and turns are proven.", "chart_footnote": "All values are from official filings or investor-relations releases and used as guardrails rather than one-to-one Stanley forecasts.", "items": [{"value": "60.4%", "headline": "YETI DTC share in FY2025", "detail": "Latest official results still show DTC at about $1,127,800,000 of $1,868,500,000 net sales.", "refs": ["src-fc06"]}, {"value": "52.0%->38.0%", "headline": "Stanley model DTC mix", "detail": "The model starts DTC-first to protect price and learn fast, then allows wholesale to grow only after the platform is de-risked.", "refs": ["mdl-option2-revenue", "src-fc03", "src-fc06", "src-pc01"]}, {"value": "44.7%-46.0%", "headline": "Premium-peer SG&A envelope", "detail": "Public peer SG&A ranges help bound launch marketing and commercial support so go-to-market costs stay visible.", "refs": ["src-fc02", "src-fc06", "src-fc07"]}, {"value": "63%", "headline": "Consumers have bought direct", "detail": "PwC's survey supports direct brand purchase as a real behavior, not just a launch-channel theory.", "refs": ["src-pc01"]}]}, "cashConversionProof": {"business_question": "How much cash support does a physical-goods launch really need?", "decision_headline": "Public peers show that even premium hardgoods stories carry real inventory, receivable, and cash-conversion constraints; the model now charges those explicitly.", "implication": "So what for Stanley: do not let a good margin story hide the cash tied up in inventory, receivables, and channel expansion.", "chart_footnote": "Percentages are derived from official sales, inventory, receivable, free-cash-flow, and operating-cash-flow disclosures.", "items": [{"entity": "YETI FY2025", "note": "Majority-DTC premium peer still carries meaningful inventory and capital needs.", "metrics": [{"label": "DTC / sales", "value": "60.4%"}, {"label": "Inventory / sales", "value": "15.6%"}, {"label": "FCF / sales", "value": "11.4%"}], "refs": ["src-fc06"]}, {"entity": "Helen of Troy FY2025", "note": "Housewares benchmark shows that inventory and receivable speed can weaken a decent P&L story.", "metrics": [{"label": "Inventory / sales", "value": "23.8%"}, {"label": "Receivable days", "value": "71.5 days"}, {"label": "CFO / sales", "value": "6.0%"}], "refs": ["src-fc04"]}, {"entity": "Newell FY2024", "note": "Broad household scale absorbs large amounts of cash into inventory and receivables.", "metrics": [{"label": "Inventory / sales", "value": "18.4%"}, {"label": "AR / sales", "value": "11.6%"}, {"label": "CFO / sales", "value": "6.5%"}], "refs": ["src-fc05", "src-fc07"]}, {"entity": "Stanley model guardrail", "note": "Incremental-launch support sits below whole-company peers because the platform uses existing infrastructure rather than building a standalone supply chain from scratch.", "metrics": [{"label": "Inventory support", "value": "9.0%-10.0%"}, {"label": "Receivables support", "value": "1.6%-2.4%"}, {"label": "Payables offset", "value": "3.8%-4.5%"}, {"label": "Net WC support", "value": "6.9%-7.8%"}], "refs": ["mdl-assumptions", "mdl-option2-cost", "src-fc03", "src-fc04", "src-fc06", "src-fc07"]}]}, "consumerProof": {"business_question": "Why does relevance pressure matter for the recommendation?", "decision_headline": "Because the winning option must launch a system people believe is meaningfully useful, not a shallow extension that looks like another branded object.", "implication": "So what for Stanley: the category move needs credible utility and not just colorway-led excitement.", "chart_footnote": "Official consulting reports used as directional context for consumer and retailer behavior.", "items": [{"value": "35%", "headline": "Brand is losing automatic pull", "detail": "Consumers no longer viewing brand as a significant purchase factor.", "refs": ["src-ec08"]}, {"value": "42%", "headline": "Innovation is being questioned", "detail": "Consumers reading innovation as cost cutting rather than real value creation.", "refs": ["src-ec08"]}, {"value": "78%", "headline": "Shelf space is tightening", "detail": "Retailers believing only one mass-market brand may remain on shelf.", "refs": ["src-ec08"]}]}}, "financialEvidence": {"years": ["Y1", "Y2", "Y3", "Y4", "Y5"], "revenueSeries": [{"key": "option_2", "label": "Option 2", "values": [9403763, 34093840, 59356440, 79775955, 104044493], "color": "#ffe600"}, {"key": "option_3", "label": "Option 3", "values": [8925000, 17172000, 29030400, 42248400, 59400000], "color": "#78dce8"}, {"key": "option_1", "label": "Option 1", "values": [6156000, 16416000, 30412800, 49766400, 81712800], "color": "#7c8799"}], "cashSeries": [{"key": "option_2", "label": "Option 2", "values": [-8626987, -5901702, 4864349, 22324022, 45605414], "color": "#ffe600"}, {"key": "option_3", "label": "Option 3", "values": [-4858000, -4393280, 1444928, 11774480, 27500480], "color": "#78dce8"}, {"key": "option_1", "label": "Option 1", "values": [-17261280, -24963040, -26792864, -22834912, -10492352], "color": "#ff8b6a"}]}, "optionComparison": [{"key": "option_2", "option": "Option 2", "tag": "Recommended", "rank": 1, "year5Sales": 104044493, "margin": 53.0, "marginLabel": "Gross margin", "upfront": 11000000, "cumulativeCash": 45605414, "payback": 3, "read": "Best risk-adjusted combination of growth scale, premium margin, and controllable execution."}, {"key": "option_3", "option": "Option 3", "tag": "Runner-up", "rank": 2, "year5Sales": 59400000, "margin": 29.0, "marginLabel": "Operating margin", "upfront": 7000000, "cumulativeCash": 27500480, "payback": 3, "read": "Fast to test and cash-positive, but the revenue ceiling and portfolio diversification effect stay smaller."}, {"key": "option_1", "option": "Option 1", "tag": "Lowest conviction", "rank": 3, "year5Sales": 81712800, "margin": 20.0, "marginLabel": "Operating margin", "upfront": 18000000, "cumulativeCash": -10492352, "payback": ">5", "read": "Large TAM headline, but cross-border friction and entry investment keep the economics weakest inside the case horizon."}], "optionDetails": [{"key": "option_2", "option": "Option 2", "title": "Portable meal / foodware platform", "verdict": "Best overall finance case", "summary": "Option 2 creates a second growth engine that stays close to Stanley's existing premium insulated system, so the model gets real scale without paying international-expansion risk on day one.", "why_this_exists": "Stanley needs an adjacency that diversifies away from a single hero cup without paying full country-entry friction on day one.", "business_question": "Can Stanley create a second growth engine without taking on full international-entry friction?", "decision_headline": "Yes. Option 2 is the only path that combines platform-scale revenue, premium margin retention, and Year 3 payback.", "financial_thesis": "Launch a premium meal-system platform adjacent to Stanley's current insulated ecosystem, scale it DTC-first, and explicitly charge inventory, receivables, and payables support before widening wholesale.", "why_it_matters": "This route diversifies Stanley away from a single hero cup while staying inside a controllable operating model and a visible cash-conversion framework.", "chart_footnote": "Model outputs are anchored to current Stanley pricing plus public premium-peer channel and working-capital guardrails.", "evidence_strength": "Highest conviction", "metrics": [{"label": "Year 5 sales", "value": 104044493, "type": "currency"}, {"label": "Year 5 gross margin", "value": 53.0, "type": "percent"}, {"label": "Upfront investment", "value": 11000000, "type": "currency"}, {"label": "5-year cumulative cash", "value": 45605414, "type": "currency"}, {"label": "Payback", "value": 3, "type": "years"}], "proof_points": ["Stanley already has premium foodware adjacency and a lunch-carry precedent.", "Official price points show Stanley can defend a price ladder that sits inside the premium lunch / food jar set.", "Public peers show that DTC can remain a majority channel while still requiring explicit inventory and receivable support."], "key_outputs": ["Year 5 sales reach $104,044,493.", "Year 5 gross margin holds at 53.0%.", "Cumulative cash turns positive in Year 3."], "key_risks": ["Volume misses are more destructive than cost inflation if the platform fails to become habitual.", "Bundle lift and repeat behavior are doing meaningful work in the model and need to be validated fast.", "If inventory turns slow or wholesale expands before demand is proven, the cash profile will weaken faster than the P&L suggests.", "If the line behaves like a novelty drop instead of a system, the margin case will still look good but the scale case will weaken."], "kill_metrics": ["Units per SKU running below 80% of Year 2 plan.", "Bundle penetration stalling below 15% by Year 2.", "Inventory support drifting above the planned range without matching sell-through.", "Tariff / freight load rising without price or mix offset."], "break_points": ["The case weakens fast if units per SKU miss because demand-side drivers matter more than most cost lines.", "Bundle and repeat behavior must prove that Stanley is building a system, not another novelty item.", "The team should not overpromise wholesale scale before DTC learning stabilizes pricing, attachment, and inventory turns."], "recommendation_call": "Recommend as the core thesis. Frame it as a staged platform launch: prove system behavior in DTC first, then widen wholesale after the economics are validated.", "not_recommended_reason": "", "yearly": {"years": ["Y1", "Y2", "Y3", "Y4", "Y5"], "sales": [9403763, 34093840, 59356440, 79775955, 104044493], "margin": [55.0, 54.7, 54.3, 53.8, 53.0], "profit": [-4893494, 7316417, 16658427, 24703542, 31960462], "cumulative": [-8626987, -5901702, 4864349, 22324022, 45605414], "marginLabel": "Gross margin", "cumulativeLabel": "Cumulative cash"}, "driverRows": [{"label": "SKU ramp", "value": "3 -> 8 SKUs over five years to build a true platform instead of a single-product test."}, {"label": "Basket expansion", "value": "Bundle penetration rises from 12% to 24%; attach rate improves from 0.90x to 1.15x."}, {"label": "Pricing logic", "value": "ASP grows from $42 to $46 while launch remains premium."}, {"label": "Channel logic", "value": "DTC mix starts at 52.0% and eases to 38.0% as the platform earns wholesale expansion."}, {"label": "Cash discipline", "value": "Net working-capital support stays inside a 6.9%-7.8% sales range even after explicit inventory and receivables charges."}], "whyWorks": ["Revenue growth comes from multiple levers at once: more SKUs, higher realized basket size, and wider channel scale.", "The launch starts DTC-heavy, which protects pricing and accelerates learning before wholesale mix expands.", "The economics remain premium even after freight, tariff load, launch marketing, and explicit working-capital support are included in the model."], "watchouts": ["Units per SKU is the biggest swing factor: +10% adds about $7,410,541 of 5-year cash.", "Tariff load matters, but it is less destructive than demand misses: +1.5pp tariff load changes 5-year cash by about $1,516,872.", "Working-capital discipline is visible now: +2.0pp inventory support reduces 5-year cash by about $5,733,490."], "refs": ["mdl-option2-revenue", "mdl-option2-cost", "mdl-option2-pnl", "src-sc05", "src-sc06", "src-sc09", "src-sc10", "src-sc15", "src-sc16", "src-sc17", "src-sc18", "src-sc19", "src-sc20", "src-fc02", "src-fc03", "src-fc04", "src-fc05", "src-fc06", "src-fc07", "src-ec08", "src-pc01", "src-dc01"]}, {"key": "option_3", "option": "Option 3", "title": "New segment focus in current markets", "verdict": "Viable, but smaller ceiling", "summary": "Option 3 is the cleanest near-term test because it uses existing footprint and produces positive cash quickly, but it still depends on proving that the segment shift is meaningful enough to create incremental demand rather than relabeling current buyers.", "why_this_exists": "This option exists because judges may value a lower-risk pilot that stays close to the current footprint and commercial system.", "business_question": "Can sharper segment targeting create meaningful incremental growth without new category expansion?", "decision_headline": "Partly. Option 3 can become a disciplined pilot, but it does not build as much strategic distance from the core cup business.", "financial_thesis": "Use a lower-complexity segment play to unlock incremental demand inside the current system, while minimizing upfront spend and protecting near-term profitability.", "why_it_matters": "This is the easiest option to defend if the team wants a phased roadmap, but it leaves Stanley more exposed to concentration risk.", "chart_footnote": "Comparison case uses the same five-year horizon and evaluation logic as the recommended option.", "evidence_strength": "Medium conviction", "metrics": [{"label": "Year 5 sales", "value": 59400000, "type": "currency"}, {"label": "Year 5 operating margin", "value": 29.0, "type": "percent"}, {"label": "Upfront investment", "value": 7000000, "type": "currency"}, {"label": "5-year cumulative profit", "value": 27500480, "type": "currency"}, {"label": "Payback", "value": 3, "type": "years"}], "proof_points": ["Keeps execution mostly inside the current commercial footprint.", "Positive cash arrives quickly because the strategy is lighter on tooling and launch complexity.", "Consumer proof supports relevance-driven positioning, but not necessarily platform-level incremental demand."], "key_outputs": ["Year 5 sales reach $59,400,000.", "Year 5 operating margin reaches 29.0%.", "Cumulative profit reaches $27,500,480."], "key_risks": ["The model breaks if the segment shift mostly reshuffles existing Stanley demand.", "Revenue ceiling stays lower because assortment expansion remains narrow.", "Judges may view this as sharper messaging rather than a genuine second growth curve."], "kill_metrics": ["Incremental conversion fails to show up against the current base.", "Category mix does not expand beyond the current use occasion.", "Customer acquisition cost rises without repeat lift."], "break_points": ["If the segment move mostly reshuffles existing Stanley demand, the whole finance case compresses quickly.", "The route is easier to launch but harder to defend as a true second growth engine.", "Judges may read it as better targeting, not meaningful portfolio expansion."], "recommendation_call": "Keep as the fallback or phased-pilot alternative, not as the main answer. It is useful if the team wants a staged roadmap but not strong enough to beat Option 2.", "not_recommended_reason": "Good pilot logic, but not enough platform diversification or long-run upside to beat Option 2.", "yearly": {"years": ["Y1", "Y2", "Y3", "Y4", "Y5"], "sales": [8925000, 17172000, 29030400, 42248400, 59400000], "margin": [24.0, 26.0, 27.0, 28.0, 29.0], "profit": [-4858000, 464720, 5838208, 10329552, 15726000], "cumulative": [-4858000, -4393280, 1444928, 11774480, 27500480], "marginLabel": "Operating margin", "cumulativeLabel": "Cumulative profit"}, "driverRows": [{"label": "Target pool", "value": "Segment spend pool rises from $850,000,000 to $1,080,000,000."}, {"label": "Capture logic", "value": "Segment penetration ramps from 1.0% to 5.0%."}, {"label": "Profitability", "value": "Operating margin expands from 24.0% to 29.0% with lower upfront cost."}, {"label": "Constraint", "value": "Revenue upside remains smaller because the strategy relies more on sharper targeting than on a new platform."}], "whyWorks": ["Uses existing market footprint, which keeps upfront spend and execution complexity lower than international expansion.", "Year 3 payback is achievable because the model preserves relatively healthy contribution margin in the existing business system.", "This route can be defended as a lower-risk pilot if the team wants a staged roadmap instead of a full portfolio bet."], "watchouts": ["The biggest strategic risk is false incrementality: the model breaks if this simply shifts current Stanley shoppers across messages.", "The ceiling stays lower because assortment and channel changes are intentionally lighter than in Option 2.", "Judges may ask whether this is truly a new segment strategy or only sharper marketing on the current business."], "refs": ["mdl-option3-light", "src-lc09", "src-lc10", "src-ec06", "src-ec07", "src-fc04", "src-sc04"]}, {"key": "option_1", "option": "Option 1", "title": "International expansion", "verdict": "Largest TAM, weakest case-horizon return", "summary": "Option 1 looks large from a market-size perspective, but the model shows that distributor take, tariff / FX drag, and entry investment keep the five-year cash case materially weaker than the other two options.", "why_this_exists": "This option exists because the case materials clearly surface international whitespace, so the team must prove why it still should not be the primary answer.", "business_question": "Should Stanley buy growth by entering a new geography now?", "decision_headline": "Not in this case horizon. Option 1 creates the highest complexity burden and still does not pay back inside five years.", "financial_thesis": "Enter a new market through local ramp-up and partner economics, hoping market-size tailwinds offset distributor take, tariffs, FX drag, and entry investment.", "why_it_matters": "The TAM story is attractive, but this route pushes the farthest away from Stanley's current operating comfort zone.", "chart_footnote": "International case is shown on the same horizon, but it carries the heaviest assumption load.", "evidence_strength": "Lowest conviction", "metrics": [{"label": "Year 5 sales", "value": 81712800, "type": "currency"}, {"label": "Year 5 operating margin", "value": 20.0, "type": "percent"}, {"label": "Upfront investment", "value": 18000000, "type": "currency"}, {"label": "5-year cumulative profit", "value": -10492352, "type": "currency"}, {"label": "Payback", "value": ">5", "type": "years"}], "proof_points": ["Case materials support a large addressable market outside the current footprint.", "Revenue can scale meaningfully by Year 5 if entry friction is solved.", "But tariff, distributor, and ramp assumptions stack against each other instead of compounding in Stanley's favor."], "key_outputs": ["Year 5 sales reach $81,712,800.", "Year 5 cumulative profit stays at $-10,492,352.", "Payback remains >5 years in the base case."], "key_risks": ["Partner economics, pricing power, and demand build are all outside Stanley's current control.", "Tariff and FX exposure compress the margin stack on top of already-heavy entry cost.", "The strategy asks the judges to underwrite too many external variables at once."], "kill_metrics": ["Distributor take staying above plan.", "Tariff / FX load widening further.", "Local demand ramp lagging the entry-cost curve."], "break_points": ["Partner economics, pricing power, and demand build all sit outside Stanley's current control at once.", "Tariff and FX drag compress a margin stack that is already weakened by distributor economics.", "Inside the case horizon, the cash payback is too slow for a student-case recommendation."], "recommendation_call": "Do not recommend as the core thesis. At most, position it as a later-stage expansion path once the business has a second product platform to carry abroad.", "not_recommended_reason": "Best headline TAM, but weakest five-year cash case and highest execution drag.", "yearly": {"years": ["Y1", "Y2", "Y3", "Y4", "Y5"], "sales": [6156000, 16416000, 30412800, 49766400, 81712800], "margin": [12.0, 14.0, 17.0, 18.0, 20.0], "profit": [-17261280, -7701760, -1829824, 3957952, 12342560], "cumulative": [-17261280, -24963040, -26792864, -22834912, -10492352], "marginLabel": "Operating margin", "cumulativeLabel": "Cumulative profit"}, "driverRows": [{"label": "Target pool", "value": "Premium entry pool grows from $1,800,000,000 to $2,600,000,000."}, {"label": "Ramp assumption", "value": "Entry ramp only reaches 4.5% by Year 5 because local build takes time."}, {"label": "Cross-border drag", "value": "Distributor take stays at 28.0%; tariff / FX load starts at 8.0%."}, {"label": "Bottom line", "value": "Even at Year 5 scale, cumulative cash remains negative in the base case."}], "whyWorks": ["It is the clearest path if the team wants to maximize market-size logic and prove Stanley can travel beyond its current footprint.", "The model still delivers material Year 5 revenue, so the route is not commercially irrational.", "If local partner economics or tariff assumptions improved materially, the ranking could tighten."], "watchouts": ["This is the most assumption-heavy case because international demand build, pricing power, and partner structure are all outside Stanley's current control.", "Tariff and FX exposure hit a strategy that already needs distributor economics to work, which compresses the margin stack twice.", "Inside a five-year student-case horizon, the up-front investment is too heavy relative to the realized cash return."], "refs": ["mdl-option1-light", "src-lc01", "src-lc02", "src-lc09", "src-lc10", "src-fc01"]}], "scenarios": {"business_question": "Does the recommendation survive pressure and which assumptions matter most?", "decision_headline": "Option 2 stays positive in the base and upside cases, while the sensitivity ranking shows that demand-side assumptions still matter more than most cost lines and working-capital discipline is now visible.", "why_it_matters": "The finance appendix should answer not just what wins, but what would make the answer fail on both the P&L and cash-conversion lines.", "cards": [{"key": "base", "label": "Base", "year5Sales": 104044493, "year5GrossMargin": 53.0, "cumulativeCash": 45605414, "payback": 3}, {"key": "upside", "label": "Upside", "year5Sales": 123470124, "year5GrossMargin": 54.7, "cumulativeCash": 70734694, "payback": 3}, {"key": "pressure", "label": "Pressure", "year5Sales": 88636822, "year5GrossMargin": 50.6, "cumulativeCash": 22879505, "payback": 4}], "series": [{"key": "base", "label": "Base", "sales": [9403763, 34093840, 59356440, 79775955, 104044493], "cash": [-8626987, -5901702, 4864349, 22324022, 45605414]}, {"key": "upside", "label": "Upside", "sales": [11124573, 40392707, 70340856, 94633918, 123470124], "cash": [-7831742, -2172133, 13740220, 38276567, 70734694]}, {"key": "pressure", "label": "Pressure", "sales": [8037906, 29095956, 50641288, 67990161, 88636822], "cash": [-9348570, -9279337, -3171168, 7898206, 22879505]}]}, "topSwings": [{"label": "Units per SKU +10%", "delta_vs_base": 7410541, "cumulative_cash": 53015955}, {"label": "Units per SKU -10%", "delta_vs_base": -7410541, "cumulative_cash": 38194872}, {"label": "Inventory support +2.0pp", "delta_vs_base": -5733490, "cumulative_cash": 39871924}, {"label": "Unit COGS -5%", "delta_vs_base": 5236895, "cumulative_cash": 50842308}, {"label": "Unit COGS +5%", "delta_vs_base": -5236895, "cumulative_cash": 40368519}, {"label": "DTC mix -5.0pp", "delta_vs_base": -2924076, "cumulative_cash": 42681337}], "sensitivity": [{"label": "Units per SKU +10%", "cumulative_cash": 53015955, "delta_vs_base": 7410541}, {"label": "Unit COGS -5%", "cumulative_cash": 50842308, "delta_vs_base": 5236895}, {"label": "Tariff load -1.5pp", "cumulative_cash": 47122286, "delta_vs_base": 1516872}, {"label": "Bundle penetration +3pp", "cumulative_cash": 45609191, "delta_vs_base": 3777}, {"label": "Bundle penetration -3pp", "cumulative_cash": 45601637, "delta_vs_base": -3777}, {"label": "Tariff load +1.5pp", "cumulative_cash": 44088542, "delta_vs_base": -1516872}, {"label": "DTC mix -5.0pp", "cumulative_cash": 42681337, "delta_vs_base": -2924076}, {"label": "Unit COGS +5%", "cumulative_cash": 40368519, "delta_vs_base": -5236895}, {"label": "Inventory support +2.0pp", "cumulative_cash": 39871924, "delta_vs_base": -5733490}, {"label": "Units per SKU -10%", "cumulative_cash": 38194872, "delta_vs_base": -7410541}], "assumptions": [{"driver": "Current revenue anchor", "class": "derived_estimate", "source_ids": "FM01", "unit": "usd", "year_1": 750000000, "notes": "Media-reported 2023 sales anchor for Year 0 scale context.", "refs": ["mdl-assumptions", "src-fm01"]}, {"driver": "Status quo revenue growth", "class": "assumption", "source_ids": "LC09|LC10", "unit": "percent", "year_1": 0.025, "notes": "Moderate mature-brand growth assumption used only to show scale context.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10"]}, {"driver": "Global food storage market size", "class": "hard_fact", "source_ids": "LC01", "unit": "usd", "year_1": 173450000000, "notes": "Case Exhibit D market size.", "refs": ["mdl-assumptions", "src-lc01"]}, {"driver": "Global food storage market CAGR", "class": "hard_fact", "source_ids": "LC01", "unit": "percent", "year_1": 0.046, "notes": "Case Exhibit D projected 2025-2032 CAGR.", "refs": ["mdl-assumptions", "src-lc01"]}, {"driver": "APAC market share", "class": "hard_fact", "source_ids": "LC01", "unit": "percent", "year_1": 0.3676, "notes": "Case industry overview regional market share.", "refs": ["mdl-assumptions", "src-lc01"]}, {"driver": "Reference premium-peer gross margin", "class": "derived_estimate", "source_ids": "FC02|FC04|LC01", "unit": "percent", "year_1": 0.57, "notes": "Reference point for Stanley baseline economics based on premium peer set.", "refs": ["mdl-assumptions", "src-fc02", "src-fc04", "src-lc01"]}, {"driver": "SKU count", "class": "assumption", "source_ids": "LC09|LC10|SC04|SC05|SC06", "unit": "count", "year_1": 3, "notes": "Platform starts with core meal system launch and expands selectively.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10", "src-sc04", "src-sc05", "src-sc06"]}, {"driver": "Launch timing factor", "class": "assumption", "source_ids": "LC02|EC04", "unit": "factor", "year_1": 0.5, "notes": "Half-year launch in Year 1, ramp-up in Year 2, full year from Year 3 onward.", "refs": ["mdl-assumptions", "src-lc02", "src-ec04"]}, {"driver": "Units per SKU", "class": "assumption", "source_ids": "LC09|LC10|EC06|EC07", "unit": "units", "year_1": 180000, "notes": "Conservative-to-moderate volume ramp for adjacent premium line.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10", "src-ec06", "src-ec07"]}, {"driver": "MSRP / ASP anchor", "class": "derived_estimate", "source_ids": "SC06|SC09|SC10", "unit": "usd", "year_1": 42.0, "notes": "Anchored to current Stanley premium drinkware and foodware price ladder.", "refs": ["mdl-assumptions", "src-sc06", "src-sc09", "src-sc10"]}, {"driver": "DTC mix", "class": "derived_estimate", "source_ids": "FC03|FC06|PC01|EC08|DC01", "unit": "percent", "year_1": 0.52, "notes": "Launch stays DTC-first versus public premium-peer channel mix, then broadens wholesale as the platform scales.", "refs": ["mdl-assumptions", "src-fc03", "src-fc06", "src-pc01", "src-ec08", "src-dc01"]}, {"driver": "Wholesale realization factor", "class": "derived_estimate", "source_ids": "LC09|FC02|FC04", "unit": "factor", "year_1": 0.68, "notes": "Implied realized price vs. MSRP in partner channels.", "refs": ["mdl-assumptions", "src-lc09", "src-fc02", "src-fc04"]}, {"driver": "Promo discount", "class": "assumption", "source_ids": "EC06|EC07", "unit": "percent", "year_1": 0.08, "notes": "Modest promo support, improving as line matures.", "refs": ["mdl-assumptions", "src-ec06", "src-ec07"]}, {"driver": "Returns rate", "class": "assumption", "source_ids": "LC09|LC10", "unit": "percent", "year_1": 0.03, "notes": "Reasonable returns assumption for premium consumer hardgoods.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10"]}, {"driver": "Bundle penetration", "class": "derived_estimate", "source_ids": "SC06|SC15|SC16|SC17|SC18|SC19|SC20", "unit": "percent", "year_1": 0.12, "notes": "Share of core orders that convert into a multi-component system purchase, anchored to official cross-sell and set design evidence.", "refs": ["mdl-assumptions", "src-sc06", "src-sc15", "src-sc16", "src-sc17", "src-sc18", "src-sc19", "src-sc20"]}, {"driver": "Attach rate", "class": "assumption", "source_ids": "LC09|LC10|SC04", "unit": "factor", "year_1": 0.9, "notes": "Average attached item count when bundle behavior occurs.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10", "src-sc04"]}, {"driver": "Attach ASP factor", "class": "assumption", "source_ids": "SC05|SC06|SC09|SC10", "unit": "factor", "year_1": 0.45, "notes": "Attached item value as a share of core-line ASP.", "refs": ["mdl-assumptions", "src-sc05", "src-sc06", "src-sc09", "src-sc10"]}, {"driver": "Unit COGS", "class": "derived_estimate", "source_ids": "FC02|FC04|FC05", "unit": "usd", "year_1": 10.5, "notes": "Premium insulated foodware cost base anchored to peer margin range.", "refs": ["mdl-assumptions", "src-fc02", "src-fc04", "src-fc05"]}, {"driver": "Packaging per unit", "class": "assumption", "source_ids": "MC01", "unit": "usd", "year_1": 1.2, "notes": "Premium packaging with sustainability-aware design choices.", "refs": ["mdl-assumptions", "src-mc01"]}, {"driver": "Freight per unit", "class": "assumption", "source_ids": "FC01|LC01", "unit": "usd", "year_1": 1.7, "notes": "Landing costs improve modestly with scale and mix.", "refs": ["mdl-assumptions", "src-fc01", "src-lc01"]}, {"driver": "Tariff load on manufacturing COGS", "class": "derived_estimate", "source_ids": "FC01|LC01", "unit": "percent", "year_1": 0.04, "notes": "Partial exposure assumption rather than full tariff pass-through.", "refs": ["mdl-assumptions", "src-fc01", "src-lc01"]}, {"driver": "Promo effect on gross margin", "class": "assumption", "source_ids": "EC06|EC07", "unit": "percent", "year_1": 0.01, "notes": "Gross-margin drag from markdown and channel support.", "refs": ["mdl-assumptions", "src-ec06", "src-ec07"]}, {"driver": "Launch marketing as % of sales", "class": "derived_estimate", "source_ids": "FC02|FC04|FC06|FC07|DC01", "unit": "percent", "year_1": 0.13, "notes": "Front-loaded launch support kept inside public peer SG&A and reinvestment guardrails.", "refs": ["mdl-assumptions", "src-fc02", "src-fc04", "src-fc06", "src-fc07", "src-dc01"]}, {"driver": "Trade spend as % of sales", "class": "assumption", "source_ids": "LC09|FC05", "unit": "percent", "year_1": 0.05, "notes": "Retail enablement and shelf support increases with scale.", "refs": ["mdl-assumptions", "src-lc09", "src-fc05"]}, {"driver": "Incremental SG&A as % of sales", "class": "assumption", "source_ids": "FC02|FC04|FC05|FC06|FC07", "unit": "percent", "year_1": 0.04, "notes": "Incremental commercial and support overhead for scaled platform.", "refs": ["mdl-assumptions", "src-fc02", "src-fc04", "src-fc05", "src-fc06", "src-fc07"]}, {"driver": "Design and tooling", "class": "assumption", "source_ids": "LC09|LC10", "unit": "usd", "year_1": 8000000, "notes": "Front-loaded development and refresh cadence.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10"]}, {"driver": "Inventory support as % of sales", "class": "derived_estimate", "source_ids": "FC03|FC04|FC06|FC07", "unit": "percent", "year_1": 0.1, "notes": "Inventory support is set below whole-company peers because the launch leverages Stanley's existing supply base, but it still charges explicit inventory build as the platform scales.", "refs": ["mdl-assumptions", "src-fc03", "src-fc04", "src-fc06", "src-fc07"]}, {"driver": "Receivables support as % of sales", "class": "derived_estimate", "source_ids": "FC04|FC07", "unit": "percent", "year_1": 0.016, "notes": "Receivables support starts low because the launch is DTC-first, then rises as wholesale mix expands.", "refs": ["mdl-assumptions", "src-fc04", "src-fc07"]}, {"driver": "Payables offset as % of sales", "class": "derived_estimate", "source_ids": "FC03|FC06|FC07", "unit": "percent", "year_1": 0.038, "notes": "Supplier terms offset part of the working-capital burden rather than forcing the model to fund inventory and receivables with no payables support.", "refs": ["mdl-assumptions", "src-fc03", "src-fc06", "src-fc07"]}, {"driver": "Capex if needed", "class": "assumption", "source_ids": "LC09|LC10|FC06", "unit": "usd", "year_1": 3000000, "notes": "Light operations and systems support, not major manufacturing buildout.", "refs": ["mdl-assumptions", "src-lc09", "src-lc10", "src-fc06"]}], "assumptionSummary": {"business_question": "Which inputs are facts, which are estimates, and which are management assumptions?", "decision_headline": "The model is still forecast-driven, but this version pushes more key inputs into public-peer channel and working-capital guardrails so assumptions are easier to defend in Q&A.", "counts": {"hard_fact": 3, "derived_estimate": 12, "assumption": 15}}, "aboutResearch": [{"source": "Case materials", "sample": "Case packet, charge, rubric, and local synthesis", "fieldwork_dates": "2025-26 competition materials", "why_it_matters": "Defines the option set, evaluation horizon, and what the judges can reasonably reward inside a student-case timeframe.", "refs": ["src-lc01", "src-lc02"]}, {"source": "Official company / product pages", "sample": "Stanley, YETI, Hydro Flask, and Bentgo product and collection pages", "fieldwork_dates": "Accessed April 2026", "why_it_matters": "Used for price ladder anchors, platform breadth, compatibility logic, and bundle-system proof.", "refs": ["src-sc05", "src-sc06", "src-sc11", "src-sc12", "src-sc15", "src-sc16", "src-sc17", "src-sc18", "src-sc19", "src-sc20"]}, {"source": "Public filings and IR", "sample": "YETI 10-K and FY2025 results, Helen of Troy FY2025 results, Newell FY2024 results and annual report", "fieldwork_dates": "FY2024-FY2025 public disclosures through April 2026", "why_it_matters": "Anchors margin guardrails, DTC mix, inventory intensity, receivables, free cash flow, and working-capital realism so the finance model does not rely only on management assumptions.", "refs": ["src-fc02", "src-fc03", "src-fc04", "src-fc05", "src-fc06", "src-fc07"]}, {"source": "Official consulting research", "sample": "EY, PwC, McKinsey, Deloitte, and BCG consumer / CPG reports", "fieldwork_dates": "2023-2025 published research", "why_it_matters": "Used to sharpen decision framing, consumer relevance pressure, and the 'about our research' structure expected in consulting-style materials.", "refs": ["src-ec08", "src-pc01", "src-mc02", "src-dc01", "src-bc01"]}], "references": [{"id": "mdl-judge-output", "kind": "model", "title": "Judge output table", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "10_judge_output_tables!A4:G14", "howUsed": "Overview cards, option ranking, and scenario headline values.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Judge output table", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 10_judge_output_tables!A4:G14", "evidenceStrength": "model", "anchor": "ref-mdl-judge-output", "chipText": "Model · Judge output table", "summaryText": "Model · Judge output table", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-output-snapshot", "kind": "model", "title": "Output snapshot CSV", "fileName": "07_financial_model_output_snapshot_20260407_v01.csv", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/07_financial_model_output_snapshot_20260407_v01.csv", "location": "rows by option and year", "howUsed": "Revenue and cumulative value trend lines for all three options.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Output snapshot CSV", "sourceUrl": "", "sourceTrace": "07_financial_model_output_snapshot_20260407_v01.csv | rows by option and year", "evidenceStrength": "model", "anchor": "ref-mdl-output-snapshot", "chipText": "Model · Output snapshot CSV", "summaryText": "Model · Output snapshot CSV", "link": "04_finance_and_modeling/07_financial_model_output_snapshot_20260407_v01.csv"}, {"id": "mdl-option2-revenue", "kind": "model", "title": "Option 2 revenue build", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "04_option_2_revenue_build!A4:I25", "howUsed": "Driver-based sales logic, SKU ramp, ASP, channel mix, and bundle math.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Option 2 revenue build", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 04_option_2_revenue_build!A4:I25", "evidenceStrength": "model", "anchor": "ref-mdl-option2-revenue", "chipText": "Model · Option 2 revenue build", "summaryText": "Model · Option 2 revenue build", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-option2-cost", "kind": "model", "title": "Option 2 cost build", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "05_option_2_cost_build!A4:I31", "howUsed": "COGS, tariff load, marketing, SG&A, and net-cash bridge.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Option 2 cost build", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 05_option_2_cost_build!A4:I31", "evidenceStrength": "model", "anchor": "ref-mdl-option2-cost", "chipText": "Model · Option 2 cost build", "summaryText": "Model · Option 2 cost build", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-option2-pnl", "kind": "model", "title": "Option 2 5-year P&L", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "06_option_2_5yr_pnl!A4:I15", "howUsed": "Headline economics, cumulative cash path, and payback read.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Option 2 5-year P&L", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 06_option_2_5yr_pnl!A4:I15", "evidenceStrength": "model", "anchor": "ref-mdl-option2-pnl", "chipText": "Model · Option 2 5-year P&L", "summaryText": "Model · Option 2 5-year P&L", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-option1-light", "kind": "model", "title": "Option 1 light case", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "07_option_1_light_case!A4:I18", "howUsed": "International expansion comparison case and risk notes.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Option 1 light case", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 07_option_1_light_case!A4:I18", "evidenceStrength": "model", "anchor": "ref-mdl-option1-light", "chipText": "Model · Option 1 light case", "summaryText": "Model · Option 1 light case", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-option3-light", "kind": "model", "title": "Option 3 light case", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "08_option_3_light_case!A4:I17", "howUsed": "Segment expansion comparison case and risk notes.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Option 3 light case", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 08_option_3_light_case!A4:I17", "evidenceStrength": "model", "anchor": "ref-mdl-option3-light", "chipText": "Model · Option 3 light case", "summaryText": "Model · Option 3 light case", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-scenarios", "kind": "model", "title": "Scenarios & sensitivity", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "09_scenarios_and_sensitivity!A4:I23", "howUsed": "Base, upside, pressure, and sensitivity outputs.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Scenarios & sensitivity", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 09_scenarios_and_sensitivity!A4:I23", "evidenceStrength": "model", "anchor": "ref-mdl-scenarios", "chipText": "Model · Scenarios & sensitivity", "summaryText": "Model · Scenarios & sensitivity", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-assumptions", "kind": "model", "title": "Assumption register", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "02_assumption_register!A4:I45", "howUsed": "Audit trail for hard facts, derived estimates, and assumptions.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "Assumption register", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 02_assumption_register!A4:I45", "evidenceStrength": "model", "anchor": "ref-mdl-assumptions", "chipText": "Model · Assumption register", "summaryText": "Model · Assumption register", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "mdl-export", "kind": "model", "title": "HTML export table", "fileName": "05_stanley_financial_model_v01.xlsx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/04_finance_and_modeling/05_stanley_financial_model_v01.xlsx", "location": "11_qr_html_export_tables!A4:I14", "howUsed": "HTML appendix data mirror and QR-safe export table.", "groupKey": "model_trace", "groupLabel": "Model trace", "sourceShort": "HTML export table", "sourceUrl": "", "sourceTrace": "05_stanley_financial_model_v01.xlsx | 11_qr_html_export_tables!A4:I14", "evidenceStrength": "model", "anchor": "ref-mdl-export", "chipText": "Model · HTML export table", "summaryText": "Model · HTML export table", "link": "04_finance_and_modeling/05_stanley_financial_model_v01.xlsx"}, {"id": "src-lc01", "kind": "source", "groupKey": "case_materials", "groupLabel": "Case materials", "anchor": "ref-src-lc01", "label": "LC01", "title": "Case PDF", "publisher": "UW Foster MOSAIC", "fileName": "MOSAIC Case Competition 2025-26 Case .pdf", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/Case Competiton/MOSAIC Case Competition 2025-26 Case .pdf", "location": "MOSAIC Case Competition 2025-26 Case .pdf | Exhibit D market sizing and case benchmark exhibits", "howUsed": "main case framing", "note": "core case prompt and option definitions", "sourceShort": "Case PDF", "sourceUrl": "", "sourceTrace": "MOSAIC Case Competition 2025-26 Case .pdf | Exhibit D market sizing and case benchmark exhibits", "evidenceStrength": "tier_1", "chipText": "LC01 · Case PDF", "summaryText": "LC01 · Case PDF", "link": ""}, {"id": "src-lc02", "kind": "source", "groupKey": "case_materials", "groupLabel": "Case materials", "anchor": "ref-src-lc02", "label": "LC02", "title": "Graduate charge", "publisher": "UW Foster MOSAIC", "fileName": "MCC 2025-26 Graduate Charge.pdf", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/Case Competiton/MCC 2025-26 Graduate Charge.pdf", "location": "MCC 2025-26 Graduate Charge.pdf | prompt framing, deliverables, and judging emphasis", "howUsed": "requirement matrix", "note": "requires strategy implementation financial analysis and risks", "sourceShort": "Graduate charge", "sourceUrl": "", "sourceTrace": "MCC 2025-26 Graduate Charge.pdf | prompt framing, deliverables, and judging emphasis", "evidenceStrength": "tier_1", "chipText": "LC02 · Graduate charge", "summaryText": "LC02 · Graduate charge", "link": ""}, {"id": "src-lc08", "kind": "source", "groupKey": "case_materials", "groupLabel": "Case materials", "anchor": "ref-src-lc08", "label": "LC08", "title": "Battle checklist", "publisher": "local_preparation_doc", "fileName": "MOSAIC_2026_48H_Battle_Checklist.docx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/MOSAIC_2026_48H_Battle_Checklist.docx", "location": "MOSAIC_2026_48H_Battle_Checklist.docx | team execution checklist and timing guardrails", "howUsed": "internal readout", "note": "execution checklist and delivery discipline", "sourceShort": "Battle checklist", "sourceUrl": "", "sourceTrace": "MOSAIC_2026_48H_Battle_Checklist.docx | team execution checklist and timing guardrails", "evidenceStrength": "tier_2", "chipText": "LC08 · Battle checklist", "summaryText": "LC08 · Battle checklist", "link": ""}, {"id": "src-lc09", "kind": "source", "groupKey": "case_materials", "groupLabel": "Case materials", "anchor": "ref-src-lc09", "label": "LC09", "title": "Option analysis EN", "publisher": "local_research_doc", "fileName": "Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis.docx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis.docx", "location": "Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis.docx | benchmark synthesis and option notes", "howUsed": "baseline synthesis", "note": "local thesis that option_2 is strongest current path", "sourceShort": "Option analysis EN", "sourceUrl": "", "sourceTrace": "Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis.docx | benchmark synthesis and option notes", "evidenceStrength": "tier_2", "chipText": "LC09 · Option analysis EN", "summaryText": "LC09 · Option analysis EN", "link": ""}, {"id": "src-lc10", "kind": "source", "groupKey": "case_materials", "groupLabel": "Case materials", "anchor": "ref-src-lc10", "label": "LC10", "title": "Option analysis CN", "publisher": "local_research_doc", "fileName": "Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis_CN.docx", "path": "/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis_CN.docx", "location": "Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis_CN.docx | bilingual cross-check notes", "howUsed": "baseline synthesis", "note": "chinese local thesis for option_2 and foodware platform", "sourceShort": "Option analysis CN", "sourceUrl": "", "sourceTrace": "Stanley_1913_Case_Sources_Industry_Report_and_Option_Analysis_CN.docx | bilingual cross-check notes", "evidenceStrength": "tier_2", "chipText": "LC10 · Option analysis CN", "summaryText": "LC10 · Option analysis CN", "link": ""}, {"id": "src-sc04", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc04", "label": "SC04", "title": "Vitalize launch", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/blogs/stanley-1913-newsroom/the-stanley-1913-brand-launches-new-vitalize%E2%84%A2-collection-featuring-totes-and-backpacks", "location": "Stanley newsroom / Vitalize Collection launch page | adjacency and launch precedent", "howUsed": "adjacency proof", "note": "stanley expanding into totes and backpacks", "sourceShort": "Vitalize launch", "sourceUrl": "https://www.stanley1913.com/blogs/stanley-1913-newsroom/the-stanley-1913-brand-launches-new-vitalize%E2%84%A2-collection-featuring-totes-and-backpacks", "sourceTrace": "Stanley newsroom / Vitalize Collection launch page | adjacency and launch precedent", "evidenceStrength": "tier_1", "chipText": "SC04 · Vitalize launch", "summaryText": "SC04 · Vitalize launch", "link": "https://www.stanley1913.com/blogs/stanley-1913-newsroom/the-stanley-1913-brand-launches-new-vitalize%E2%84%A2-collection-featuring-totes-and-backpacks"}, {"id": "src-sc05", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc05", "label": "SC05", "title": "Stanley food jar", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/adventure-to-go-food-jar-12-oz", "location": "Stanley official product page | Adventure To-Go Food Jar price anchor", "howUsed": "product adjacency", "note": "official proof Stanley already sells food jars", "sourceShort": "Stanley food jar", "sourceUrl": "https://www.stanley1913.com/products/adventure-to-go-food-jar-12-oz", "sourceTrace": "Stanley official product page | Adventure To-Go Food Jar price anchor", "evidenceStrength": "tier_1", "chipText": "SC05 · Stanley food jar", "summaryText": "SC05 · Stanley food jar", "link": "https://www.stanley1913.com/products/adventure-to-go-food-jar-12-oz"}, {"id": "src-sc06", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc06", "label": "SC06", "title": "Stanley lunch box", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/midi-mini-lunch-boxes-4-qt", "location": "Stanley official product page | All Day Mini Lunch Box price anchor", "howUsed": "pricing benchmark", "note": "official proof Stanley already sells lunch carry product priced at 45 USD", "sourceShort": "Stanley lunch box", "sourceUrl": "https://www.stanley1913.com/products/midi-mini-lunch-boxes-4-qt", "sourceTrace": "Stanley official product page | All Day Mini Lunch Box price anchor", "evidenceStrength": "tier_1", "chipText": "SC06 · Stanley lunch box", "summaryText": "SC06 · Stanley lunch box", "link": "https://www.stanley1913.com/products/midi-mini-lunch-boxes-4-qt"}, {"id": "src-sc09", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc09", "label": "SC09", "title": "Stanley Quencher 40 oz", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/the-new-frequency-quencher-h20-flowstate-tumbler-40-oz?bvstate=pg%3A164%2Fct%3Ar&variant=44560341139583", "location": "Stanley official product page / search signal | Quencher price ladder anchor", "howUsed": "pricing benchmark", "note": "official search result signal shows 40 oz Quencher at 45 USD", "sourceShort": "Stanley Quencher 40 oz", "sourceUrl": "https://www.stanley1913.com/products/the-new-frequency-quencher-h20-flowstate-tumbler-40-oz?bvstate=pg%3A164%2Fct%3Ar&variant=44560341139583", "sourceTrace": "Stanley official product page / search signal | Quencher price ladder anchor", "evidenceStrength": "tier_2", "chipText": "SC09 · Stanley Quencher 40 oz", "summaryText": "SC09 · Stanley Quencher 40 oz", "link": "https://www.stanley1913.com/products/the-new-frequency-quencher-h20-flowstate-tumbler-40-oz?bvstate=pg%3A164%2Fct%3Ar&variant=44560341139583"}, {"id": "src-sc10", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc10", "label": "SC10", "title": "Stanley thermal food jar", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/artisan-thermal-food-jar-27-oz?bvstate=pg%3A2%2Fct%3Ar", "location": "Stanley official product page | Artisan Thermal Food Jar price anchor", "howUsed": "pricing benchmark", "note": "official search result signal shows food jar at 35 USD", "sourceShort": "Stanley thermal food jar", "sourceUrl": "https://www.stanley1913.com/products/artisan-thermal-food-jar-27-oz?bvstate=pg%3A2%2Fct%3Ar", "sourceTrace": "Stanley official product page | Artisan Thermal Food Jar price anchor", "evidenceStrength": "tier_2", "chipText": "SC10 · Stanley thermal food jar", "summaryText": "SC10 · Stanley thermal food jar", "link": "https://www.stanley1913.com/products/artisan-thermal-food-jar-27-oz?bvstate=pg%3A2%2Fct%3Ar"}, {"id": "src-sc11", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc11", "label": "SC11", "title": "Hydro Flask lunch prices", "publisher": "Hydro Flask", "fileName": "Hydro Flask", "path": "https://www.hydroflask.com/shop/coolers/lunch-boxes", "location": "Hydro Flask lunch box category page | lunch box and food jar price ladder", "howUsed": "peer price ladder", "note": "official category page shows 20 oz insulated food jar at 39.95 USD and 5 L carry out lunch box at 59.95 USD", "sourceShort": "Hydro Flask lunch prices", "sourceUrl": "https://www.hydroflask.com/shop/coolers/lunch-boxes", "sourceTrace": "Hydro Flask lunch box category page | lunch box and food jar price ladder", "evidenceStrength": "tier_1", "chipText": "SC11 · Hydro Flask lunch prices", "summaryText": "SC11 · Hydro Flask lunch prices", "link": "https://www.hydroflask.com/shop/coolers/lunch-boxes"}, {"id": "src-sc12", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc12", "label": "SC12", "title": "YETI food jar prices", "publisher": "YETI", "fileName": "YETI", "path": "https://www.yeti.com/kitchen/food-containers/food-jar-16oz.html", "location": "YETI official food jar page | food jar and lunch box price ladder", "howUsed": "peer price ladder and sku breadth", "note": "official product page shows 16 oz insulated food jar at 45 USD and cross sells 8 oz food jar at 35 USD plus 5L lunch box at 80 USD", "sourceShort": "YETI food jar prices", "sourceUrl": "https://www.yeti.com/kitchen/food-containers/food-jar-16oz.html", "sourceTrace": "YETI official food jar page | food jar and lunch box price ladder", "evidenceStrength": "tier_1", "chipText": "SC12 · YETI food jar prices", "summaryText": "SC12 · YETI food jar prices", "link": "https://www.yeti.com/kitchen/food-containers/food-jar-16oz.html"}, {"id": "src-sc13", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc13", "label": "SC13", "title": "Bentgo steel lunch box", "publisher": "Bentgo", "fileName": "Bentgo", "path": "https://bentgo.com/products/bentgo-kids-stainless-steel-lunch-box", "location": "Bentgo official product page | stainless steel lunch box price anchor", "howUsed": "peer price ladder", "note": "official product page shows kids stainless steel lunch box at 49.99 USD", "sourceShort": "Bentgo steel lunch box", "sourceUrl": "https://bentgo.com/products/bentgo-kids-stainless-steel-lunch-box", "sourceTrace": "Bentgo official product page | stainless steel lunch box price anchor", "evidenceStrength": "tier_1", "chipText": "SC13 · Bentgo steel lunch box", "summaryText": "SC13 · Bentgo steel lunch box", "link": "https://bentgo.com/products/bentgo-kids-stainless-steel-lunch-box"}, {"id": "src-sc14", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc14", "label": "SC14", "title": "Bentgo lunch bag", "publisher": "Bentgo", "fileName": "Bentgo", "path": "https://bentgo.com/products/bentgo-insulated-lunch-bag", "location": "Bentgo official product page | insulated lunch bag price anchor", "howUsed": "peer price ladder", "note": "official product page shows insulated lunch bag at 34.99 USD", "sourceShort": "Bentgo lunch bag", "sourceUrl": "https://bentgo.com/products/bentgo-insulated-lunch-bag", "sourceTrace": "Bentgo official product page | insulated lunch bag price anchor", "evidenceStrength": "tier_1", "chipText": "SC14 · Bentgo lunch bag", "summaryText": "SC14 · Bentgo lunch bag", "link": "https://bentgo.com/products/bentgo-insulated-lunch-bag"}, {"id": "src-sc15", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc15", "label": "SC15", "title": "Stanley Classic Lunch Box", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/classic-lunch-box", "location": "Stanley official product page | Classic Lunch Box compatibility with bottles mugs and food jars", "howUsed": "platform breadth and bundle logic", "note": "official product page says the Classic Lunch Box can secure a full size Stanley bottle or mug and is compatible with multiple Classic bottles and food jars", "sourceShort": "Stanley Classic Lunch Box", "sourceUrl": "https://www.stanley1913.com/products/classic-lunch-box", "sourceTrace": "Stanley official product page | Classic Lunch Box compatibility with bottles mugs and food jars", "evidenceStrength": "tier_1", "chipText": "SC15 · Stanley Classic Lunch Box", "summaryText": "SC15 · Stanley Classic Lunch Box", "link": "https://www.stanley1913.com/products/classic-lunch-box"}, {"id": "src-sc16", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc16", "label": "SC16", "title": "Stanley Useful Box", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/classic-legendary-useful-box", "location": "Stanley official product page | Useful Box nests inside Stanley lunch boxes", "howUsed": "platform breadth and bundle logic", "note": "official product page says the Useful Box nests inside the All Day Midi and Mini Lunch Boxes and can hold lunch snacks and utensils", "sourceShort": "Stanley Useful Box", "sourceUrl": "https://www.stanley1913.com/products/classic-legendary-useful-box", "sourceTrace": "Stanley official product page | Useful Box nests inside Stanley lunch boxes", "evidenceStrength": "tier_1", "chipText": "SC16 · Stanley Useful Box", "summaryText": "SC16 · Stanley Useful Box", "link": "https://www.stanley1913.com/products/classic-legendary-useful-box"}, {"id": "src-sc17", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc17", "label": "SC17", "title": "Stanley bottle+lunch set", "publisher": "Stanley 1913", "fileName": "Stanley 1913", "path": "https://www.stanley1913.com/products/post-malone-legendary-classic-bottle-and-lunch-box-set", "location": "Stanley official product page | bottle and lunch box set as explicit bundle proof", "howUsed": "platform breadth and bundle logic", "note": "official Stanley set page shows a bottle and lunch box sold as one bundled system with the bottle buckling into the lunch lid", "sourceShort": "Stanley bottle+lunch set", "sourceUrl": "https://www.stanley1913.com/products/post-malone-legendary-classic-bottle-and-lunch-box-set", "sourceTrace": "Stanley official product page | bottle and lunch box set as explicit bundle proof", "evidenceStrength": "tier_1", "chipText": "SC17 · Stanley bottle+lunch set", "summaryText": "SC17 · Stanley bottle+lunch set", "link": "https://www.stanley1913.com/products/post-malone-legendary-classic-bottle-and-lunch-box-set"}, {"id": "src-sc18", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc18", "label": "SC18", "title": "YETI Daytrip 6L", "publisher": "YETI", "fileName": "YETI", "path": "https://it.yeti.com/en-de/products/daytrip-6-lunch-bag-navy", "location": "YETI official product page | Daytrip 6L lunch bag compatible with ice sheet and food storage", "howUsed": "peer sku breadth and bundle logic", "note": "official YETI product page says the 6L lunch bag is compatible with Ice Sheet medium small Food Storage medium Food Storage and Daytrip Shoulder Strap", "sourceShort": "YETI Daytrip 6L", "sourceUrl": "https://it.yeti.com/en-de/products/daytrip-6-lunch-bag-navy", "sourceTrace": "YETI official product page | Daytrip 6L lunch bag compatible with ice sheet and food storage", "evidenceStrength": "tier_1", "chipText": "SC18 · YETI Daytrip 6L", "summaryText": "SC18 · YETI Daytrip 6L", "link": "https://it.yeti.com/en-de/products/daytrip-6-lunch-bag-navy"}, {"id": "src-sc19", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc19", "label": "SC19", "title": "YETI Daytrip 3L", "publisher": "YETI", "fileName": "YETI", "path": "https://ie.yeti.com/products/daytrip-3-lunch-box-charcoal", "location": "YETI official product page | Daytrip 3L lunch box compatible with ice sheet and food storage", "howUsed": "peer sku breadth and bundle logic", "note": "official YETI product page says the 3L lunch box is compatible with Ice Sheet small and medium Food Storage and the Daytrip Shoulder Strap", "sourceShort": "YETI Daytrip 3L", "sourceUrl": "https://ie.yeti.com/products/daytrip-3-lunch-box-charcoal", "sourceTrace": "YETI official product page | Daytrip 3L lunch box compatible with ice sheet and food storage", "evidenceStrength": "tier_1", "chipText": "SC19 · YETI Daytrip 3L", "summaryText": "SC19 · YETI Daytrip 3L", "link": "https://ie.yeti.com/products/daytrip-3-lunch-box-charcoal"}, {"id": "src-sc20", "kind": "source", "groupKey": "company_product", "groupLabel": "Company / product", "anchor": "ref-src-sc20", "label": "SC20", "title": "YETI food containers", "publisher": "YETI", "fileName": "YETI", "path": "https://www.yeti.com/outdoor-kitchen/food-containers", "location": "YETI official category page | food containers as connected meal system", "howUsed": "peer sku breadth and platform logic", "note": "official category page shows food storage containers and Rambler food jars as a connected storage system and positions them for meal prep storage and reheating", "sourceShort": "YETI food containers", "sourceUrl": "https://www.yeti.com/outdoor-kitchen/food-containers", "sourceTrace": "YETI official category page | food containers as connected meal system", "evidenceStrength": "tier_1", "chipText": "SC20 · YETI food containers", "summaryText": "SC20 · YETI food containers", "link": "https://www.yeti.com/outdoor-kitchen/food-containers"}, {"id": "src-ec04", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-ec04", "label": "EC04", "title": "EY change management", "publisher": "EY", "fileName": "EY", "path": "https://www.ey.com/en_us/services/workforce/change-management-experience", "location": "EY change management and experience page | transformation adoption lens", "howUsed": "implementation logic", "note": "ey leadership engagement proficiency confidence implementation lens", "sourceShort": "EY change management", "sourceUrl": "https://www.ey.com/en_us/services/workforce/change-management-experience", "sourceTrace": "EY change management and experience page | transformation adoption lens", "evidenceStrength": "tier_1", "chipText": "EC04 · EY change management", "summaryText": "EC04 · EY change management", "link": "https://www.ey.com/en_us/services/workforce/change-management-experience"}, {"id": "src-ec06", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-ec06", "label": "EC06", "title": "EY Future Consumer Index", "publisher": "EY", "fileName": "EY", "path": "https://www.ey.com/en_us/newsroom/2025/03/ey-future-consumer-index", "location": "EY Future Consumer Index March 2025 | premium, value, and sustainability signals", "howUsed": "market and consumer research", "note": "consumers remain value conscious and selective", "sourceShort": "EY Future Consumer Index", "sourceUrl": "https://www.ey.com/en_us/newsroom/2025/03/ey-future-consumer-index", "sourceTrace": "EY Future Consumer Index March 2025 | premium, value, and sustainability signals", "evidenceStrength": "tier_1", "chipText": "EC06 · EY Future Consumer Index", "summaryText": "EC06 · EY Future Consumer Index", "link": "https://www.ey.com/en_us/newsroom/2025/03/ey-future-consumer-index"}, {"id": "src-ec07", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-ec07", "label": "EC07", "title": "EY-Parthenon sentiment", "publisher": "EY", "fileName": "EY", "path": "https://www.ey.com/en_us/newsroom/2026/03/ey-parthenon-consumer-sentiment-survey", "location": "EY-Parthenon Consumer Sentiment Survey March 2026 | spending and demand backdrop", "howUsed": "market and consumer research", "note": "2026 consumer caution and spending sentiment signal", "sourceShort": "EY-Parthenon sentiment", "sourceUrl": "https://www.ey.com/en_us/newsroom/2026/03/ey-parthenon-consumer-sentiment-survey", "sourceTrace": "EY-Parthenon Consumer Sentiment Survey March 2026 | spending and demand backdrop", "evidenceStrength": "tier_1", "chipText": "EC07 · EY-Parthenon sentiment", "summaryText": "EC07 · EY-Parthenon sentiment", "link": "https://www.ey.com/en_us/newsroom/2026/03/ey-parthenon-consumer-sentiment-survey"}, {"id": "src-ec08", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-ec08", "label": "EC08", "title": "EY CP report 2025", "publisher": "EY", "fileName": "EY", "path": "https://www.ey.com/en_it/state-of-consumer-products-report", "location": "EY State of Consumer Products 2025 | consumer, retailer, and capital-market proof", "howUsed": "consumer and capital market proof", "note": "official ey consumer products report says 35 percent of consumers no longer view brands as significant purchase factor 42 percent see innovation as cost cutting and 78 percent of retailers believe only one mass market brand will remain on shelf", "sourceShort": "EY CP report 2025", "sourceUrl": "https://www.ey.com/en_it/state-of-consumer-products-report", "sourceTrace": "EY State of Consumer Products 2025 | consumer, retailer, and capital-market proof", "evidenceStrength": "tier_1", "chipText": "EC08 · EY CP report 2025", "summaryText": "EC08 · EY CP report 2025", "link": "https://www.ey.com/en_it/state-of-consumer-products-report"}, {"id": "src-pc01", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-pc01", "label": "PC01", "title": "PwC consumer pulse", "publisher": "PwC", "fileName": "PwC", "path": "https://www.pwc.com/gx/en/industries/consumer-markets/consumer-insights-survey.html", "location": "PwC Global Consumer Insights Pulse Survey 2023 | DTC and sustainability willingness-to-pay", "howUsed": "dtc and pricing proof", "note": "official pwc survey says 63 percent of consumers have purchased directly from a brand website and eight in ten would pay up to 5 percent more for sustainably produced goods", "sourceShort": "PwC consumer pulse", "sourceUrl": "https://www.pwc.com/gx/en/industries/consumer-markets/consumer-insights-survey.html", "sourceTrace": "PwC Global Consumer Insights Pulse Survey 2023 | DTC and sustainability willingness-to-pay", "evidenceStrength": "tier_1", "chipText": "PC01 · PwC consumer pulse", "summaryText": "PC01 · PwC consumer pulse", "link": "https://www.pwc.com/gx/en/industries/consumer-markets/consumer-insights-survey.html"}, {"id": "src-fc01", "kind": "source", "groupKey": "government_policy", "groupLabel": "Government / policy", "anchor": "ref-src-fc01", "label": "FC01", "title": "CBP tariff statement", "publisher": "US Customs and Border Protection", "fileName": "US Customs and Border Protection", "path": "https://www.cbp.gov/newsroom/announcements/official-cbp-statement-tariffs", "location": "CBP tariff statement | tariff and landed-cost exposure baseline", "howUsed": "cost risk and sensitivity", "note": "additional 20 percent tariffs on China and Hong Kong and additional 25 percent on certain non USMCA goods from Canada and Mexico", "sourceShort": "CBP tariff statement", "sourceUrl": "https://www.cbp.gov/newsroom/announcements/official-cbp-statement-tariffs", "sourceTrace": "CBP tariff statement | tariff and landed-cost exposure baseline", "evidenceStrength": "tier_1", "chipText": "FC01 · CBP tariff statement", "summaryText": "FC01 · CBP tariff statement", "link": "https://www.cbp.gov/newsroom/announcements/official-cbp-statement-tariffs"}, {"id": "src-fc02", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fc02", "label": "FC02", "title": "YETI FY2024 results", "publisher": "YETI", "fileName": "YETI", "path": "https://investors.yeti.com/news/news-details/2025/YETI-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Results/default.aspx", "location": "YETI FY2024 results release | premium peer gross-margin benchmark", "howUsed": "comparable finance", "note": "fy2024 net sales 1.83B gross margin 58.1 percent operating margin 13.4 percent and adjusted operating margin 16.8 percent", "sourceShort": "YETI FY2024 results", "sourceUrl": "https://investors.yeti.com/news/news-details/2025/YETI-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Results/default.aspx", "sourceTrace": "YETI FY2024 results release | premium peer gross-margin benchmark", "evidenceStrength": "tier_1", "chipText": "FC02 · YETI FY2024 results", "summaryText": "FC02 · YETI FY2024 results", "link": "https://investors.yeti.com/news/news-details/2025/YETI-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Results/default.aspx"}, {"id": "src-fc03", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fc03", "label": "FC03", "title": "YETI 2024 10-K", "publisher": "SEC", "fileName": "SEC", "path": "https://www.sec.gov/Archives/edgar/data/1670592/000167059225000008/yeti-20241228.htm", "location": "YETI 2024 Form 10-K | DTC mix and working-capital context", "howUsed": "channel economics and working capital proxy", "note": "official annual filing says DTC was 59 percent of 2024 net sales and reports 88.5M of working capital excluding cash at year end", "sourceShort": "YETI 2024 10-K", "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000167059225000008/yeti-20241228.htm", "sourceTrace": "YETI 2024 Form 10-K | DTC mix and working-capital context", "evidenceStrength": "tier_1", "chipText": "FC03 · YETI 2024 10-K", "summaryText": "FC03 · YETI 2024 10-K", "link": "https://www.sec.gov/Archives/edgar/data/1670592/000167059225000008/yeti-20241228.htm"}, {"id": "src-fc04", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fc04", "label": "FC04", "title": "Helen FY2025 results", "publisher": "Helen of Troy", "fileName": "Helen of Troy", "path": "https://investor.helenoftroy.com/press-releases/press-release-details/2025/Helen-of-Troy-Limited-Reports-Fourth-Quarter-Fiscal-2025-Results/default.aspx", "location": "Helen of Troy FY2025 results | margin, inventory, receivables, and marketing reinvestment context", "howUsed": "comparable finance working capital and marketing proxy", "note": "fy2025 net sales about 1.9B gross margin 47.9 percent adjusted operating margin 13.2 percent inventory 452.6M receivable days 71.5 net cash from operations 113.2M and management notes higher marketing expense", "sourceShort": "Helen FY2025 results", "sourceUrl": "https://investor.helenoftroy.com/press-releases/press-release-details/2025/Helen-of-Troy-Limited-Reports-Fourth-Quarter-Fiscal-2025-Results/default.aspx", "sourceTrace": "Helen of Troy FY2025 results | margin, inventory, receivables, and marketing reinvestment context", "evidenceStrength": "tier_1", "chipText": "FC04 · Helen FY2025 results", "summaryText": "FC04 · Helen FY2025 results", "link": "https://investor.helenoftroy.com/press-releases/press-release-details/2025/Helen-of-Troy-Limited-Reports-Fourth-Quarter-Fiscal-2025-Results/default.aspx"}, {"id": "src-fc05", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fc05", "label": "FC05", "title": "Newell FY2024 results", "publisher": "Newell Brands", "fileName": "Newell Brands", "path": "https://ir.newellbrands.com/news-releases/news-release-details/newell-brands-announces-fourth-quarter-and-full-year-2024/", "location": "Newell FY2024 results | foodware / household benchmark context", "howUsed": "comparable finance", "note": "fy2024 net sales 7.6B reported gross margin 33.6 percent normalized operating margin 8.2 percent and outdoor and recreation normalized operating margin negative 6.7 percent", "sourceShort": "Newell FY2024 results", "sourceUrl": "https://ir.newellbrands.com/news-releases/news-release-details/newell-brands-announces-fourth-quarter-and-full-year-2024/", "sourceTrace": "Newell FY2024 results | foodware / household benchmark context", "evidenceStrength": "tier_1", "chipText": "FC05 · Newell FY2024 results", "summaryText": "FC05 · Newell FY2024 results", "link": "https://ir.newellbrands.com/news-releases/news-release-details/newell-brands-announces-fourth-quarter-and-full-year-2024/"}, {"id": "src-fc06", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fc06", "label": "FC06", "title": "YETI FY2025 results", "publisher": "YETI", "fileName": "YETI", "path": "https://investors.yeti.com/news/news-details/2026/YETI-ReportsFourth-Quarter-and-Full-Year-2025-Results-Provides-Full-Year-2026-Outlook/default.aspx", "location": "YETI FY2025 results release | DTC sales, inventory, free cash flow, and capex outlook", "howUsed": "channel economics working capital and capex proxy", "note": "fy2025 net sales 1.8685B DTC sales 1.1278B wholesale sales 740.7M gross margin 57.4 percent SGA ratio 46.0 percent inventory 290.6M free cash flow 212.1M and capex outlook 60M to 70M", "sourceShort": "YETI FY2025 results", "sourceUrl": "https://investors.yeti.com/news/news-details/2026/YETI-ReportsFourth-Quarter-and-Full-Year-2025-Results-Provides-Full-Year-2026-Outlook/default.aspx", "sourceTrace": "YETI FY2025 results release | DTC sales, inventory, free cash flow, and capex outlook", "evidenceStrength": "tier_1", "chipText": "FC06 · YETI FY2025 results", "summaryText": "FC06 · YETI FY2025 results", "link": "https://investors.yeti.com/news/news-details/2026/YETI-ReportsFourth-Quarter-and-Full-Year-2025-Results-Provides-Full-Year-2026-Outlook/default.aspx"}, {"id": "src-fc07", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fc07", "label": "FC07", "title": "Newell 2024 annual report", "publisher": "Newell Brands", "fileName": "Newell Brands", "path": "https://ir.newellbrands.com/static-files/fcd38c5c-f1cd-422f-9567-302461d5853f", "location": "Newell 2024 Annual Report | balance-sheet working capital and operating-cash-flow tables", "howUsed": "working capital and cash conversion proxy", "note": "annual report shows accounts receivable 878M inventories 1.4B cash from operations 496M and notes lower working capital reductions primarily related to inventory in 2024", "sourceShort": "Newell 2024 annual report", "sourceUrl": "https://ir.newellbrands.com/static-files/fcd38c5c-f1cd-422f-9567-302461d5853f", "sourceTrace": "Newell 2024 Annual Report | balance-sheet working capital and operating-cash-flow tables", "evidenceStrength": "tier_1", "chipText": "FC07 · Newell 2024 annual report", "summaryText": "FC07 · Newell 2024 annual report", "link": "https://ir.newellbrands.com/static-files/fcd38c5c-f1cd-422f-9567-302461d5853f"}, {"id": "src-bc01", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-bc01", "label": "BC01", "title": "BCG consumer radar", "publisher": "BCG", "fileName": "BCG", "path": "https://www.bcg.com/publications/2025/under-pressure-consumers-shift-their-spending", "location": "BCG Global Consumer Radar 2025 | spending pressure and wallet trade-off context", "howUsed": "about research and consulting benchmark", "note": "BCG consumer radar frames pressured spending and the need to monitor changing trade offs in consumer wallets", "sourceShort": "BCG consumer radar", "sourceUrl": "https://www.bcg.com/publications/2025/under-pressure-consumers-shift-their-spending", "sourceTrace": "BCG Global Consumer Radar 2025 | spending pressure and wallet trade-off context", "evidenceStrength": "tier_1", "chipText": "BC01 · BCG consumer radar", "summaryText": "BC01 · BCG consumer radar", "link": "https://www.bcg.com/publications/2025/under-pressure-consumers-shift-their-spending"}, {"id": "src-dc01", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-dc01", "label": "DC01", "title": "Deloitte future of CPG", "publisher": "Deloitte", "fileName": "Deloitte", "path": "https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/industries/consumer/2025/the-future-of-consumer-packaged-goods.pdf", "location": "Deloitte Future of Consumer Packaged Goods 2025 | channel and data-driven strategy context", "howUsed": "about research and channel strategy framing", "note": "Deloitte frames CPG strategy around trade sensitivity supply chain fragility data and AI enabled experiences and retailer collaboration", "sourceShort": "Deloitte future of CPG", "sourceUrl": "https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/industries/consumer/2025/the-future-of-consumer-packaged-goods.pdf", "sourceTrace": "Deloitte Future of Consumer Packaged Goods 2025 | channel and data-driven strategy context", "evidenceStrength": "tier_1", "chipText": "DC01 · Deloitte future of CPG", "summaryText": "DC01 · Deloitte future of CPG", "link": "https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/industries/consumer/2025/the-future-of-consumer-packaged-goods.pdf"}, {"id": "src-fm01", "kind": "source", "groupKey": "investor_financial", "groupLabel": "Investor / financial", "anchor": "ref-src-fm01", "label": "FM01", "title": "TIME Stanley profile", "publisher": "Time", "fileName": "Time", "path": "https://time.com/collections/time100-companies-2024/6978931/stanley-cups/", "location": "TIME profile on Stanley | 2023 revenue anchor reference", "howUsed": "stanley baseline revenue anchor", "note": "time reports Stanley sales reached around 750 million dollars in 2023 after doubling for three consecutive years", "sourceShort": "TIME Stanley profile", "sourceUrl": "https://time.com/collections/time100-companies-2024/6978931/stanley-cups/", "sourceTrace": "TIME profile on Stanley | 2023 revenue anchor reference", "evidenceStrength": "tier_2", "chipText": "FM01 · TIME Stanley profile", "summaryText": "FM01 · TIME Stanley profile", "link": "https://time.com/collections/time100-companies-2024/6978931/stanley-cups/"}, {"id": "src-mc01", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-mc01", "label": "MC01", "title": "McKinsey sustainability", "publisher": "McKinsey", "fileName": "McKinsey", "path": "https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/consumers-care-about-sustainability-and-back-it-up-with-their-wallets", "location": "Sustainability willingness-to-pay source | packaging support signal", "howUsed": "consumer research", "note": "consumers may pay more for sustainability when value is credible", "sourceShort": "McKinsey sustainability", "sourceUrl": "https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/consumers-care-about-sustainability-and-back-it-up-with-their-wallets", "sourceTrace": "Sustainability willingness-to-pay source | packaging support signal", "evidenceStrength": "tier_2", "chipText": "MC01 · McKinsey sustainability", "summaryText": "MC01 · McKinsey sustainability", "link": "https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/consumers-care-about-sustainability-and-back-it-up-with-their-wallets"}, {"id": "src-mc02", "kind": "source", "groupKey": "consumer_strategy", "groupLabel": "Consumer / strategy reports", "anchor": "ref-src-mc02", "label": "MC02", "title": "McKinsey state of consumer", "publisher": "McKinsey", "fileName": "McKinsey", "path": "https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/state-of-consumer", "location": "McKinsey State of Consumer 2025 | methodology and consumer benchmark context", "howUsed": "about research and consulting benchmark", "note": "McKinsey State of Consumer Market Survey gathered 2838 consumers across the US China Germany and the UK between April 23 and May 6 2025", "sourceShort": "McKinsey state of consumer", "sourceUrl": "https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/state-of-consumer", "sourceTrace": "McKinsey State of Consumer 2025 | methodology and consumer benchmark context", "evidenceStrength": "tier_1", "chipText": "MC02 · McKinsey state of consumer", "summaryText": "MC02 · McKinsey state of consumer", "link": "https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/state-of-consumer"}], "referenceGroups": [{"key": "model_trace", "label": "Model trace"}, {"key": "case_materials", "label": "Case materials"}, {"key": "company_product", "label": "Company / product"}, {"key": "investor_financial", "label": "Investor / financial"}, {"key": "consumer_strategy", "label": "Consumer / strategy reports"}, {"key": "government_policy", "label": "Government / policy"}], "sectionRefs": {"hero": ["mdl-judge-output", "src-fm01", "src-fc02", "src-fc03", "src-fc04", "src-fc06"], "overview": ["mdl-judge-output", "src-lc01", "src-fc02", "src-fc03", "src-fc04", "src-fc05", "src-fc06", "src-fc07"], "proof": ["src-sc05", "src-sc06", "src-sc11", "src-sc12", "src-sc15", "src-sc16", "src-sc17", "src-sc18", "src-sc19", "src-sc20", "src-fc03", "src-fc04", "src-fc06", "src-fc07", "src-ec08", "src-pc01"], "options": ["mdl-option2-pnl", "mdl-option3-light", "mdl-option1-light", "src-ec08", "src-pc01", "src-fc03", "src-fc04", "src-fc06", "src-fc07"], "option_2": ["mdl-option2-revenue", "mdl-option2-cost", "mdl-option2-pnl", "src-sc05", "src-sc06", "src-sc09", "src-sc10", "src-sc11", "src-sc12", "src-sc15", "src-sc16", "src-sc17", "src-sc18", "src-sc19", "src-sc20", "src-fc02", "src-fc03", "src-fc04", "src-fc05", "src-fc06", "src-fc07", "src-ec08", "src-pc01", "src-dc01"], "option_3": ["mdl-option3-light", "src-lc09", "src-lc10", "src-ec06", "src-ec07", "src-fc04"], "option_1": ["mdl-option1-light", "src-lc01", "src-lc02", "src-fc01"], "scenarios": ["mdl-scenarios", "mdl-export", "src-fc01", "src-fc03", "src-fc04", "src-fc06", "src-fc07", "src-ec06", "src-ec07", "src-ec08"], "assumptions": ["mdl-assumptions", "src-lc09", "src-lc10", "src-ec06", "src-ec07", "src-fm01", "src-fc01", "src-fc02", "src-fc03", "src-fc04", "src-fc05", "src-fc06", "src-fc07", "src-dc01"], "sources": ["src-lc01", "src-sc15", "src-sc17", "src-fc03", "src-fc04", "src-fc06", "src-fc07", "src-ec08", "src-pc01", "src-mc02", "src-dc01", "src-bc01"], "about_research": ["src-lc01", "src-lc02", "src-fc03", "src-fc04", "src-fc06", "src-fc07", "src-ec08", "src-pc01", "src-mc02", "src-dc01", "src-bc01"]}};
+    const REF_INDEX = Object.fromEntries(DATA.references.map(ref => [ref.id, ref]));
+    let activeOption = 'option_2';
+    let activeScenario = 'base';
+    let activeAssumptionFilter = 'all';
+    let highlightedRefIds = [];
+    let referenceFilter = 'all';
+    let activePointSignature = '';
+
+    const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    const compactCurrencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 1 });
+
+    function formatCurrency(value) {
+      return currencyFormatter.format(Number(value || 0));
+    }
+
+    function formatCompactCurrency(value) {
+      return compactCurrencyFormatter.format(Number(value || 0)).replace('.0', '');
+    }
+
+    function formatPricePoint(value) {
+      const numeric = Number(value || 0);
+      return Number.isInteger(numeric)
+        ? `$${numeric.toFixed(0)}`
+        : `$${numeric.toFixed(2).replace(/0+$/, '').replace(/\.$/, '')}`;
+    }
+
+    function formatPercent(value) {
+      return `${Number(value).toFixed(1)}%`;
+    }
+
+    function formatValue(value, type) {
+      if (type === 'currency') return formatCurrency(value);
+      if (type === 'percent') return formatPercent(value);
+      if (type === 'years') return value === '>5' ? '>5 years' : `${value} years`;
+      return value;
+    }
+
+    function formatInputValue(value, unit) {
+      if (unit === 'usd') return formatCurrency(value);
+      if (unit === 'percent') return formatPercent(Number(value) * 100);
+      if (unit === 'factor') return `${Number(value).toFixed(2)}x`;
+      if (unit === 'count') return Number(value).toLocaleString('en-US');
+      if (unit === 'units') return Number(value).toLocaleString('en-US');
+      return typeof value === 'number' ? Number(value).toLocaleString('en-US') : value;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function buildTraceChips(refIds) {
+      return refIds.map(refId => {
+        const ref = REF_INDEX[refId];
+        if (!ref) return '';
+        return `<button type="button" class="trace-chip" data-ref-id="${ref.id}">${escapeHtml(ref.chipText)}</button>`;
+      }).join('');
+    }
+
+    function buildFootnoteChips(refIds, maxItems = 3) {
+      const deduped = [...new Set(refIds)].slice(0, maxItems);
+      if (!deduped.length) return '';
+      return `<span class="source-prefix">Source:</span>${buildTraceChips(deduped)}`;
+    }
+
+    function renderSectionTrace(targetId, sectionKey) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      target.innerHTML = buildTraceChips(DATA.sectionRefs[sectionKey] || []);
+    }
+
+    function buildLegend(targetId, series) {
+      document.getElementById(targetId).innerHTML = series.map(item => `
+        <span><i class="legend-dot" style="background:${item.color};"></i>${escapeHtml(item.label)}</span>
+      `).join('');
+    }
+
+    function lineChartSvg(chartId, labels, series, { minValue = null, yFormatter = formatCompactCurrency } = {}) {
+      const width = 620;
+      const height = 320;
+      const pad = { top: 18, right: 20, bottom: 38, left: 54 };
+      const values = series.flatMap(item => item.values);
+      const min = minValue !== null ? Math.min(minValue, ...values) : Math.min(...values, 0);
+      const max = Math.max(...values);
+      const safeMax = max === min ? max + 1 : max;
+      const chartWidth = width - pad.left - pad.right;
+      const chartHeight = height - pad.top - pad.bottom;
+      const x = (index) => pad.left + (chartWidth * index) / (labels.length - 1 || 1);
+      const y = (value) => pad.top + chartHeight - ((value - min) / (safeMax - min)) * chartHeight;
+
+      const gridValues = [0, 0.25, 0.5, 0.75, 1].map(step => min + (safeMax - min) * step);
+      const grid = gridValues.map(value => {
+        const yPos = y(value);
+        return `
+          <line x1="${pad.left}" y1="${yPos}" x2="${width - pad.right}" y2="${yPos}" stroke="rgba(255,255,255,0.08)" />
+          <text x="${pad.left - 10}" y="${yPos + 4}" fill="rgba(255,255,255,0.52)" font-size="11" text-anchor="end">${escapeHtml(yFormatter(value))}</text>
+        `;
+      }).join('');
+
+      const labelLayer = labels.map((label, index) => `
+        <text x="${x(index)}" y="${height - 12}" fill="rgba(255,255,255,0.60)" font-size="11" text-anchor="middle">${escapeHtml(label)}</text>
+      `).join('');
+
+      const seriesLayer = series.map(item => {
+        const points = item.values.map((value, index) => `${x(index)},${y(value)}`).join(' ');
+        const circles = item.values.map((value, index) => `
+          <circle class="chart-point" cx="${x(index)}" cy="${y(value)}" r="4.5" fill="${item.color}" stroke="#0f1011" stroke-width="2" data-chart="${chartId}" data-series="${item.key || item.label}" data-index="${index}" data-point-key="${chartId}-${item.key || item.label}-${index}"></circle>
+        `).join('');
+        return `
+          <polyline fill="none" stroke="${item.color}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" points="${points}"></polyline>
+          ${circles}
+        `;
+      }).join('');
+
+      return `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="320" role="img" aria-label="Line chart">
+          ${grid}
+          <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${height - pad.bottom}" stroke="rgba(255,255,255,0.14)"></line>
+          <line x1="${pad.left}" y1="${height - pad.bottom}" x2="${width - pad.right}" y2="${height - pad.bottom}" stroke="rgba(255,255,255,0.14)"></line>
+          ${seriesLayer}
+          ${labelLayer}
+        </svg>
+      `;
+    }
+
+    function barChartSvg(labels, values, color) {
+      const width = 540;
+      const height = 240;
+      const pad = { top: 16, right: 16, bottom: 32, left: 18 };
+      const max = Math.max(...values, 1);
+      const chartWidth = width - pad.left - pad.right;
+      const chartHeight = height - pad.top - pad.bottom;
+      const barWidth = chartWidth / values.length - 18;
+      return `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="240" role="img" aria-label="Bar chart">
+          ${values.map((value, index) => {
+            const x = pad.left + index * (chartWidth / values.length) + 10;
+            const barHeight = (value / max) * chartHeight;
+            const y = pad.top + chartHeight - barHeight;
+            return `
+              <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" rx="8" fill="${color}"></rect>
+              <text x="${x + barWidth / 2}" y="${height - 10}" fill="rgba(255,255,255,0.60)" font-size="11" text-anchor="middle">${escapeHtml(labels[index])}</text>
+            `;
+          }).join('')}
+        </svg>
+      `;
+    }
+
+    function bubbleMatrixSvg(chartId, points) {
+      const width = 620;
+      const height = 320;
+      const pad = { top: 18, right: 20, bottom: 36, left: 48 };
+      const minX = 0;
+      const maxX = 100;
+      const yValues = points.map(point => point.y);
+      const minY = Math.min(...yValues, 0);
+      const maxY = Math.max(...yValues, 1);
+      const maxSize = Math.max(...points.map(point => point.size), 1);
+      const chartWidth = width - pad.left - pad.right;
+      const chartHeight = height - pad.top - pad.bottom;
+      const colorMap = { option_2: '#ffe600', option_3: '#78dce8', option_1: '#ff8b6a' };
+      const x = (value) => pad.left + ((value - minX) / (maxX - minX)) * chartWidth;
+      const y = (value) => pad.top + chartHeight - ((value - minY) / (maxY - minY || 1)) * chartHeight;
+
+      return `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="320" role="img" aria-label="Return versus execution complexity matrix">
+          ${[0, 0.25, 0.5, 0.75, 1].map(step => {
+            const yValue = minY + (maxY - minY) * step;
+            const yPos = y(yValue);
+            return `
+              <line x1="${pad.left}" y1="${yPos}" x2="${width - pad.right}" y2="${yPos}" stroke="rgba(255,255,255,0.08)" />
+              <text x="${pad.left - 10}" y="${yPos + 4}" fill="rgba(255,255,255,0.52)" font-size="11" text-anchor="end">${escapeHtml(formatCompactCurrency(yValue))}</text>
+            `;
+          }).join('')}
+          <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${height - pad.bottom}" stroke="rgba(255,255,255,0.14)"></line>
+          <line x1="${pad.left}" y1="${height - pad.bottom}" x2="${width - pad.right}" y2="${height - pad.bottom}" stroke="rgba(255,255,255,0.14)"></line>
+          ${points.map(point => {
+            const radius = 18 + (point.size / maxSize) * 22;
+            return `
+              <circle class="chart-point" cx="${x(point.x)}" cy="${y(point.y)}" r="${radius}" fill="${colorMap[point.key] || '#ffe600'}" fill-opacity="0.82" stroke="#0f1011" stroke-width="2" data-chart="${chartId}" data-series="${point.key}" data-index="0" data-point-key="${chartId}-${point.key}"></circle>
+              <text x="${x(point.x)}" y="${y(point.y) + 4}" fill="#111" font-size="12" font-weight="800" text-anchor="middle">${escapeHtml(point.label.replace('Option ', 'O'))}</text>
+            `;
+          }).join('')}
+        </svg>
+      `;
+    }
+
+    function waterfallSvg(chartId, steps) {
+      const width = 620;
+      const height = 300;
+      const pad = { top: 18, right: 18, bottom: 42, left: 48 };
+      const slot = (width - pad.left - pad.right) / steps.length;
+      let running = 0;
+      const computed = steps.map(step => {
+        let startValue = 0;
+        let endValue = step.value;
+        if (step.type === 'delta') {
+          startValue = running;
+          endValue = running + step.value;
+          running = endValue;
+        } else {
+          startValue = 0;
+          endValue = step.value;
+          running = step.value;
+        }
+        return { ...step, startValue, endValue };
+      });
+      const minValue = Math.min(0, ...computed.flatMap(item => [item.startValue, item.endValue]));
+      const maxValue = Math.max(...computed.flatMap(item => [item.startValue, item.endValue]), 1);
+      const chartHeight = height - pad.top - pad.bottom;
+      const y = (value) => pad.top + chartHeight - ((value - minValue) / (maxValue - minValue || 1)) * chartHeight;
+
+      return `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="300" role="img" aria-label="Waterfall chart">
+          ${[0, 0.25, 0.5, 0.75, 1].map(step => {
+            const yValue = minValue + (maxValue - minValue) * step;
+            const yPos = y(yValue);
+            return `
+              <line x1="${pad.left}" y1="${yPos}" x2="${width - pad.right}" y2="${yPos}" stroke="rgba(255,255,255,0.08)" />
+              <text x="${pad.left - 10}" y="${yPos + 4}" fill="rgba(255,255,255,0.52)" font-size="11" text-anchor="end">${escapeHtml(formatCompactCurrency(yValue))}</text>
+            `;
+          }).join('')}
+          <line x1="${pad.left}" y1="${height - pad.bottom}" x2="${width - pad.right}" y2="${height - pad.bottom}" stroke="rgba(255,255,255,0.14)"></line>
+          ${computed.map((step, index) => {
+            const barX = pad.left + index * slot + 14;
+            const barWidth = Math.max(slot - 24, 32);
+            const topValue = Math.max(step.startValue, step.endValue);
+            const bottomValue = Math.min(step.startValue, step.endValue);
+            const rectY = y(topValue);
+            const rectHeight = Math.max(Math.abs(y(step.startValue) - y(step.endValue)), 4);
+            const fill = step.type === 'delta'
+              ? (step.value >= 0 ? '#78dce8' : '#ff8b6a')
+              : '#ffe600';
+            return `
+              <rect class="chart-point" x="${barX}" y="${rectY}" width="${barWidth}" height="${rectHeight}" rx="10" fill="${fill}" data-chart="${chartId}" data-series="${escapeHtml(step.label)}" data-index="${index}" data-point-key="${chartId}-${index}"></rect>
+              <text x="${barX + barWidth / 2}" y="${height - 12}" fill="rgba(255,255,255,0.62)" font-size="11" text-anchor="middle">${escapeHtml(step.label)}</text>
+            `;
+          }).join('')}
+        </svg>
+      `;
+    }
+
+    function renderTeam() {
+      const linkedinIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.86-3.04c-1.86 0-2.14 1.45-2.14 2.95v5.67H9.33V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.37-1.86c3.6 0 4.27 2.37 4.27 5.45v6.3zM5.31 7.43a2.07 2.07 0 1 1 0-4.14a2.07 2.07 0 0 1 0 4.14zM7.09 20.45H3.53V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+        </svg>
+      `;
+      document.getElementById('team-grid').innerHTML = DATA.team.map(member => `
+        <article class="panel team-card">
+          <img class="team-avatar" src="${escapeHtml(member.photo)}" alt="${escapeHtml(member.name)} portrait">
+          <div class="team-card__body">
+            <div class="team-card__heading">
+              <div>
+                <h3>${escapeHtml(member.name)}</h3>
+                ${member.role ? `<div class="ref-meta" style="margin-top:6px;">${escapeHtml(member.role)}</div>` : ''}
+              </div>
+              <div class="team-links">
+                <a
+                  class="team-link"
+                  href="${escapeHtml(member.linkedin)}"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  title="LinkedIn"
+                  data-tooltip="LinkedIn"
+                  aria-label="Open ${escapeHtml(member.name)}'s LinkedIn profile"
+                >
+                  <span class="team-link__icon">${linkedinIcon}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function setHighlightedRefs(refIds) {
+      highlightedRefIds = [...new Set(refIds)];
+      applyHighlightState();
+      renderReferences();
+    }
+
+    function applyHighlightState() {
+      document.querySelectorAll('[data-ref-id]').forEach(node => {
+        const isHit = highlightedRefIds.includes(node.dataset.refId);
+        node.classList.toggle('is-highlighted', isHit);
+        if (node.classList.contains('ref-card')) {
+          node.classList.toggle('is-muted', highlightedRefIds.length > 0 && !isHit);
+        }
+      });
+      document.querySelectorAll('.chart-point').forEach(node => {
+        node.classList.toggle('is-active', activePointSignature && node.dataset.pointKey === activePointSignature);
+      });
+    }
+
+    function showInspector(payload) {
+      activePointSignature = payload.pointKey || '';
+      document.getElementById('inspector').classList.add('is-open');
+      document.getElementById('inspector-title').textContent = payload.title;
+      document.getElementById('inspector-value').textContent = payload.display;
+      document.getElementById('inspector-exact').textContent = payload.exact ? `Exact: ${payload.exact}` : '';
+      document.getElementById('inspector-copy').textContent = payload.copy;
+      document.getElementById('inspector-traces').innerHTML = buildTraceChips(payload.refs || []);
+      setHighlightedRefs(payload.refs || []);
+      applyHighlightState();
+    }
+
+    function closeInspector() {
+      activePointSignature = '';
+      document.getElementById('inspector').classList.remove('is-open');
+      applyHighlightState();
+    }
+
+    function bindChartInteractions(containerId, resolver) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.querySelectorAll('.chart-point').forEach(point => {
+        point.addEventListener('click', () => {
+          const payload = resolver(point.dataset.series, Number(point.dataset.index), point.dataset.pointKey);
+          if (payload) showInspector(payload);
+        });
+      });
+    }
+
+    function renderHero() {
+      document.getElementById('hero-title').textContent = DATA.overview.headline;
+      document.getElementById('hero-question').textContent = DATA.overview.why_now;
+      document.getElementById('hero-headline').textContent = DATA.overview.evidence_sentence;
+      document.getElementById('overview-cards').innerHTML = DATA.overview.cards.map(card => `
+        <div class="metric-card">
+          <div class="metric-label">${escapeHtml(card.label)}</div>
+          <div class="metric-value ${card.type === 'text' ? 'highlight' : ''}">${escapeHtml(card.type === 'currency' ? formatCompactCurrency(card.value) : formatValue(card.value, card.type))}</div>
+          ${card.type === 'currency' ? `<div class="value-exact">${escapeHtml(formatCurrency(card.value))}</div>` : ''}
+        </div>
+      `).join('');
+      document.getElementById('footnote-hero').innerHTML = buildFootnoteChips(DATA.overview.top_refs || DATA.sectionRefs.hero || []);
+    }
+
+    function renderEvidence() {
+      document.getElementById('overview-copy').textContent = 'These two exhibits answer the ranking before the page asks judges to read a long drilldown.';
+
+      const matrix = DATA.decisionVisuals.matrix;
+      document.getElementById('matrix-question').textContent = matrix.business_question;
+      document.getElementById('matrix-copy').textContent = `${matrix.decision_headline} ${matrix.why_it_matters}`;
+      document.getElementById('matrix-implication').textContent = matrix.implication;
+      document.getElementById('matrix-chart').innerHTML = `
+        ${bubbleMatrixSvg('decision-matrix', matrix.points)}
+        <div class="matrix-axis-note">
+          <span>Lower execution complexity</span>
+          <span>Higher execution complexity</span>
+        </div>
+      `;
+      bindChartInteractions('matrix-chart', (seriesKey, _index, pointKey) => {
+        const point = matrix.points.find(item => item.key === seriesKey);
+        if (!point) return null;
+        return {
+          pointKey,
+          title: `${point.label} · return vs execution position`,
+          display: formatCompactCurrency(point.y),
+          exact: `5-year value ${formatCurrency(point.y)} · Year 5 sales ${formatCurrency(point.size)} · complexity index ${point.x}`,
+          copy: point.read,
+          refs: point.refs || [],
+        };
+      });
+      document.getElementById('footnote-matrix').innerHTML = buildFootnoteChips(matrix.points.flatMap(point => point.refs || []));
+
+      const comparison = DATA.decisionVisuals.cashComparison;
+      document.getElementById('cash-question').textContent = comparison.business_question;
+      document.getElementById('cash-comparison-copy').textContent = comparison.decision_headline;
+      document.getElementById('cash-implication').textContent = comparison.implication;
+      const maxSales = Math.max(...DATA.optionComparison.map(item => item.year5Sales));
+      document.getElementById('option-ranking').innerHTML = DATA.optionComparison.map((item, index) => {
+        const fillClass = index === 0 ? '' : index === 1 ? 'alt-cyan' : 'alt-danger';
+        const width = Math.max((item.year5Sales / maxSales) * 100, 10);
+        return `
+          <div class="option-card">
+            <div class="option-card-head">
+              <div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                  <span class="rank-badge">#${item.rank}</span>
+                  <span class="tag-badge">${escapeHtml(item.tag)}</span>
+                </div>
+                <h3 style="margin:12px 0 0;font-size:21px;">${escapeHtml(item.option)}</h3>
+                <p class="panel-copy" style="margin-top:8px;">${escapeHtml(item.read)}</p>
+              </div>
+              <div style="text-align:right;">
+                <div class="metric-label">Year 5 sales</div>
+                <div style="font-size:clamp(24px,2.8vw,34px);font-weight:800;color:${index === 0 ? 'var(--ey)' : 'var(--text)'};overflow-wrap:anywhere;">${escapeHtml(formatCompactCurrency(item.year5Sales))}</div>
+                <div class="value-exact">${escapeHtml(formatCurrency(item.year5Sales))}</div>
+              </div>
+            </div>
+            <div class="track"><div class="fill ${fillClass}" style="width:${width}%;"></div></div>
+            <div class="metric-row">
+              <div class="stat-chip"><div class="metric-label">${escapeHtml(item.marginLabel)}</div><strong>${escapeHtml(formatPercent(item.margin))}</strong></div>
+              <div class="stat-chip"><div class="metric-label">Upfront</div><strong>${escapeHtml(formatCompactCurrency(item.upfront))}</strong><div class="value-exact">${escapeHtml(formatCurrency(item.upfront))}</div></div>
+              <div class="stat-chip"><div class="metric-label">5-year cash</div><strong>${escapeHtml(formatCompactCurrency(item.cumulativeCash))}</strong><div class="value-exact">${escapeHtml(formatCurrency(item.cumulativeCash))}</div></div>
+              <div class="stat-chip"><div class="metric-label">Payback</div><strong>${escapeHtml(formatValue(item.payback, 'years'))}</strong></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      document.querySelectorAll('#option-ranking .option-card').forEach((card, index) => {
+        card.addEventListener('click', () => {
+          const item = DATA.optionComparison[index];
+          const detail = DATA.optionDetails.find(entry => entry.key === item.key);
+          if (!detail) return;
+          showInspector({
+            pointKey: `card-${item.key}`,
+            title: `${item.option} ranking snapshot`,
+            display: formatCompactCurrency(item.cumulativeCash),
+            exact: `Year 5 sales ${formatCurrency(item.year5Sales)} · 5-year cash ${formatCurrency(item.cumulativeCash)} · payback ${formatValue(item.payback, 'years')}`,
+            copy: item.read,
+            refs: [...new Set((DATA.sectionRefs.overview || []).concat(detail.refs || []))],
+          });
+        });
+      });
+      document.getElementById('footnote-comparison').innerHTML = buildFootnoteChips(DATA.sectionRefs.overview || []);
+    }
+
+    function renderProof() {
+      document.getElementById('proof-copy').textContent = 'The proof stack is separated from the core decision exhibits so judges can inspect platform breadth, channel economics, and cash-conversion realism without diluting the main answer.';
+
+      const platform = DATA.decisionVisuals.platformProof;
+      document.getElementById('platform-question').textContent = platform.business_question;
+      document.getElementById('platform-copy').textContent = platform.decision_headline;
+      document.getElementById('platform-implication').textContent = platform.implication;
+      document.getElementById('platform-grid').innerHTML = platform.items.map((item, index) => `
+        <div class="platform-card" data-platform-index="${index}">
+          <div class="platform-top">
+            <div>
+              <div class="platform-brand">${escapeHtml(item.brand)}</div>
+              <p class="platform-copy">${escapeHtml(item.read)}</p>
+            </div>
+            <div class="platform-value">${escapeHtml(String(item.components))}</div>
+          </div>
+          <div class="benchmark-metrics">
+            <div class="benchmark-metric"><span>Min. surfaced components</span><strong>${escapeHtml(String(item.components))}</strong></div>
+            <div class="benchmark-metric"><span>Visible price band</span><strong>${escapeHtml(item.priceBand)}</strong></div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-platform-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = platform.items[Number(node.dataset.platformIndex)];
+          showInspector({
+            pointKey: `platform-${node.dataset.platformIndex}`,
+            title: `${item.brand} platform breadth`,
+            display: `${item.components} components`,
+            exact: `Visible price band ${item.priceBand}`,
+            copy: item.read,
+            refs: item.refs || [],
+          });
+        });
+      });
+
+      document.getElementById('price-ladder').innerHTML = DATA.decisionVisuals.priceLadder.items.map((item, index) => `
+        <div class="price-row" data-price-index="${index}">
+          <div class="price-top">
+            <div>
+              <div class="price-brand">${escapeHtml(item.brand)} · ${escapeHtml(item.category)}</div>
+              <div class="price-product">${escapeHtml(item.product)}</div>
+            </div>
+            <div class="price-value">${escapeHtml(formatPricePoint(item.price))}</div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-price-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = DATA.decisionVisuals.priceLadder.items[Number(node.dataset.priceIndex)];
+          showInspector({
+            pointKey: `price-${node.dataset.priceIndex}`,
+            title: `${item.brand} · ${item.product}`,
+            display: formatPricePoint(item.price),
+            exact: `${item.category} price point`,
+            copy: DATA.decisionVisuals.priceLadder.chart_footnote,
+            refs: item.refs || [],
+          });
+        });
+      });
+      document.getElementById('footnote-platform-proof').innerHTML = buildFootnoteChips(
+        platform.items.flatMap(item => item.refs || []).concat(DATA.decisionVisuals.priceLadder.items.flatMap(item => item.refs || []))
+      );
+
+      const channel = DATA.decisionVisuals.channelProof;
+      document.getElementById('channel-question').textContent = channel.business_question;
+      document.getElementById('channel-copy').textContent = channel.decision_headline;
+      document.getElementById('channel-implication').textContent = channel.implication;
+      document.getElementById('peer-benchmarks').innerHTML = DATA.decisionVisuals.peerBenchmarks.items.map((item, index) => `
+        <div class="benchmark-card" data-benchmark-index="${index}">
+          <div class="benchmark-top">
+            <div>
+              <div class="benchmark-brand">${escapeHtml(item.brand)}</div>
+              <div class="benchmark-note">${escapeHtml(item.note)}</div>
+            </div>
+            <div class="price-value">${escapeHtml(formatPercent(item.grossMargin))}</div>
+          </div>
+          <div class="benchmark-metrics">
+            <div class="benchmark-metric"><span>Revenue</span><strong>${escapeHtml(formatCompactCurrency(item.revenue))}</strong></div>
+            <div class="benchmark-metric"><span>Gross margin</span><strong>${escapeHtml(formatPercent(item.grossMargin))}</strong></div>
+            <div class="benchmark-metric"><span>Operating metric</span><strong>${item.opMargin === null ? 'n/a' : escapeHtml(formatPercent(item.opMargin))}</strong></div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-benchmark-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = DATA.decisionVisuals.peerBenchmarks.items[Number(node.dataset.benchmarkIndex)];
+          showInspector({
+            pointKey: `benchmark-${node.dataset.benchmarkIndex}`,
+            title: `${item.brand} benchmark`,
+            display: formatPercent(item.grossMargin),
+            exact: `Revenue ${formatCurrency(item.revenue)}${item.opMargin === null ? '' : ` · Operating metric ${formatPercent(item.opMargin)}`}`,
+            copy: item.note,
+            refs: item.refs || [],
+          });
+        });
+      });
+      document.getElementById('channel-signals').innerHTML = channel.items.map((item, index) => `
+        <div class="signal-card" data-channel-index="${index}">
+          <div class="signal-value">${escapeHtml(item.value)}</div>
+          <h4>${escapeHtml(item.headline)}</h4>
+          <p>${escapeHtml(item.detail)}</p>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-channel-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = channel.items[Number(node.dataset.channelIndex)];
+          showInspector({
+            pointKey: `channel-${node.dataset.channelIndex}`,
+            title: item.headline,
+            display: item.value,
+            exact: item.detail,
+            copy: channel.chart_footnote,
+            refs: item.refs || [],
+          });
+        });
+      });
+      document.getElementById('footnote-channel-proof').innerHTML = buildFootnoteChips(
+        DATA.decisionVisuals.peerBenchmarks.items.flatMap(item => item.refs || []).concat(channel.items.flatMap(item => item.refs || []))
+      );
+
+      const cashProof = DATA.decisionVisuals.cashConversionProof;
+      document.getElementById('cash-proof-question').textContent = cashProof.business_question;
+      document.getElementById('cash-proof-copy').textContent = cashProof.decision_headline;
+      document.getElementById('cash-proof-implication').textContent = cashProof.implication;
+      document.getElementById('cash-conversion-grid').innerHTML = cashProof.items.map((item, index) => `
+        <div class="benchmark-card" data-cashproof-index="${index}">
+          <div class="benchmark-top">
+            <div>
+              <div class="benchmark-brand">${escapeHtml(item.entity)}</div>
+              <div class="benchmark-note">${escapeHtml(item.note)}</div>
+            </div>
+          </div>
+          <div class="benchmark-metrics">
+            ${item.metrics.map(metric => `
+              <div class="benchmark-metric"><span>${escapeHtml(metric.label)}</span><strong>${escapeHtml(metric.value)}</strong></div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-cashproof-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = cashProof.items[Number(node.dataset.cashproofIndex)];
+          showInspector({
+            pointKey: `cashproof-${node.dataset.cashproofIndex}`,
+            title: item.entity,
+            display: item.metrics.map(metric => `${metric.label} ${metric.value}`).join(' · '),
+            exact: item.note,
+            copy: cashProof.chart_footnote,
+            refs: item.refs || [],
+          });
+        });
+      });
+      document.getElementById('footnote-cash-conversion').innerHTML = buildFootnoteChips(
+        cashProof.items.flatMap(item => item.refs || [])
+      );
+
+      const consumer = DATA.decisionVisuals.consumerProof;
+      document.getElementById('consumer-question').textContent = consumer.business_question;
+      document.getElementById('consumer-copy').textContent = consumer.decision_headline;
+      document.getElementById('consumer-implication').textContent = consumer.implication;
+      document.getElementById('consumer-signals').innerHTML = consumer.items.map((item, index) => `
+        <div class="signal-card" data-signal-index="${index}">
+          <div class="signal-value">${escapeHtml(item.value)}</div>
+          <h4>${escapeHtml(item.headline)}</h4>
+          <p>${escapeHtml(item.detail)}</p>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-signal-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = consumer.items[Number(node.dataset.signalIndex)];
+          showInspector({
+            pointKey: `signal-${node.dataset.signalIndex}`,
+            title: item.headline,
+            display: item.value,
+            exact: item.detail,
+            copy: consumer.chart_footnote,
+            refs: item.refs || [],
+          });
+        });
+      });
+      document.getElementById('footnote-consumer-proof').innerHTML = buildFootnoteChips(consumer.items.flatMap(item => item.refs || []));
+    }
+
+    function renderOptionTabs() {
+      document.getElementById('option-tabs').innerHTML = DATA.optionDetails.map(detail => `
+        <button class="${detail.key === activeOption ? 'active' : ''}" data-option="${detail.key}">${escapeHtml(detail.option)} · ${escapeHtml(detail.verdict)}</button>
+      `).join('');
+      document.querySelectorAll('button[data-option]').forEach(button => {
+        button.addEventListener('click', () => {
+          activeOption = button.dataset.option;
+          renderOptionTabs();
+          renderOptionDetail();
+        });
+      });
+    }
+
+    function renderOptionDetail() {
+      const detail = DATA.optionDetails.find(item => item.key === activeOption);
+      const colorMap = { option_2: '#ffe600', option_3: '#78dce8', option_1: '#ff8b6a' };
+      const color = colorMap[detail.key] || '#ffe600';
+      document.getElementById('option-detail').innerHTML = `
+        <div class="option-detail-head">
+          <div class="question-kicker">${escapeHtml(detail.business_question)}</div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <span class="tag-badge">${escapeHtml(detail.verdict)}</span>
+            <span class="scenario-badge">${escapeHtml(detail.title)}</span>
+          </div>
+          <h3>${escapeHtml(detail.decision_headline)}</h3>
+          <div class="option-status">${escapeHtml(detail.evidence_strength)}</div>
+          <p class="panel-copy" style="margin-top:10px;">${escapeHtml(detail.why_it_matters)}</p>
+        </div>
+        <div class="metric-row">
+          ${detail.metrics.map(metric => `
+            <div class="stat-chip">
+              <div class="metric-label">${escapeHtml(metric.label)}</div>
+              <strong>${escapeHtml(metric.type === 'currency' ? formatCompactCurrency(metric.value) : formatValue(metric.value, metric.type))}</strong>
+              ${metric.type === 'currency' ? `<div class="value-exact">${escapeHtml(formatCurrency(metric.value))}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+        <div class="module-stack">
+          <div class="module-card highlight">
+            <h4>Why this option exists</h4>
+            <p>${escapeHtml(detail.why_this_exists || detail.summary)}</p>
+          </div>
+          <div class="module-card">
+            <h4>What proves it</h4>
+            <ul class="module-list">${detail.proof_points.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </div>
+          <div class="mini-chart-shell" id="option-cumulative-chart-shell">
+            <div class="panel-subtitle">${escapeHtml(detail.yearly.cumulativeLabel)}</div>
+            <div id="option-cumulative-chart">${lineChartSvg('option-cumulative', detail.yearly.years, [{ key: detail.key, label: detail.option, values: detail.yearly.cumulative, color }], { minValue: Math.min(...detail.yearly.cumulative, 0) })}</div>
+          </div>
+          <div class="module-card">
+            <h4>Where it breaks</h4>
+            <ul class="module-list">${(detail.break_points || detail.key_risks).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </div>
+          <div class="module-card">
+            <h4>Recommendation</h4>
+            <p>${escapeHtml(detail.recommendation_call || detail.not_recommended_reason || detail.summary)}</p>
+          </div>
+          ${detail.key === 'option_2' ? `
+            <div class="module-card">
+              <h4>Option 2 operating bridge</h4>
+              <p style="margin:0 0 12px;color:var(--muted);line-height:1.6;">${escapeHtml(DATA.decisionVisuals.waterfall.decision_headline)}</p>
+              <div class="chart-shell" id="option2-waterfall-shell">${waterfallSvg('option2-waterfall', DATA.decisionVisuals.waterfall.steps)}</div>
+              <div class="footnote-row">${buildFootnoteChips(DATA.decisionVisuals.waterfall.refs || [])}</div>
+            </div>
+          ` : ''}
+          <details class="details-toggle">
+            <summary>Show 5-year detail table and driver notes</summary>
+            <div class="driver-grid" style="padding:0 16px 8px;">
+              ${detail.driverRows.map(row => `
+                <div class="driver-row">
+                  <strong>${escapeHtml(row.label)}</strong>
+                  <div>${escapeHtml(row.value)}</div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="data-table-wrap" style="margin-top:0;border:0;border-radius:0;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    ${detail.yearly.years.map(year => `<th>${escapeHtml(year)}</th>`).join('')}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sales</td>
+                    ${detail.yearly.sales.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
+                  </tr>
+                  <tr>
+                    <td>${escapeHtml(detail.yearly.marginLabel)}</td>
+                    ${detail.yearly.margin.map(value => `<td>${escapeHtml(formatPercent(value))}</td>`).join('')}
+                  </tr>
+                  <tr>
+                    <td>Operating profit</td>
+                    ${detail.yearly.profit.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
+                  </tr>
+                  <tr>
+                    <td>${escapeHtml(detail.yearly.cumulativeLabel)}</td>
+                    ${detail.yearly.cumulative.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="list-grid" style="padding:16px;">
+              <div class="list-card">
+                <h4>Key outputs</h4>
+                <ul>${detail.key_outputs.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+              </div>
+              <div class="list-card">
+                <h4>Kill metrics</h4>
+                <ul>${detail.kill_metrics.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+              </div>
+              ${detail.not_recommended_reason ? `
+                <div class="list-card">
+                  <h4>Why not recommended</h4>
+                  <ul><li>${escapeHtml(detail.not_recommended_reason)}</li></ul>
+                </div>
+              ` : ''}
+            </div>
+          </details>
+          <div class="footnote-row">${buildFootnoteChips(detail.refs)}</div>
+        </div>
+      `;
+      if (detail.key === 'option_2') {
+        bindChartInteractions('option2-waterfall-shell', (_seriesKey, index, pointKey) => {
+          const step = DATA.decisionVisuals.waterfall.steps[index];
+          if (!step) return null;
+          return {
+            pointKey,
+            title: `Option 2 bridge · ${step.label}`,
+            display: formatCompactCurrency(step.value),
+            exact: formatCurrency(step.value),
+            copy: DATA.decisionVisuals.waterfall.implication,
+            refs: DATA.decisionVisuals.waterfall.refs || [],
+          };
+        });
+      }
+      bindChartInteractions('option-cumulative-chart', (_seriesKey, index, pointKey) => ({
+        pointKey,
+        title: `${detail.option} · ${detail.yearly.years[index]} ${detail.yearly.cumulativeLabel.toLowerCase()}`,
+        display: formatCompactCurrency(detail.yearly.cumulative[index]),
+        exact: formatCurrency(detail.yearly.cumulative[index]),
+        copy: detail.chart_footnote,
+        refs: [...new Set((DATA.sectionRefs[detail.key] || []).concat(DATA.sectionRefs.options || []).concat(detail.refs || []))],
+      }));
+    }
+
+    function renderScenarioSection() {
+      const colorMap = { base: '#ffe600', upside: '#78dce8', pressure: '#ff8b6a' };
+      const chartSeries = DATA.scenarios.series.map(item => ({ key: item.key, label: item.label, values: item.cash, color: colorMap[item.key] }));
+      document.getElementById('scenario-copy').textContent = `${DATA.scenarios.decision_headline} ${DATA.scenarios.why_it_matters}`;
+      buildLegend('scenario-legend', chartSeries);
+      document.getElementById('scenario-chart').innerHTML = lineChartSvg('scenario-cash', DATA.financialEvidence.years, chartSeries, {
+        minValue: Math.min(...chartSeries.flatMap(item => item.values), 0),
+      });
+      bindChartInteractions('scenario-chart', (seriesKey, index, pointKey) => {
+        const series = DATA.scenarios.series.find(item => item.key === seriesKey);
+        if (!series) return null;
+        return {
+          pointKey,
+          title: `${series.label} · ${DATA.financialEvidence.years[index]} cumulative cash`,
+          display: formatCompactCurrency(series.cash[index]),
+          exact: formatCurrency(series.cash[index]),
+          copy: `${series.label} scenario at ${DATA.financialEvidence.years[index]}. This is the stress-tested path used to defend the recommendation in Q&A.`,
+          refs: DATA.sectionRefs.scenarios || [],
+        };
+      });
+      document.getElementById('scenario-summary').innerHTML = DATA.scenarios.cards.map(card => `
+        <div class="scenario-summary-card ${card.key === activeScenario ? 'active' : ''}" data-scenario-card="${card.key}">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;">
+            <div>
+              <span class="scenario-badge">${escapeHtml(card.label)}</span>
+              <h3 style="margin:12px 0 0;font-size:22px;">${escapeHtml(card.label)}</h3>
+            </div>
+            <div style="font-size:clamp(24px,3vw,32px);font-weight:800;color:${card.key === 'base' ? 'var(--ey)' : card.key === 'upside' ? 'var(--cyan)' : 'var(--danger)'};overflow-wrap:anywhere;">${escapeHtml(formatCompactCurrency(card.cumulativeCash))}</div>
+          </div>
+          <div class="metric-row">
+            <div class="stat-chip"><div class="metric-label">Year 5 sales</div><strong>${escapeHtml(formatCompactCurrency(card.year5Sales))}</strong></div>
+            <div class="stat-chip"><div class="metric-label">Gross margin</div><strong>${escapeHtml(formatPercent(card.year5GrossMargin))}</strong></div>
+            <div class="stat-chip"><div class="metric-label">Payback</div><strong>${escapeHtml(formatValue(card.payback, 'years'))}</strong></div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-scenario-card]').forEach(node => {
+        node.addEventListener('click', () => {
+          activeScenario = node.dataset.scenarioCard;
+          const card = DATA.scenarios.cards.find(item => item.key === activeScenario);
+          renderScenarioSection();
+          showInspector({
+            pointKey: `scenario-${card.key}`,
+            title: `${card.label} scenario`,
+            display: formatCompactCurrency(card.cumulativeCash),
+            exact: `Year 5 sales ${formatCurrency(card.year5Sales)} · Year 5 gross margin ${formatPercent(card.year5GrossMargin)} · payback ${formatValue(card.payback, 'years')}`,
+            copy: DATA.scenarios.decision_headline,
+            refs: DATA.sectionRefs.scenarios || [],
+          });
+        });
+      });
+      document.getElementById('footnote-scenarios').innerHTML = buildFootnoteChips(DATA.sectionRefs.scenarios || []);
+
+      const sortedSensitivity = [...DATA.topSwings];
+      const maxAbs = Math.max(...sortedSensitivity.map(item => Math.abs(item.delta_vs_base)), 1);
+      document.getElementById('sensitivity-list').innerHTML = sortedSensitivity.map(item => `
+        <div class="sensitivity-row">
+          <div>${escapeHtml(item.label)}</div>
+          <div class="sensitivity-track">
+            <div class="sensitivity-fill ${item.delta_vs_base < 0 ? 'negative' : ''}" style="width:${Math.abs(item.delta_vs_base) / maxAbs * 100}%;"></div>
+          </div>
+          <div style="text-align:right;">${escapeHtml(formatCurrency(item.delta_vs_base))}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderAssumptions() {
+      document.getElementById('assumption-copy').textContent = DATA.assumptionSummary.decision_headline;
+      document.getElementById('assumption-class-counts').innerHTML = [
+        ['Hard facts', DATA.assumptionSummary.counts.hard_fact, 'hard_fact'],
+        ['Derived estimates', DATA.assumptionSummary.counts.derived_estimate, 'derived_estimate'],
+        ['Assumptions', DATA.assumptionSummary.counts.assumption, 'assumption'],
+      ].map(item => `
+        <div class="metric-card assumption-count-card">
+          <div class="metric-label">${escapeHtml(item[0])}</div>
+          <div class="metric-value">${escapeHtml(String(item[1]))}</div>
+          <div><span class="class-pill ${item[2]}">${escapeHtml(item[2].replace('_', ' '))}</span></div>
+        </div>
+      `).join('');
+
+      document.getElementById('top-swing-grid').innerHTML = DATA.topSwings.map((item, index) => `
+        <div class="swing-card" data-swing-index="${index}">
+          <div class="metric-label">${escapeHtml(item.label)}</div>
+          <strong>${escapeHtml(formatCurrency(item.delta_vs_base))}</strong>
+          <p>Change in 5-year cash versus base case</p>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-swing-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = DATA.topSwings[Number(node.dataset.swingIndex)];
+          showInspector({
+            pointKey: `swing-${node.dataset.swingIndex}`,
+            title: `${item.label} sensitivity`,
+            display: formatCurrency(item.delta_vs_base),
+            exact: `Scenario cash outcome ${formatCurrency(item.cumulative_cash)}`,
+            copy: 'Top swing factors show which assumptions most change the five-year cash case.',
+            refs: DATA.sectionRefs.scenarios || [],
+          });
+        });
+      });
+      document.getElementById('footnote-assumptions').innerHTML = buildFootnoteChips(DATA.sectionRefs.assumptions || []);
+
+      const filters = [
+        { key: 'all', label: 'All inputs' },
+        { key: 'hard_fact', label: 'Hard facts' },
+        { key: 'derived_estimate', label: 'Derived estimates' },
+        { key: 'assumption', label: 'Assumptions' },
+      ];
+      document.getElementById('assumption-filters').innerHTML = filters.map(filter => `
+        <button class="${activeAssumptionFilter === filter.key ? 'active' : ''}" data-assumption-filter="${filter.key}">${escapeHtml(filter.label)}</button>
+      `).join('');
+      document.querySelectorAll('[data-assumption-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+          activeAssumptionFilter = button.dataset.assumptionFilter;
+          renderAssumptions();
+        });
+      });
+
+      const rows = DATA.assumptions.filter(row => activeAssumptionFilter === 'all' || row.class === activeAssumptionFilter);
+      document.getElementById('assumptions-table').innerHTML = `
+        <thead>
+          <tr>
+            <th>Driver</th>
+            <th>Class</th>
+            <th>Year 1</th>
+            <th>Notes</th>
+            <th>Trace</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(row => `
+            <tr>
+              <td>${escapeHtml(row.driver)}</td>
+              <td><span class="class-pill ${escapeHtml(row.class)}">${escapeHtml(row.class)}</span></td>
+              <td>${typeof row.year_1 === 'number' ? escapeHtml(formatInputValue(row.year_1, row.unit)) : escapeHtml(row.year_1)}</td>
+              <td>${escapeHtml(row.notes)}</td>
+              <td>${buildTraceChips(row.refs)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
+    }
+
+    function renderReferences() {
+      const externalIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3l-1.42-1.42l9.3-9.29H14V3z"></path>
+          <path fill="currentColor" d="M5 5h6v2H7v10h10v-4h2v6H5V5z"></path>
+        </svg>
+      `;
+      const filters = [
+        { key: 'all', label: 'All references' },
+        { key: 'highlighted', label: `Highlighted${highlightedRefIds.length ? ` (${highlightedRefIds.length})` : ''}` },
+        ...DATA.referenceGroups,
+      ];
+      document.getElementById('reference-filters').innerHTML = filters.map(filter => `
+        <button class="filter-pill ${referenceFilter === filter.key ? 'active' : ''}" data-filter="${filter.key}">${escapeHtml(filter.label)}</button>
+      `).join('');
+      document.querySelectorAll('button[data-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+          referenceFilter = button.dataset.filter;
+          renderReferences();
+        });
+      });
+
+      let refs = [...DATA.references];
+      if (referenceFilter === 'highlighted') refs = refs.filter(ref => highlightedRefIds.includes(ref.id));
+      if (!['all', 'highlighted'].includes(referenceFilter)) refs = refs.filter(ref => ref.groupKey === referenceFilter);
+
+      refs.sort((a, b) => {
+        const aHit = highlightedRefIds.includes(a.id) ? 1 : 0;
+        const bHit = highlightedRefIds.includes(b.id) ? 1 : 0;
+        if (aHit !== bHit) return bHit - aHit;
+        if (a.groupLabel !== b.groupLabel) return a.groupLabel.localeCompare(b.groupLabel);
+        return (a.label || a.title).localeCompare(b.label || b.title);
+      });
+
+      document.getElementById('reference-summary').textContent = highlightedRefIds.length
+        ? `${highlightedRefIds.length} highlighted reference(s). Use the link icon to open the original source.`
+        : `${refs.length} reference entries available. Use the link icon to open the original source.`;
+
+      if (!refs.length) {
+        document.getElementById('reference-stack').innerHTML = `
+          <div class="ref-card">
+            <div class="ref-meta">No references match the current filter yet. Click a data point or choose a broader filter.</div>
+          </div>
+        `;
+        applyHighlightState();
+        return;
+      }
+
+      const grouped = Object.fromEntries(DATA.referenceGroups.map(group => [group.key, []]));
+      refs.forEach(ref => {
+        if (!grouped[ref.groupKey]) grouped[ref.groupKey] = [];
+        grouped[ref.groupKey].push(ref);
+      });
+
+      document.getElementById('reference-stack').innerHTML = DATA.referenceGroups
+        .filter(group => grouped[group.key] && grouped[group.key].length)
+        .map(group => `
+          <section class="source-group">
+            <h3>${escapeHtml(group.label)}</h3>
+            <div class="source-group-grid">
+              ${grouped[group.key].map(ref => {
+                const isHighlighted = highlightedRefIds.includes(ref.id);
+                return `
+                  <article id="${ref.anchor}" class="ref-card ref-anchor ${isHighlighted ? 'is-highlighted' : ''} ${highlightedRefIds.length && !isHighlighted ? 'is-muted' : ''}" data-ref-id="${ref.id}">
+                    <div class="ref-card-head">
+                      <div>
+                        <span class="ref-kind">${escapeHtml(ref.kind === 'model' ? 'Model trace' : 'Source')}</span>
+                        <h4 class="ref-title">${escapeHtml(ref.summaryText || ref.title)}</h4>
+                      </div>
+                      ${ref.link ? `
+                        <a class="ref-icon-link" href="${escapeHtml(ref.link)}" target="_blank" rel="noreferrer noopener" title="Open source" aria-label="Open source">
+                          ${externalIcon}
+                        </a>
+                      ` : ''}
+                    </div>
+                    <div class="ref-body">
+                      <div class="ref-meta">${escapeHtml(ref.note || ref.howUsed || ref.sourceShort || '')}</div>
+                      <div class="ref-footer">
+                        <span class="ref-trace-pill">${escapeHtml(ref.chipText)}</span>
+                        <span class="ref-meta">${escapeHtml(ref.publisher || ref.fileName || '')}</span>
+                      </div>
+                    </div>
+                  </article>
+                `;
+              }).join('')}
+            </div>
+          </section>
+        `).join('');
+      applyHighlightState();
+    }
+
+    function renderAboutResearch() {
+      document.getElementById('about-research-grid').innerHTML = DATA.aboutResearch.map((item, index) => `
+        <div class="research-card" data-research-index="${index}">
+          <div class="benchmark-brand">${escapeHtml(item.source)}</div>
+          <h4>${escapeHtml(item.sample)}</h4>
+          <p>${escapeHtml(item.why_it_matters)}</p>
+          <div class="ref-meta" style="margin-top:10px;">${escapeHtml(item.fieldwork_dates)}</div>
+        </div>
+      `).join('');
+      document.querySelectorAll('[data-research-index]').forEach(node => {
+        node.addEventListener('click', () => {
+          const item = DATA.aboutResearch[Number(node.dataset.researchIndex)];
+          showInspector({
+            pointKey: `research-${node.dataset.researchIndex}`,
+            title: item.source,
+            display: item.sample,
+            exact: item.fieldwork_dates,
+            copy: item.why_it_matters,
+            refs: item.refs || [],
+          });
+        });
+      });
+      document.getElementById('footnote-about-research').innerHTML = buildFootnoteChips(DATA.sectionRefs.about_research || []);
+    }
+
+    document.addEventListener('click', (event) => {
+      const refNode = event.target.closest('[data-ref-id]');
+      if (refNode && refNode.classList.contains('trace-chip')) {
+        event.preventDefault();
+        const refId = refNode.dataset.refId;
+        setHighlightedRefs([refId]);
+        referenceFilter = 'highlighted';
+        renderReferences();
+      }
+    });
+
+    document.getElementById('inspector-close').addEventListener('click', closeInspector);
+
+    renderHero();
+    renderEvidence();
+    renderProof();
+    renderOptionTabs();
+    renderOptionDetail();
+    renderScenarioSection();
+    renderAssumptions();
+    renderTeam();
+    renderReferences();
+    renderAboutResearch();
+  </script>
+</body>
+</html>
