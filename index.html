@@ -641,8 +641,8 @@
     }
     .benchmark-card--cash {
       padding-top: 16px;
-      display: grid;
-      grid-template-rows: auto auto minmax(112px, auto) auto;
+      display: flex;
+      flex-direction: column;
     }
     .scenario-summary-card {
       cursor: pointer;
@@ -666,7 +666,7 @@
       align-items: flex-start;
     }
     .benchmark-logo-row {
-      min-height: 28px;
+      min-height: 32px;
       display: flex;
       align-items: center;
       margin-bottom: 12px;
@@ -736,15 +736,24 @@
       font-size: 16px;
     }
     .benchmark-card--cash .benchmark-top {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex: 1 1 auto;
       gap: 0;
+    }
+    .benchmark-card--cash .benchmark-top > div {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      width: 100%;
     }
     .benchmark-card--cash .benchmark-brand {
       min-height: 18px;
+      margin-bottom: 10px;
     }
     .benchmark-card--cash .benchmark-note {
-      min-height: 112px;
-      max-width: 30ch;
+      flex: 1 1 auto;
+      min-height: 128px;
+      max-width: none;
     }
     .research-card p {
       margin: 0;
@@ -770,7 +779,7 @@
       padding-top: 16px;
     }
     .benchmark-card--cash .benchmark-metrics {
-      margin-top: 18px;
+      margin-top: auto;
       padding-top: 18px;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
@@ -789,6 +798,7 @@
     .benchmark-metric strong {
       flex: 0 0 auto;
       text-align: right;
+      font-variant-numeric: tabular-nums;
     }
     .details-toggle {
       margin-top: 16px;
@@ -1807,10 +1817,10 @@
     });
 
     const cashProofItems = DATA.decisionVisuals.cashConversionProof.items || [];
-    if (cashProofItems[0]) cashProofItems[0].note = 'Premium peer still carries real inventory and free-cash commitments even with majority-DTC mix.';
-    if (cashProofItems[1]) cashProofItems[1].note = 'Housewares peer shows inventory and receivable drag can slow cash conversion.';
-    if (cashProofItems[2]) cashProofItems[2].note = 'Scaled household portfolio shows how much cash inventory and receivables can absorb.';
-    if (cashProofItems[3]) cashProofItems[3].note = 'Launch guardrail stays below whole-company peers because Stanley reuses existing infrastructure.';
+    if (cashProofItems[0]) cashProofItems[0].note = 'Majority-DTC peer still carries real inventory and free-cash needs.';
+    if (cashProofItems[1]) cashProofItems[1].note = 'Housewares peer shows inventory and receivables can slow cash conversion.';
+    if (cashProofItems[2]) cashProofItems[2].note = 'Scaled household peer shows inventory and receivables can absorb material cash.';
+    if (cashProofItems[3]) cashProofItems[3].note = 'Stanley stays below whole-company peers by reusing existing infrastructure.';
 
     DATA.references
       .filter(ref => ref.kind === 'model')
@@ -1834,10 +1844,10 @@
       </svg>
     `;
     const CASH_PROOF_LOGOS = {
-      'YETI FY2025': { src: '06_brand_assets/03_yeti_logo_white_v01.png', alt: 'YETI logo' },
-      'Helen of Troy FY2025': { src: '06_brand_assets/04_helen_of_troy_logo_white_v01.png', alt: 'Helen of Troy logo' },
-      'Newell FY2024': { src: '06_brand_assets/05_newell_logo_white_v01.png', alt: 'Newell logo' },
-      'Stanley model guardrail': { src: '06_brand_assets/02_stanley_logo_white_v01.png', alt: 'Stanley logo' },
+      'YETI FY2025': { src: '06_brand_assets/03_yeti_logo_white_v03.png', alt: 'YETI logo', style: 'height:22px;max-width:126px;' },
+      'Helen of Troy FY2025': { src: '06_brand_assets/04_helen_of_troy_logo_white_v03.png', alt: 'Helen of Troy logo', style: 'height:28px;max-width:124px;' },
+      'Newell FY2024': { src: '06_brand_assets/05_newell_logo_white_v03.png', alt: 'Newell logo', style: 'height:30px;max-width:124px;' },
+      'Stanley model guardrail': { src: '06_brand_assets/02_stanley_logo_white_v01.png', alt: 'Stanley logo', style: 'height:24px;max-width:132px;' },
     };
 
     const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -2560,7 +2570,7 @@
       document.getElementById('cash-conversion-grid').innerHTML = cashProof.items.map((item, index) => `
         <div class="benchmark-card benchmark-card--cash" data-cashproof-index="${index}">
           <div class="benchmark-logo-row">
-            ${CASH_PROOF_LOGOS[item.entity] ? `<img class="benchmark-logo" src="${escapeHtml(CASH_PROOF_LOGOS[item.entity].src)}" alt="${escapeHtml(CASH_PROOF_LOGOS[item.entity].alt)}">` : ''}
+            ${CASH_PROOF_LOGOS[item.entity] ? `<img class="benchmark-logo" src="${escapeHtml(CASH_PROOF_LOGOS[item.entity].src)}" alt="${escapeHtml(CASH_PROOF_LOGOS[item.entity].alt)}" ${CASH_PROOF_LOGOS[item.entity].style ? `style="${escapeHtml(CASH_PROOF_LOGOS[item.entity].style)}"` : ''}>` : ''}
           </div>
           <div class="benchmark-top">
             <div>
