@@ -1392,6 +1392,10 @@
       font-size: 12px;
       margin-top: 6px;
     }
+    .stat-chip .value-exact,
+    .metric-card .value-exact {
+      display: none;
+    }
     @keyframes hero-glow-drift {
       0% {
         transform: translate3d(0, 0, 0) scale(1);
@@ -2360,8 +2364,8 @@
             <div class="track"><div class="fill ${fillClass}" style="width:${width}%;"></div></div>
             <div class="metric-row">
               <div class="stat-chip"><div class="metric-label">${escapeHtml(item.marginLabel)}</div><strong>${escapeHtml(formatPercent(item.margin))}</strong></div>
-              <div class="stat-chip"><div class="metric-label">Upfront</div><strong>${escapeHtml(formatCompactCurrency(item.upfront))}</strong><div class="value-exact">${escapeHtml(formatCurrency(item.upfront))}</div></div>
-              <div class="stat-chip"><div class="metric-label">${escapeHtml(item.cumulativeLabel || '5Y value')}</div><strong>${escapeHtml(formatCompactCurrency(item.cumulativeCash))}</strong><div class="value-exact">${escapeHtml(formatCurrency(item.cumulativeCash))}</div></div>
+              <div class="stat-chip"><div class="metric-label">Upfront</div><strong>${escapeHtml(formatCompactCurrency(item.upfront))}</strong></div>
+              <div class="stat-chip"><div class="metric-label">${escapeHtml(item.cumulativeLabel || '5Y value')}</div><strong>${escapeHtml(formatCompactCurrency(item.cumulativeCash))}</strong></div>
               <div class="stat-chip"><div class="metric-label">Payback</div><strong>${escapeHtml(formatValue(item.payback, 'years'))}</strong></div>
             </div>
           </div>
