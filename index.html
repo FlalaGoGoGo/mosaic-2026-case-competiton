@@ -447,6 +447,29 @@
     .scenario-summary-card .stat-chip strong {
       font-size: clamp(18px, 2vw, 22px);
     }
+    .option-detail-metrics {
+      gap: 10px;
+    }
+    .option-detail-metrics .stat-chip {
+      display: flex;
+      flex-direction: column;
+      min-height: 122px;
+      padding: 14px;
+    }
+    .option-detail-metrics .metric-label {
+      min-height: 34px;
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+    .option-detail-metrics .stat-chip strong {
+      margin-top: auto;
+      font-size: clamp(18px, 1.95vw, 24px);
+      line-height: 1;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
     .track {
       height: 10px;
       border-radius: 999px;
@@ -1484,6 +1507,11 @@
       }
       .source-group-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (min-width: 1400px) {
+      .option-detail-metrics {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
       }
     }
     @media (max-width: 980px) {
