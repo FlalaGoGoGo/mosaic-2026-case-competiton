@@ -221,6 +221,7 @@
     .hero-metric-grid .metric-value {
       font-size: clamp(24px, 2.2vw, 30px);
       margin-top: 12px;
+      color: var(--ey);
     }
     .hero-footer-row {
       display: flex;
@@ -1978,7 +1979,7 @@
     const heroRecommendedCard = DATA.overview.cards.find(card => card.key === 'recommended_option');
     if (heroRecommendedCard) {
       heroRecommendedCard.label = 'Recommended path';
-      heroRecommendedCard.value = 'A New Product Line';
+      heroRecommendedCard.value = 'Option 2';
     }
 
     const heroPaybackCard = DATA.overview.cards.find(card => card.key === 'payback');
