@@ -187,6 +187,75 @@
       gap: 10px;
       margin-top: 18px;
     }
+    .hero-resource-strip {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .hero-sheet-link {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      width: min(100%, 720px);
+      padding: 14px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 213, 157, 0.24);
+      background: linear-gradient(180deg, rgba(52,168,83,0.12), rgba(255,255,255,0.03));
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+    .hero-sheet-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(95, 213, 157, 0.44);
+      background: linear-gradient(180deg, rgba(52,168,83,0.18), rgba(255,255,255,0.04));
+    }
+    .hero-sheet-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #7ef0a3;
+      flex: 0 0 auto;
+    }
+    .hero-sheet-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .hero-sheet-copy {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+    .hero-sheet-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #eff6f1;
+      letter-spacing: 0.01em;
+    }
+    .hero-sheet-keywords {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .hero-sheet-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #eff6f1;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
     .option-guide-card {
       padding: 12px 14px;
       border-radius: 18px;
@@ -662,6 +731,11 @@
       flex-direction: column;
       min-height: 100%;
     }
+    .platform-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
     .benchmark-card--cash {
       padding-top: 16px;
       display: flex;
@@ -927,11 +1001,23 @@
     }
     .sensitivity-row {
       display: grid;
-      grid-template-columns: 180px 1fr 100px;
+      grid-template-columns: minmax(270px, 1fr) 170px 104px;
       gap: 12px;
       align-items: center;
     }
+    .sensitivity-label {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #edf1f6;
+      font-size: 13px;
+      line-height: 1.35;
+    }
     .sensitivity-track {
+      width: 170px;
+      max-width: 100%;
+      justify-self: center;
       height: 10px;
       border-radius: 999px;
       overflow: hidden;
@@ -944,6 +1030,13 @@
     }
     .sensitivity-fill.negative {
       background: linear-gradient(90deg, #ff8b6a, #ffc2ad);
+    }
+    .sensitivity-delta {
+      text-align: right;
+      color: #edf1f6;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
     .class-pill {
       display: inline-flex;
@@ -1485,6 +1578,14 @@
         font-size: clamp(30px, 9vw, 42px);
       }
       .metric-value { font-size: 24px; }
+      .hero-sheet-link {
+        width: 100%;
+        grid-template-columns: auto 1fr;
+      }
+      .hero-sheet-cta {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
       .option-sales {
         width: 100%;
         text-align: left;
@@ -1508,6 +1609,13 @@
       .sensitivity-row,
       .source-toolbar {
         grid-template-columns: 1fr;
+      }
+      .sensitivity-track {
+        width: 100%;
+        justify-self: stretch;
+      }
+      .sensitivity-delta {
+        text-align: left;
       }
       .inspector {
         padding: 12px;
@@ -1597,6 +1705,7 @@
       <p id="hero-question"></p>
       <p id="hero-headline"></p>
       <div class="hero-option-guide" id="hero-option-guide"></div>
+      <div class="hero-resource-strip" id="hero-resource-strip"></div>
       <div class="cards" id="overview-cards"></div>
       <div class="footnote-row" id="footnote-hero"></div>
     </section>
@@ -1689,7 +1798,7 @@
         <div>
           <div class="eyebrow">Option drilldown</div>
           <h2>Why Option 2 wins and where each alternative breaks</h2>
-          <p>Each tab defaults to the decision call, the proof, the breakpoints, and the recommendation. Deeper tables stay collapsed until someone actually needs them.</p>
+          <p>Each tab defaults to the decision call, the proof, the breakpoints, and the recommendation. The 5-year detail table stays open so judges can scan the drivers immediately.</p>
         </div>
       </div>
       <div class="tabs" id="option-tabs"></div>
@@ -1736,7 +1845,7 @@
       </article>
       <article class="panel" style="margin-top:16px;">
         <div class="filter-row" id="assumption-filters"></div>
-        <details class="details-toggle">
+        <details class="details-toggle" open>
           <summary>Detailed assumption register</summary>
           <div class="data-table-wrap">
             <table id="assumptions-table"></table>
@@ -1798,6 +1907,15 @@
     const MODEL_SOURCE_FILE = 'Stanley_1913_Final_Model_v7_EN v2.xlsx';
     const MODEL_SOURCE_PATH = '/Users/zhangziling/Documents/MSIS/Case comp_MOSAIC 2026/mosaic_2026_research_hub/Stanley_1913_Final_Model_v7_EN v2.xlsx';
     const MODEL_SOURCE_LABEL = 'Stanley final model v7';
+    const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/17oTUfTohQ3GoCNkO8cxWCJV72USJv7Pr/edit?usp=sharing&rtpof=true&sd=true';
+
+    DATA.overview.headline = 'Option 2 (new premium daily meal system) delivers NPV $8.6M, IRR 42.7%, and PI 2.35×. Every $1 invested returns $2.35. It is the only option that remains profitable under all Bear Case scenarios.';
+    DATA.overview.optionGuide = [
+      { option: 'Option 1', meaning: 'International Expansion' },
+      { option: 'Option 2', meaning: 'A New Product Line' },
+      { option: 'Option 3', meaning: 'A New Customer Segment' },
+    ];
+
     const heroPaybackCard = DATA.overview.cards.find(card => card.key === 'payback');
     if (heroPaybackCard) heroPaybackCard.value = '2-3';
 
@@ -1834,6 +1952,12 @@
 
     Object.assign(DATA.overview.cardAudits.recommended_option, {
       copy: 'This recommendation compares the three case routes on NPV, IRR, PI, payback, and execution burden using the same five-year framework for Stanley 1913.',
+      detailRows: [
+        { label: 'Option 1', value: 'International Expansion' },
+        { label: 'Option 2', value: 'A New Product Line' },
+        { label: 'Option 3', value: 'A New Customer Segment' },
+        { label: 'Winning route', value: 'Option 2' },
+      ],
       formulaSteps: [
         'Option 2 reaches $101.4M of Year 5 net revenue with $32.1M of five-year cumulative EBIT, $8.6M NPV, 42.7% IRR, and 2.35× PI.',
         'Option 1 reaches $60.9M of Year 5 realized revenue, but its NPV is only $0.8M and PI is 1.03× after $27.0M of upfront investment.',
@@ -1899,6 +2023,12 @@
         ref.sourceTrace = `${MODEL_SOURCE_FILE} | ${ref.location}`;
       });
 
+    DATA.references.forEach(ref => {
+      ['note', 'whatItSays', 'whyImportant'].forEach(key => {
+        if (ref[key]) ref[key] = capitalizeSentenceStart(softenDashProse(ref[key]));
+      });
+    });
+
     const REF_INDEX = Object.fromEntries(DATA.references.map(ref => [ref.id, ref]));
     let activeOption = 'option_2';
     let activeScenario = 'base';
@@ -1911,11 +2041,23 @@
         <path fill="currentColor" d="M5 5h6v2H7v10h10v-4h2v6H5V5z"></path>
       </svg>
     `;
+    const SHEET_ICON = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+        <path fill="#0f1011" d="M14 2v5h5z" opacity="0.28"></path>
+        <path fill="#0f1011" d="M8 10h8v1.8H8zm0 4h8v1.8H8zm0-8h4v1.8H8z" opacity="0.36"></path>
+      </svg>
+    `;
     const CASH_PROOF_LOGOS = {
       'YETI FY2025': { src: '06_brand_assets/03_yeti_logo_white_v03.png', alt: 'YETI logo', style: 'height:22px;max-width:126px;' },
       'Helen of Troy FY2025': { src: '06_brand_assets/04_helen_of_troy_logo_white_v03.png', alt: 'Helen of Troy logo', style: 'height:28px;max-width:124px;' },
       'Newell FY2024': { src: '06_brand_assets/05_newell_logo_white_v03.png', alt: 'Newell logo', style: 'height:30px;max-width:124px;' },
       'Stanley model guardrail': { src: '06_brand_assets/02_stanley_logo_white_v01.png', alt: 'Stanley logo', style: 'height:24px;max-width:132px;' },
+    };
+    const PLATFORM_PROOF_LOGOS = {
+      'Stanley': { src: '06_brand_assets/02_stanley_logo_white_v01.png', alt: 'Stanley logo', style: 'height:24px;max-width:132px;' },
+      'Hydro Flask': { src: '06_brand_assets/06_hydro_flask_logo_v01.png', alt: 'Hydro Flask logo', style: 'height:22px;max-width:136px;filter:brightness(0) invert(1);' },
+      'YETI': { src: '06_brand_assets/03_yeti_logo_white_v03.png', alt: 'YETI logo', style: 'height:22px;max-width:126px;' },
     };
 
     const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -1961,8 +2103,25 @@
       return typeof value === 'number' ? Number(value).toLocaleString('en-US') : value;
     }
 
+    function softenDashProse(value) {
+      return String(value ?? '')
+        .replace(/\s+[—–]\s+(?=[A-Z])/g, '. ')
+        .replace(/\s+[—–]\s+/g, ', ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
+
+    function capitalizeSentenceStart(value) {
+      return String(value ?? '').replace(/^\s*([a-z])/, (match, char) => match.replace(char, char.toUpperCase()));
+    }
+
+    function presentText(value, { capitalize = false } = {}) {
+      const normalized = softenDashProse(value);
+      return capitalize ? capitalizeSentenceStart(normalized) : normalized;
+    }
+
     function escapeHtml(value) {
-      return String(value)
+      return presentText(value)
         .replaceAll('&', '&amp;')
         .replaceAll('<', '&lt;')
         .replaceAll('>', '&gt;')
@@ -1999,6 +2158,12 @@
       document.getElementById(targetId).innerHTML = series.map(item => `
         <span><i class="legend-dot" style="background:${item.color};"></i>${escapeHtml(item.label)}</span>
       `).join('');
+    }
+
+    function setText(id, value, options) {
+      const node = document.getElementById(id);
+      if (!node) return;
+      node.textContent = presentText(value, options);
     }
 
     function lineChartSvg(chartId, labels, series, { minValue = null, yFormatter = formatCompactCurrency, showPoints = true } = {}) {
@@ -2291,11 +2456,11 @@
       activePointSignature = payload.pointKey || '';
       document.getElementById('inspector').classList.add('is-open');
       document.body.classList.add('inspector-open');
-      document.getElementById('inspector-title').textContent = payload.title;
-      document.getElementById('inspector-type').textContent = payload.auditType || 'Evidence detail';
-      document.getElementById('inspector-value').textContent = payload.display;
-      document.getElementById('inspector-exact').textContent = payload.exact || '';
-      document.getElementById('inspector-copy').textContent = payload.copy;
+      setText('inspector-title', payload.title);
+      setText('inspector-type', payload.auditType || 'Evidence detail');
+      setText('inspector-value', payload.display);
+      setText('inspector-exact', payload.exact || '');
+      setText('inspector-copy', payload.copy || '');
       document.getElementById('inspector-sections').innerHTML = [
         renderAuditRows(payload.detailRows || []),
         renderFormulaSteps(payload.formulaSteps || []),
@@ -2323,15 +2488,25 @@
     }
 
     function renderHero() {
-      document.getElementById('hero-title').textContent = DATA.overview.headline;
-      document.getElementById('hero-question').textContent = DATA.overview.why_now;
-      document.getElementById('hero-headline').textContent = DATA.overview.evidence_sentence;
+      setText('hero-title', DATA.overview.headline);
+      setText('hero-question', DATA.overview.why_now);
+      setText('hero-headline', DATA.overview.evidence_sentence);
       document.getElementById('hero-option-guide').innerHTML = (DATA.overview.optionGuide || []).map(item => `
         <div class="option-guide-card">
           <div class="option-guide-label">${escapeHtml(item.option)}</div>
           <p class="option-guide-copy">${escapeHtml(item.meaning)}</p>
         </div>
       `).join('');
+      document.getElementById('hero-resource-strip').innerHTML = `
+        <a class="hero-sheet-link" href="${escapeHtml(GOOGLE_SHEET_URL)}" target="_blank" rel="noreferrer noopener">
+          <span class="hero-sheet-icon" aria-hidden="true">${SHEET_ICON}</span>
+          <span class="hero-sheet-copy">
+            <span class="hero-sheet-title">Detailed Google Sheet model</span>
+            <span class="hero-sheet-keywords">Drivers · Revenue · COGS · FCF · Sensitivity</span>
+          </span>
+          <span class="hero-sheet-cta">Open sheet</span>
+        </a>
+      `;
       document.getElementById('overview-cards').innerHTML = DATA.overview.cards.map(card => `
         <div class="metric-card is-clickable" data-hero-card="${escapeHtml(card.key || card.label.toLowerCase().replaceAll(' ', '_'))}">
           <div class="metric-label">${escapeHtml(card.label)}</div>
@@ -2362,12 +2537,12 @@
     }
 
     function renderEvidence() {
-      document.getElementById('overview-copy').textContent = 'These two exhibits answer the ranking before the page asks judges to read a long drilldown.';
+      setText('overview-copy', 'These two exhibits answer the ranking before the page asks judges to read a long drilldown.');
 
       const matrix = DATA.decisionVisuals.matrix;
-      document.getElementById('matrix-question').textContent = matrix.business_question;
-      document.getElementById('matrix-copy').textContent = `${matrix.decision_headline} ${matrix.why_it_matters}`;
-      document.getElementById('matrix-implication').textContent = matrix.implication;
+      setText('matrix-question', matrix.business_question);
+      setText('matrix-copy', `${matrix.decision_headline} ${matrix.why_it_matters}`);
+      setText('matrix-implication', matrix.implication);
       document.getElementById('matrix-chart').innerHTML = `
         ${bubbleMatrixSvg('decision-matrix', matrix.points)}
         <div class="matrix-axis-note">
@@ -2402,9 +2577,9 @@
       document.getElementById('footnote-matrix').innerHTML = buildFootnoteChips(matrix.points.flatMap(point => point.refs || []));
 
       const comparison = DATA.decisionVisuals.cashComparison;
-      document.getElementById('cash-question').textContent = comparison.business_question;
-      document.getElementById('cash-comparison-copy').textContent = comparison.decision_headline;
-      document.getElementById('cash-implication').textContent = comparison.implication;
+      setText('cash-question', comparison.business_question);
+      setText('cash-comparison-copy', comparison.decision_headline);
+      setText('cash-implication', comparison.implication);
       const maxSales = Math.max(...DATA.optionComparison.map(item => item.year5Sales));
       document.getElementById('option-ranking').innerHTML = DATA.optionComparison.map((item, index) => {
         const fillClass = index === 0 ? '' : index === 1 ? 'alt-cyan' : 'alt-danger';
@@ -2468,14 +2643,17 @@
     }
 
     function renderProof() {
-      document.getElementById('proof-copy').textContent = 'The proof stack is separated from the core decision exhibits so judges can inspect platform breadth, channel economics, and cash-conversion realism without diluting the main answer.';
+      setText('proof-copy', 'The proof stack is separated from the core decision exhibits so judges can inspect platform breadth, channel economics, and cash-conversion realism without diluting the main answer.');
 
       const platform = DATA.decisionVisuals.platformProof;
-      document.getElementById('platform-question').textContent = platform.business_question;
-      document.getElementById('platform-copy').textContent = platform.decision_headline;
-      document.getElementById('platform-implication').textContent = platform.implication;
+      setText('platform-question', platform.business_question);
+      setText('platform-copy', platform.decision_headline);
+      setText('platform-implication', platform.implication);
       document.getElementById('platform-grid').innerHTML = platform.items.map((item, index) => `
         <div class="platform-card" data-platform-index="${index}">
+          <div class="benchmark-logo-row">
+            ${PLATFORM_PROOF_LOGOS[item.brand] ? `<img class="benchmark-logo" src="${escapeHtml(PLATFORM_PROOF_LOGOS[item.brand].src)}" alt="${escapeHtml(PLATFORM_PROOF_LOGOS[item.brand].alt)}" ${PLATFORM_PROOF_LOGOS[item.brand].style ? `style="${escapeHtml(PLATFORM_PROOF_LOGOS[item.brand].style)}"` : ''}>` : ''}
+          </div>
           <div class="platform-top">
             <div>
               <div class="platform-brand">${escapeHtml(item.brand)}</div>
@@ -2555,9 +2733,9 @@
       );
 
       const channel = DATA.decisionVisuals.channelProof;
-      document.getElementById('channel-question').textContent = channel.business_question;
-      document.getElementById('channel-copy').textContent = channel.decision_headline;
-      document.getElementById('channel-implication').textContent = channel.implication;
+      setText('channel-question', channel.business_question);
+      setText('channel-copy', channel.decision_headline);
+      setText('channel-implication', channel.implication);
       document.getElementById('peer-benchmarks').innerHTML = DATA.decisionVisuals.peerBenchmarks.items.map((item, index) => `
         <div class="benchmark-card" data-benchmark-index="${index}">
           <div class="benchmark-top">
@@ -2632,9 +2810,9 @@
       );
 
       const cashProof = DATA.decisionVisuals.cashConversionProof;
-      document.getElementById('cash-proof-question').textContent = cashProof.business_question;
-      document.getElementById('cash-proof-copy').textContent = cashProof.decision_headline;
-      document.getElementById('cash-proof-implication').textContent = cashProof.implication;
+      setText('cash-proof-question', cashProof.business_question);
+      setText('cash-proof-copy', cashProof.decision_headline);
+      setText('cash-proof-implication', cashProof.implication);
       document.getElementById('cash-conversion-grid').innerHTML = cashProof.items.map((item, index) => `
         <div class="benchmark-card benchmark-card--cash" data-cashproof-index="${index}">
           <div class="benchmark-logo-row">
@@ -2678,9 +2856,9 @@
       );
 
       const consumer = DATA.decisionVisuals.consumerProof;
-      document.getElementById('consumer-question').textContent = consumer.business_question;
-      document.getElementById('consumer-copy').textContent = consumer.decision_headline;
-      document.getElementById('consumer-implication').textContent = consumer.implication;
+      setText('consumer-question', consumer.business_question);
+      setText('consumer-copy', consumer.decision_headline);
+      setText('consumer-implication', consumer.implication);
       document.getElementById('consumer-signals').innerHTML = consumer.items.map((item, index) => `
         <div class="signal-card" data-signal-index="${index}">
           <div class="signal-value">${escapeHtml(item.value)}</div>
@@ -2778,7 +2956,7 @@
               <div class="footnote-row">${buildFootnoteChips(DATA.decisionVisuals.waterfall.refs || [])}</div>
             </div>
           ` : ''}
-          <details class="details-toggle">
+          <details class="details-toggle" open>
             <summary>Show 5-year detail table and driver notes</summary>
             <div class="driver-grid" style="padding:0 16px 8px;">
               ${detail.driverRows.map(row => `
@@ -2885,7 +3063,7 @@
     function renderScenarioSection() {
       const colorMap = { bull: '#78dce8', base: '#ffe600', bear: '#ff8b6a', bear_tariff: '#ff8b6a', worst: '#ff8b6a' };
       const chartSeries = DATA.scenarios.series.map(item => ({ key: item.key, label: item.label, values: item.cash, color: colorMap[item.key] }));
-      document.getElementById('scenario-copy').textContent = `${DATA.scenarios.decision_headline} ${DATA.scenarios.why_it_matters}`;
+      setText('scenario-copy', `${DATA.scenarios.decision_headline} ${DATA.scenarios.why_it_matters}`);
       buildLegend('scenario-legend', chartSeries);
       document.getElementById('scenario-chart').innerHTML = lineChartSvg('scenario-cash', DATA.financialEvidence.years, chartSeries, {
         minValue: Math.min(...chartSeries.flatMap(item => item.values), 0),
@@ -2961,17 +3139,17 @@
       const maxAbs = Math.max(...sortedSensitivity.map(item => Math.abs(item.delta_vs_base)), 1);
       document.getElementById('sensitivity-list').innerHTML = sortedSensitivity.map(item => `
         <div class="sensitivity-row">
-          <div>${escapeHtml(item.label)}</div>
+          <div class="sensitivity-label" title="${escapeHtml(item.label)}">${escapeHtml(item.label)}</div>
           <div class="sensitivity-track">
             <div class="sensitivity-fill ${item.delta_vs_base < 0 ? 'negative' : ''}" style="width:${Math.abs(item.delta_vs_base) / maxAbs * 100}%;"></div>
           </div>
-          <div style="text-align:right;">${escapeHtml(formatCurrency(item.delta_vs_base))}</div>
+          <div class="sensitivity-delta">${escapeHtml(formatCurrency(item.delta_vs_base))}</div>
         </div>
       `).join('');
     }
 
     function renderAssumptions() {
-      document.getElementById('assumption-copy').textContent = DATA.assumptionSummary.decision_headline;
+      setText('assumption-copy', DATA.assumptionSummary.decision_headline);
       document.getElementById('assumption-class-counts').innerHTML = [
         ['Hard facts', DATA.assumptionSummary.counts.hard_fact, 'hard_fact'],
         ['Derived estimates', DATA.assumptionSummary.counts.derived_estimate, 'derived_estimate'],
@@ -3080,7 +3258,7 @@
         return (a.label || a.title).localeCompare(b.label || b.title);
       });
 
-      document.getElementById('reference-summary').textContent = `${refs.length} reference entries available. Use the link icon to open the original source.`;
+      setText('reference-summary', `${refs.length} reference entries available. Use the link icon to open the original source.`);
 
       if (!refs.length) {
         document.getElementById('reference-stack').innerHTML = `
