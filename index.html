@@ -1967,14 +1967,19 @@
     const MODEL_SOURCE_LABEL = 'Stanley final model v7';
     const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/17oTUfTohQ3GoCNkO8cxWCJV72USJv7Pr/edit?usp=sharing&rtpof=true&sd=true';
 
-    DATA.overview.headline = 'Option 2 delivers the strongest 5-year finance case for Stanley.';
+    DATA.overview.headline = 'A New Product Line (Option 2) delivers the strongest 5-year finance case for Stanley, ahead of International Expansion (Option 1) and A New Customer Segment (Option 3).';
     DATA.overview.why_now = 'NPV $8.6M, IRR 42.7%, and PI 2.35× make it the clearest return and cash recommendation.';
-    DATA.overview.evidence_sentence = 'It is also the only option that stays profitable across all Bear Case scenarios.';
+    DATA.overview.evidence_sentence = 'It is also the only route that stays profitable across all Bear Case scenarios.';
     DATA.overview.optionGuide = [
       { option: 'Option 1', meaning: 'International Expansion' },
       { option: 'Option 2', meaning: 'A New Product Line' },
       { option: 'Option 3', meaning: 'A New Customer Segment' },
     ];
+    const heroRecommendedCard = DATA.overview.cards.find(card => card.key === 'recommended_option');
+    if (heroRecommendedCard) {
+      heroRecommendedCard.label = 'Recommended path';
+      heroRecommendedCard.value = 'A New Product Line';
+    }
 
     const heroPaybackCard = DATA.overview.cards.find(card => card.key === 'payback');
     if (heroPaybackCard) heroPaybackCard.value = '2-3';
@@ -2016,7 +2021,7 @@
         { label: 'Option 1', value: 'International Expansion' },
         { label: 'Option 2', value: 'A New Product Line' },
         { label: 'Option 3', value: 'A New Customer Segment' },
-        { label: 'Winning route', value: 'Option 2' },
+        { label: 'Winning route', value: 'A New Product Line (Option 2)' },
       ],
       formulaSteps: [
         'Option 2 reaches $101.4M of Year 5 net revenue with $32.1M of five-year cumulative EBIT, $8.6M NPV, 42.7% IRR, and 2.35× PI.',
