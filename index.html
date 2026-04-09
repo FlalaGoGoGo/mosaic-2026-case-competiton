@@ -221,7 +221,7 @@
     .hero-metric-grid .metric-value {
       font-size: clamp(24px, 2.2vw, 30px);
       margin-top: 12px;
-      color: var(--ey);
+      color: var(--text);
     }
     .hero-footer-row {
       display: flex;
@@ -2574,7 +2574,7 @@
       document.getElementById('overview-cards').innerHTML = DATA.overview.cards.map(card => `
         <div class="metric-card is-clickable" data-hero-card="${escapeHtml(card.key || card.label.toLowerCase().replaceAll(' ', '_'))}">
           <div class="metric-label">${escapeHtml(card.label)}</div>
-          <div class="metric-value ${card.type === 'text' ? 'highlight' : ''}">${escapeHtml(card.type === 'currency' ? formatCompactCurrency(card.value) : formatValue(card.value, card.type))}</div>
+          <div class="metric-value ${card.key === 'recommended_option' ? 'highlight' : ''}">${escapeHtml(card.type === 'currency' ? formatCompactCurrency(card.value) : formatValue(card.value, card.type))}</div>
         </div>
       `).join('');
       document.querySelectorAll('[data-hero-card]').forEach(node => {
