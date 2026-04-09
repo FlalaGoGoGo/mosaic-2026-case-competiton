@@ -453,6 +453,185 @@
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
     }
+    .option-card-topline,
+    .option-card-badges,
+    .option-tab-copy,
+    .mobile-reference-pagination,
+    .assumption-mobile-head,
+    .assumption-mobile-grid,
+    .mobile-year-metrics {
+      display: flex;
+    }
+    .option-card-topline,
+    .assumption-mobile-head {
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .option-card-badges,
+    .option-tab-copy {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .option-card-title {
+      margin: 14px 0 0;
+      font-size: 21px;
+      line-height: 1.15;
+    }
+    .option-card-summary {
+      margin-top: 10px;
+    }
+    .option-card-track {
+      margin-top: 14px;
+    }
+    .option-card-metrics {
+      margin-top: 14px;
+    }
+    .option-tab-main {
+      font-size: 12px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .option-tab-sub {
+      font-size: 12px;
+      line-height: 1.3;
+      color: inherit;
+      white-space: normal;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .option-tab.active .option-tab-sub {
+      color: inherit;
+      opacity: 0.86;
+    }
+    .mobile-year-grid,
+    .assumption-mobile-list,
+    .mobile-reference-list {
+      display: grid;
+      gap: 12px;
+    }
+    .mobile-year-card,
+    .assumption-mobile-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-year-label,
+    .assumption-mobile-label,
+    .mobile-reference-page-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--muted);
+    }
+    .mobile-year-label {
+      margin-bottom: 10px;
+    }
+    .mobile-year-metrics {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .mobile-year-metric,
+    .assumption-mobile-stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      color: #edf1f6;
+      font-size: 13px;
+    }
+    .mobile-year-metric span,
+    .assumption-mobile-stat span {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .mobile-year-metric strong,
+    .assumption-mobile-stat strong {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .assumption-mobile-head h4 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+    .assumption-mobile-grid {
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .assumption-mobile-grid > * {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .assumption-mobile-block + .assumption-mobile-block {
+      margin-top: 12px;
+    }
+    .assumption-mobile-note,
+    .assumption-mobile-note-full,
+    .mobile-reference-expanded {
+      margin: 8px 0 0;
+      color: #edf1f6;
+      line-height: 1.55;
+      font-size: 13px;
+    }
+    .assumption-mobile-note.is-clamped,
+    .ref-meta-clamp {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .assumption-mobile-note.is-clamped {
+      -webkit-line-clamp: 3;
+    }
+    .ref-meta-clamp {
+      -webkit-line-clamp: 2;
+    }
+    .mobile-inline-details {
+      margin-top: 8px;
+    }
+    .mobile-inline-details > summary {
+      list-style: none;
+      cursor: pointer;
+      color: var(--ey);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .mobile-inline-details > summary::-webkit-details-marker {
+      display: none;
+    }
+    .mobile-load-more-wrap {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+    .mobile-load-more,
+    .mobile-page-button {
+      min-width: 116px;
+    }
+    .mobile-reference-pagination {
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .mobile-reference-page-label {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+    .mobile-ref-headline {
+      min-width: 0;
+    }
+    .mobile-reference-expanded .ref-meta + .ref-meta {
+      margin-top: 8px;
+    }
+    .trace-chip-static {
+      cursor: default;
+      pointer-events: none;
+    }
     .scenario-summary-head {
       display: flex;
       justify-content: space-between;
@@ -602,6 +781,10 @@
       transition: 180ms ease;
     }
     button:hover { background: rgba(255,255,255,0.09); }
+    button:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
     button.active {
       background: var(--ey);
       color: #141414;
@@ -1590,96 +1773,6 @@
       font-size: 13px;
       line-height: 1.6;
     }
-    @media (max-width: 720px) {
-      .topbar { position: static; }
-      .topbar-inner,
-      .wrap { padding-left: 14px; padding-right: 14px; }
-      .topbar-inner {
-        display: block;
-      }
-      .nav {
-        display: none;
-      }
-      .hero { padding: 24px 18px 20px; }
-      .hero h1 {
-        font-size: clamp(24px, 8.5vw, 32px);
-      }
-      .metric-value { font-size: 24px; }
-      .hero-proof-board {
-        grid-template-columns: 1fr;
-      }
-      .hero-board-divider {
-        display: none;
-      }
-      .hero-option-guide {
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-        height: auto;
-      }
-      .hero-metric-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .hero-footer-row {
-        align-items: flex-start;
-      }
-      .hero-resource-strip {
-        margin-left: 0;
-        width: 100%;
-        justify-content: flex-start;
-      }
-      .option-sales {
-        width: 100%;
-        text-align: left;
-      }
-      .option-sales-value {
-        font-size: clamp(22px, 8vw, 30px);
-      }
-      .source-group-grid,
-      .scenario-summary-grid,
-      #cash-conversion-grid {
-        grid-template-columns: 1fr;
-      }
-      .benchmark-card--cash .benchmark-note {
-        min-height: 0;
-        max-width: none;
-      }
-      .scenario-summary-value-wrap {
-        text-align: left;
-      }
-      .driver-row,
-      .sensitivity-row,
-      .source-toolbar {
-        grid-template-columns: 1fr;
-      }
-      .sensitivity-track {
-        width: 100%;
-        justify-self: stretch;
-      }
-      .sensitivity-delta {
-        text-align: left;
-      }
-      .inspector {
-        padding: 12px;
-        align-items: flex-end;
-        justify-content: stretch;
-      }
-      .inspector-card {
-        width: 100%;
-        max-height: 88vh;
-      }
-      .inspector-header {
-        padding: 20px 20px 0;
-      }
-      .inspector-heading {
-        gap: 8px;
-      }
-      .inspector-scroll {
-        padding: 10px 20px 22px;
-      }
-      .audit-row {
-        grid-template-columns: 1fr;
-      }
-    }
     @media (max-width: 1120px) {
       .team-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1716,14 +1809,264 @@
       }
     }
     @media (max-width: 720px) {
+      .topbar { position: static; }
+      .topbar-inner,
+      .wrap { padding-left: 14px; padding-right: 14px; }
+      .topbar-inner {
+        display: block;
+      }
+      .nav {
+        display: none;
+      }
+      .section-head {
+        display: block;
+      }
+      .hero {
+        padding: 24px 18px calc(22px + env(safe-area-inset-bottom, 0px));
+      }
+      .hero h1 {
+        font-size: clamp(22px, 8vw, 34px);
+        line-height: 1.1;
+      }
+      .hero p {
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .metric-card,
+      .panel,
+      .option-card {
+        border-radius: 20px;
+      }
+      .metric-value {
+        font-size: 24px;
+      }
+      .hero-proof-board {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .hero-board-divider {
+        display: none;
+      }
+      .hero-option-guide {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 10px;
+        height: auto;
+      }
+      .option-guide-card {
+        display: grid;
+        grid-template-columns: 78px minmax(0, 1fr);
+        align-items: start;
+        gap: 10px;
+        height: auto;
+        padding: 14px;
+      }
+      .option-guide-label {
+        margin-bottom: 0;
+        padding-top: 2px;
+      }
+      .hero-metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .hero-metric-grid .metric-card {
+        min-height: 116px;
+        padding: 14px;
+      }
+      .hero-footer-row {
+        gap: 10px;
+        align-items: flex-start;
+      }
+      #footnote-hero {
+        flex: 1 1 100%;
+      }
+      .hero-resource-strip {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .hero-sheet-inline {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .hero-sheet-inline-label {
+        max-width: 220px;
+        text-align: right;
+        white-space: normal;
+      }
+      .option-card-topline {
+        align-items: flex-start;
+      }
+      .option-sales--mobile {
+        width: auto;
+        min-width: 0;
+        text-align: right;
+      }
+      .option-sales--mobile .metric-label {
+        text-align: right;
+      }
+      .option-sales-value {
+        font-size: clamp(20px, 8vw, 30px);
+      }
+      .option-card-title {
+        font-size: 20px;
+      }
+      .option-card-summary {
+        font-size: 14px;
+      }
+      .option-card-metrics,
+      .option-detail-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .option-card-metrics .stat-chip,
+      .option-detail-metrics .stat-chip {
+        min-height: 92px;
+      }
+      .tabs,
+      .filter-row,
+      .source-toolbar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .tabs::-webkit-scrollbar,
+      .filter-row::-webkit-scrollbar,
+      .source-toolbar::-webkit-scrollbar {
+        display: none;
+      }
+      .tabs > *,
+      .filter-row > *,
+      .source-toolbar > * {
+        flex: 0 0 auto;
+      }
+      .tabs .option-tab {
+        min-width: 220px;
+        border-radius: 18px;
+        padding: 12px 14px;
+        text-align: left;
+      }
+      .list-grid {
+        grid-template-columns: 1fr;
+      }
+      .source-group-grid,
+      .scenario-summary-grid,
+      #cash-conversion-grid,
       .team-grid {
         grid-template-columns: 1fr;
+      }
+      .benchmark-card--cash .benchmark-note {
+        min-height: 0;
+        max-width: none;
+      }
+      .scenario-summary-value-wrap {
+        text-align: left;
+      }
+      .driver-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .sensitivity-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "label delta"
+          "track track";
+        gap: 8px 10px;
+      }
+      .sensitivity-label {
+        grid-area: label;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .sensitivity-track {
+        grid-area: track;
+        width: 100%;
+        height: 8px;
+        justify-self: stretch;
+      }
+      .sensitivity-delta {
+        grid-area: delta;
+        text-align: right;
+      }
+      .assumption-register-panel .data-table-wrap {
+        margin-top: 0;
+        border: 0;
+        border-radius: 0;
+        overflow: visible;
+      }
+      .assumption-table-shell {
+        padding: 12px 12px 14px;
+      }
+      .assumption-mobile-grid {
+        flex-direction: column;
+      }
+      .assumption-mobile-trace {
+        margin-top: 8px;
+      }
+      .ref-card-head {
+        align-items: flex-start;
+      }
+      .ref-title {
+        font-size: 17px;
+      }
+      .source-summary {
+        min-width: 0;
+      }
+      .mobile-reference-pagination {
+        margin-top: 2px;
       }
       .team-card {
         grid-template-columns: 60px minmax(0, 1fr);
       }
       .team-avatar {
         width: 60px;
+      }
+      .inspector {
+        padding: 12px;
+        align-items: flex-end;
+        justify-content: stretch;
+      }
+      .inspector-card {
+        width: 100%;
+        max-height: 88vh;
+      }
+      .inspector-header {
+        padding: 20px 20px 0;
+      }
+      .inspector-heading {
+        gap: 8px;
+      }
+      .inspector-scroll {
+        padding: 10px 20px 22px;
+      }
+      .audit-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 390px) {
+      .hero h1 {
+        font-size: clamp(20px, 9vw, 30px);
+      }
+      .hero-sheet-inline-label {
+        max-width: 180px;
+      }
+      .option-guide-card {
+        grid-template-columns: 70px minmax(0, 1fr);
+      }
+      .option-sales-value {
+        font-size: 24px;
+      }
+      .tabs .option-tab {
+        min-width: 204px;
+      }
+      .hero-metric-grid .metric-card {
+        min-height: 108px;
+      }
+      .mobile-page-button {
+        min-width: 98px;
       }
     }
   </style>
@@ -1902,12 +2245,12 @@
         <div class="assumption-top-grid" id="top-swing-grid"></div>
         <div class="footnote-row" id="footnote-assumptions"></div>
       </article>
-      <article class="panel" style="margin-top:16px;">
+      <article class="panel assumption-register-panel" style="margin-top:16px;">
         <div class="filter-row" id="assumption-filters"></div>
         <details class="details-toggle" open>
           <summary>Detailed assumption register</summary>
-          <div class="data-table-wrap">
-            <table id="assumptions-table"></table>
+          <div class="data-table-wrap assumption-table-shell">
+            <div id="assumptions-table"></div>
           </div>
         </details>
       </article>
@@ -2101,6 +2444,21 @@
     let activeAssumptionFilter = 'all';
     let activePointSignature = '';
     let referenceFilter = 'all';
+    let referencePage = 1;
+    let assumptionVisibleCount = 6;
+    let highlightedReferenceId = '';
+    const MOBILE_BREAKPOINT = 720;
+    const NARROW_MOBILE_BREAKPOINT = 390;
+    const MOBILE_REFERENCE_PAGE_SIZE = 4;
+    const MOBILE_ASSUMPTION_BATCH = 6;
+    const MOBILE_HERO_TITLE = 'A New Product Line (Option 2) is Stanley\'s strongest 5-year finance case.';
+    const MOBILE_HERO_SUPPORT = 'Ahead of International Expansion (Option 1) and A New Customer Segment (Option 3), it delivers NPV $8.6M, IRR 42.7%, and PI 2.35×.';
+    const MOBILE_HERO_EVIDENCE = 'It is also the only route that stays profitable across all Bear Case scenarios.';
+    const OPTION_COMPARISON_MOBILE_READS = {
+      option_1: 'Largest TAM, but weakest risk-adjusted return and the slowest payback path.',
+      option_2: 'Best risk-adjusted return with NPV $8.6M, IRR 42.7%, PI 2.35×, and the only profitable Bear Case path.',
+      option_3: 'Range-led and margin-rich, but smaller in scale and less decision-defining than Option 2.',
+    };
     const EXTERNAL_ICON = `
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3l-1.42-1.42l9.3-9.29H14V3z"></path>
@@ -2169,6 +2527,49 @@
       return typeof value === 'number' ? Number(value).toLocaleString('en-US') : value;
     }
 
+    function isMobileView() {
+      return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+
+    function isNarrowMobileView() {
+      return window.innerWidth <= NARROW_MOBILE_BREAKPOINT;
+    }
+
+    function getViewportTier() {
+      if (isNarrowMobileView()) return 'narrow-mobile';
+      if (isMobileView()) return 'mobile';
+      return 'desktop';
+    }
+
+    function getLeadingSentence(value) {
+      const text = presentText(value);
+      const match = text.match(/^[\s\S]*?[.!?](?=\s|$)/);
+      return (match ? match[0] : text).trim();
+    }
+
+    function getMobileOptionRead(item) {
+      return item.mobileRead || OPTION_COMPARISON_MOBILE_READS[item.key] || getLeadingSentence(item.read);
+    }
+
+    function buildHeroFootnoteChips(refIds, maxItems = 2) {
+      const uniqueIds = [...new Set(refIds)];
+      const visibleIds = uniqueIds.slice(0, maxItems);
+      const overflow = uniqueIds.length - visibleIds.length;
+      if (!visibleIds.length) return '';
+      return `
+        <span class="source-prefix">Source:</span>
+        ${buildTraceChips(visibleIds)}
+        ${overflow > 0 ? `<span class="trace-chip trace-chip-static">+${overflow} more</span>` : ''}
+      `;
+    }
+
+    function focusReferenceLibrary(refId) {
+      const ref = REF_INDEX[refId];
+      if (!ref) return;
+      highlightedReferenceId = refId;
+      if (isMobileView()) referenceFilter = ref.groupKey;
+    }
+
     function softenDashProse(value) {
       return String(value ?? '')
         .replace(/\s+[—–]\s+(?=[A-Z])/g, '. ')
@@ -2200,7 +2601,7 @@
       return ref.publisher || ref.fileName || ref.descriptor || 'Source';
     }
 
-    function buildTraceChips(refIds) {
+    function buildTraceChips(refIds = []) {
       return refIds.map(refId => {
         const ref = REF_INDEX[refId];
         if (!ref) return '';
@@ -2435,6 +2836,12 @@
       document.querySelectorAll('.chart-point').forEach(node => {
         node.classList.toggle('is-active', activePointSignature && node.dataset.pointKey === activePointSignature);
       });
+      document.querySelectorAll('.ref-card[data-ref-id]').forEach(node => {
+        node.classList.toggle('is-highlighted', highlightedReferenceId && node.dataset.refId === highlightedReferenceId);
+      });
+      document.querySelectorAll('.trace-chip[data-ref-id]').forEach(node => {
+        node.classList.toggle('is-highlighted', highlightedReferenceId && node.dataset.refId === highlightedReferenceId);
+      });
     }
 
     function renderAuditRows(rows = []) {
@@ -2494,6 +2901,8 @@
     function showReferenceInspector(refId) {
       const ref = REF_INDEX[refId];
       if (!ref) return;
+      focusReferenceLibrary(refId);
+      renderReferences();
       showInspector({
         pointKey: '',
         title: ref.summaryText || ref.title,
@@ -2554,9 +2963,10 @@
     }
 
     function renderHero() {
-      setText('hero-title', DATA.overview.headline);
-      setText('hero-question', DATA.overview.why_now);
-      setText('hero-headline', DATA.overview.evidence_sentence);
+      const mobile = isMobileView();
+      setText('hero-title', mobile ? MOBILE_HERO_TITLE : DATA.overview.headline);
+      setText('hero-question', mobile ? MOBILE_HERO_SUPPORT : DATA.overview.why_now);
+      setText('hero-headline', mobile ? MOBILE_HERO_EVIDENCE : DATA.overview.evidence_sentence);
       document.getElementById('hero-option-guide').innerHTML = (DATA.overview.optionGuide || []).map(item => `
         <div class="option-guide-card">
           <div class="option-guide-label">${escapeHtml(item.option)}</div>
@@ -2597,7 +3007,9 @@
           });
         });
       });
-      document.getElementById('footnote-hero').innerHTML = buildFootnoteChips(DATA.overview.top_refs || DATA.sectionRefs.hero || []);
+      document.getElementById('footnote-hero').innerHTML = mobile
+        ? buildHeroFootnoteChips(DATA.overview.top_refs || DATA.sectionRefs.hero || [], 2)
+        : buildFootnoteChips(DATA.overview.top_refs || DATA.sectionRefs.hero || []);
     }
 
     function renderEvidence() {
@@ -2644,10 +3056,37 @@
       setText('cash-question', comparison.business_question);
       setText('cash-comparison-copy', comparison.decision_headline);
       setText('cash-implication', comparison.implication);
+      const mobile = isMobileView();
       const maxSales = Math.max(...DATA.optionComparison.map(item => item.year5Sales));
       document.getElementById('option-ranking').innerHTML = DATA.optionComparison.map((item, index) => {
         const fillClass = index === 0 ? '' : index === 1 ? 'alt-cyan' : 'alt-danger';
         const width = Math.max((item.year5Sales / maxSales) * 100, 10);
+        const summary = getMobileOptionRead(item);
+        if (mobile) {
+          return `
+            <div class="option-card option-card--mobile">
+              <div class="option-card-topline">
+                <div class="option-card-badges">
+                  <span class="rank-badge">#${item.rank}</span>
+                  <span class="tag-badge">${escapeHtml(item.tag)}</span>
+                </div>
+                <div class="option-sales option-sales--mobile">
+                  <div class="metric-label">Year 5 sales</div>
+                  <div class="option-sales-value" style="color:${index === 0 ? 'var(--ey)' : 'var(--text)'};">${escapeHtml(formatCompactCurrency(item.year5Sales))}</div>
+                </div>
+              </div>
+              <h3 class="option-card-title">${escapeHtml(item.option)}</h3>
+              <p class="panel-copy option-card-summary">${escapeHtml(summary)}</p>
+              <div class="track option-card-track"><div class="fill ${fillClass}" style="width:${width}%;"></div></div>
+              <div class="metric-row option-card-metrics">
+                <div class="stat-chip"><div class="metric-label">${escapeHtml(item.marginLabel)}</div><strong>${escapeHtml(formatPercent(item.margin))}</strong></div>
+                <div class="stat-chip"><div class="metric-label">Upfront</div><strong>${escapeHtml(formatCompactCurrency(item.upfront))}</strong></div>
+                <div class="stat-chip"><div class="metric-label">${escapeHtml(item.cumulativeLabel || '5Y value')}</div><strong>${escapeHtml(formatCompactCurrency(item.cumulativeCash))}</strong></div>
+                <div class="stat-chip"><div class="metric-label">Payback</div><strong>${escapeHtml(formatValue(item.payback, 'years'))}</strong></div>
+              </div>
+            </div>
+          `;
+        }
         return `
           <div class="option-card">
             <div class="option-card-head">
@@ -2665,7 +3104,7 @@
               </div>
             </div>
             <div class="track"><div class="fill ${fillClass}" style="width:${width}%;"></div></div>
-            <div class="metric-row">
+            <div class="metric-row option-card-metrics">
               <div class="stat-chip"><div class="metric-label">${escapeHtml(item.marginLabel)}</div><strong>${escapeHtml(formatPercent(item.margin))}</strong></div>
               <div class="stat-chip"><div class="metric-label">Upfront</div><strong>${escapeHtml(formatCompactCurrency(item.upfront))}</strong></div>
               <div class="stat-chip"><div class="metric-label">${escapeHtml(item.cumulativeLabel || '5Y value')}</div><strong>${escapeHtml(formatCompactCurrency(item.cumulativeCash))}</strong></div>
@@ -2956,8 +3395,16 @@
     }
 
     function renderOptionTabs() {
+      const mobile = isMobileView();
       document.getElementById('option-tabs').innerHTML = DATA.optionDetails.map(detail => `
-        <button class="${detail.key === activeOption ? 'active' : ''}" data-option="${detail.key}">${escapeHtml(detail.option)} · ${escapeHtml(detail.verdict)}</button>
+        <button class="option-tab ${detail.key === activeOption ? 'active' : ''}" data-option="${detail.key}">
+          ${mobile ? `
+            <span class="option-tab-copy">
+              <span class="option-tab-main">${escapeHtml(detail.option)}</span>
+              <span class="option-tab-sub">${escapeHtml(detail.verdict)}</span>
+            </span>
+          ` : `${escapeHtml(detail.option)} · ${escapeHtml(detail.verdict)}`}
+        </button>
       `).join('');
       document.querySelectorAll('button[data-option]').forEach(button => {
         button.addEventListener('click', () => {
@@ -2970,8 +3417,53 @@
 
     function renderOptionDetail() {
       const detail = DATA.optionDetails.find(item => item.key === activeOption);
+      const mobile = isMobileView();
       const colorMap = { option_2: '#ffe600', option_3: '#78dce8', option_1: '#ff8b6a' };
       const color = colorMap[detail.key] || '#ffe600';
+      const yearlyDetailMarkup = mobile ? `
+        <div class="mobile-year-grid">
+          ${detail.yearly.years.map((year, index) => `
+            <div class="mobile-year-card">
+              <div class="mobile-year-label">${escapeHtml(year)}</div>
+              <div class="mobile-year-metrics">
+                <div class="mobile-year-metric"><span>Sales</span><strong>${escapeHtml(formatCurrency(detail.yearly.sales[index]))}</strong></div>
+                <div class="mobile-year-metric"><span>${escapeHtml(detail.yearly.marginLabel)}</span><strong>${escapeHtml(formatPercent(detail.yearly.margin[index]))}</strong></div>
+                <div class="mobile-year-metric"><span>Operating profit</span><strong>${escapeHtml(formatCurrency(detail.yearly.profit[index]))}</strong></div>
+                <div class="mobile-year-metric"><span>${escapeHtml(detail.yearly.cumulativeLabel)}</span><strong>${escapeHtml(formatCurrency(detail.yearly.cumulative[index]))}</strong></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      ` : `
+        <div class="data-table-wrap" style="margin-top:0;border:0;border-radius:0;">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                ${detail.yearly.years.map(year => `<th>${escapeHtml(year)}</th>`).join('')}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sales</td>
+                ${detail.yearly.sales.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
+              </tr>
+              <tr>
+                <td>${escapeHtml(detail.yearly.marginLabel)}</td>
+                ${detail.yearly.margin.map(value => `<td>${escapeHtml(formatPercent(value))}</td>`).join('')}
+              </tr>
+              <tr>
+                <td>Operating profit</td>
+                ${detail.yearly.profit.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
+              </tr>
+              <tr>
+                <td>${escapeHtml(detail.yearly.cumulativeLabel)}</td>
+                ${detail.yearly.cumulative.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
       document.getElementById('option-detail').innerHTML = `
         <div class="option-detail-head">
           <div class="question-kicker">${escapeHtml(detail.business_question)}</div>
@@ -3030,34 +3522,7 @@
                 </div>
               `).join('')}
             </div>
-            <div class="data-table-wrap" style="margin-top:0;border:0;border-radius:0;">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Metric</th>
-                    ${detail.yearly.years.map(year => `<th>${escapeHtml(year)}</th>`).join('')}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Sales</td>
-                    ${detail.yearly.sales.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
-                  </tr>
-                  <tr>
-                    <td>${escapeHtml(detail.yearly.marginLabel)}</td>
-                    ${detail.yearly.margin.map(value => `<td>${escapeHtml(formatPercent(value))}</td>`).join('')}
-                  </tr>
-                  <tr>
-                    <td>Operating profit</td>
-                    ${detail.yearly.profit.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
-                  </tr>
-                  <tr>
-                    <td>${escapeHtml(detail.yearly.cumulativeLabel)}</td>
-                    ${detail.yearly.cumulative.map(value => `<td>${escapeHtml(formatCurrency(value))}</td>`).join('')}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            ${yearlyDetailMarkup}
             <div class="list-grid" style="padding:16px;">
               <div class="list-card">
                 <h4>Key outputs</h4>
@@ -3270,36 +3735,98 @@
       document.querySelectorAll('[data-assumption-filter]').forEach(button => {
         button.addEventListener('click', () => {
           activeAssumptionFilter = button.dataset.assumptionFilter;
+          assumptionVisibleCount = MOBILE_ASSUMPTION_BATCH;
           renderAssumptions();
         });
       });
 
       const rows = DATA.assumptions.filter(row => activeAssumptionFilter === 'all' || row.class === activeAssumptionFilter);
-      document.getElementById('assumptions-table').innerHTML = `
-        <thead>
-          <tr>
-            <th>Driver</th>
-            <th>Class</th>
-            <th>Year 1</th>
-            <th>Notes</th>
-            <th>Trace</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(row => `
+      const container = document.getElementById('assumptions-table');
+      if (isMobileView()) {
+        const visibleRows = rows.slice(0, assumptionVisibleCount);
+        container.innerHTML = `
+          <div class="assumption-mobile-list">
+            ${visibleRows.map(row => {
+              const notes = presentText(row.notes);
+              const shortNotes = notes.length > 150;
+              return `
+                <article class="assumption-mobile-card">
+                  <div class="assumption-mobile-head">
+                    <h4>${escapeHtml(row.driver)}</h4>
+                    <span class="class-pill ${escapeHtml(row.class)}">${escapeHtml(row.class)}</span>
+                  </div>
+                  <div class="assumption-mobile-grid">
+                    <div class="assumption-mobile-stat">
+                      <span>Year 1</span>
+                      <strong>${typeof row.year_1 === 'number' ? escapeHtml(formatInputValue(row.year_1, row.unit)) : escapeHtml(row.year_1)}</strong>
+                    </div>
+                    <div class="assumption-mobile-stat">
+                      <span>Class</span>
+                      <strong>${escapeHtml(row.class.replace('_', ' '))}</strong>
+                    </div>
+                  </div>
+                  <div class="assumption-mobile-block">
+                    <div class="assumption-mobile-label">Notes</div>
+                    <p class="assumption-mobile-note ${shortNotes ? 'is-clamped' : ''}">${escapeHtml(notes)}</p>
+                    ${shortNotes ? `
+                      <details class="mobile-inline-details">
+                        <summary>Expand</summary>
+                        <div class="assumption-mobile-note-full">${escapeHtml(notes)}</div>
+                      </details>
+                    ` : ''}
+                  </div>
+                  <div class="assumption-mobile-block">
+                    <div class="assumption-mobile-label">Trace</div>
+                    <div class="trace-row assumption-mobile-trace">${buildTraceChips(row.refs || [])}</div>
+                  </div>
+                </article>
+              `;
+            }).join('')}
+          </div>
+          ${rows.length > visibleRows.length ? `
+            <div class="mobile-load-more-wrap">
+              <button type="button" class="mobile-load-more" id="assumption-load-more">Load 6 more</button>
+            </div>
+          ` : ''}
+        `;
+        const loadMoreButton = document.getElementById('assumption-load-more');
+        if (loadMoreButton) {
+          loadMoreButton.addEventListener('click', () => {
+            assumptionVisibleCount += MOBILE_ASSUMPTION_BATCH;
+            renderAssumptions();
+          });
+        }
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
             <tr>
-              <td>${escapeHtml(row.driver)}</td>
-              <td><span class="class-pill ${escapeHtml(row.class)}">${escapeHtml(row.class)}</span></td>
-              <td>${typeof row.year_1 === 'number' ? escapeHtml(formatInputValue(row.year_1, row.unit)) : escapeHtml(row.year_1)}</td>
-              <td>${escapeHtml(row.notes)}</td>
-              <td>${buildTraceChips(row.refs)}</td>
+              <th>Driver</th>
+              <th>Class</th>
+              <th>Year 1</th>
+              <th>Notes</th>
+              <th>Trace</th>
             </tr>
-          `).join('')}
-        </tbody>
+          </thead>
+          <tbody>
+            ${rows.map(row => `
+              <tr>
+                <td>${escapeHtml(row.driver)}</td>
+                <td><span class="class-pill ${escapeHtml(row.class)}">${escapeHtml(row.class)}</span></td>
+                <td>${typeof row.year_1 === 'number' ? escapeHtml(formatInputValue(row.year_1, row.unit)) : escapeHtml(row.year_1)}</td>
+                <td>${escapeHtml(row.notes)}</td>
+                <td>${buildTraceChips(row.refs || [])}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
       `;
     }
 
     function renderReferences() {
+      const mobile = isMobileView();
       const filters = [
         { key: 'all', label: 'All references' },
         ...DATA.referenceGroups,
@@ -3310,6 +3837,8 @@
       document.querySelectorAll('button[data-filter]').forEach(button => {
         button.addEventListener('click', () => {
           referenceFilter = button.dataset.filter;
+          referencePage = 1;
+          highlightedReferenceId = '';
           renderReferences();
         });
       });
@@ -3322,9 +3851,8 @@
         return (a.label || a.title).localeCompare(b.label || b.title);
       });
 
-      setText('reference-summary', `${refs.length} reference entries available. Use the link icon to open the original source.`);
-
       if (!refs.length) {
+        setText('reference-summary', 'No references match the current filter.');
         document.getElementById('reference-stack').innerHTML = `
           <div class="ref-card">
             <div class="ref-meta">No references match the current filter yet. Click a data point or choose a broader filter.</div>
@@ -3333,6 +3861,77 @@
         applyHighlightState();
         return;
       }
+
+      if (mobile && highlightedReferenceId) {
+        const highlightedIndex = refs.findIndex(ref => ref.id === highlightedReferenceId);
+        if (highlightedIndex >= 0) {
+          referencePage = Math.floor(highlightedIndex / MOBILE_REFERENCE_PAGE_SIZE) + 1;
+        }
+      }
+
+      if (mobile) {
+        const totalPages = Math.max(1, Math.ceil(refs.length / MOBILE_REFERENCE_PAGE_SIZE));
+        referencePage = Math.min(Math.max(referencePage, 1), totalPages);
+        const startIndex = (referencePage - 1) * MOBILE_REFERENCE_PAGE_SIZE;
+        const visibleRefs = refs.slice(startIndex, startIndex + MOBILE_REFERENCE_PAGE_SIZE);
+
+        setText('reference-summary', `${refs.length} references · Page ${referencePage} of ${totalPages}`);
+        document.getElementById('reference-stack').innerHTML = `
+          <div class="mobile-reference-list">
+            ${visibleRefs.map(ref => {
+              const preview = ref.note || ref.whatItSays || ref.howUsed || ref.sourceShort || '';
+              return `
+                <article id="${ref.anchor}" class="ref-card ref-anchor mobile-ref-card" data-ref-id="${ref.id}" data-reference-card="true">
+                  <div class="ref-card-head">
+                    <div class="mobile-ref-headline">
+                      <div class="ref-publisher">${escapeHtml(ref.groupLabel)}</div>
+                      <div class="ref-meta">${escapeHtml(referenceMetaLabel(ref))}</div>
+                    </div>
+                    ${ref.link ? `
+                      <a class="ref-icon-link" href="${escapeHtml(ref.link)}" target="_blank" rel="noreferrer noopener" title="Open source" aria-label="Open source">
+                        ${EXTERNAL_ICON}
+                      </a>
+                    ` : ''}
+                  </div>
+                  <h4 class="ref-title">${escapeHtml(ref.summaryText || ref.title)}</h4>
+                  <div class="ref-body">
+                    <div class="ref-meta ref-meta-clamp">${escapeHtml(preview)}</div>
+                  </div>
+                  <details class="mobile-inline-details mobile-reference-details">
+                    <summary>Expand</summary>
+                    <div class="mobile-reference-expanded">
+                      ${ref.whatItSays ? `<div class="ref-meta"><strong>What it says:</strong> ${escapeHtml(ref.whatItSays)}</div>` : ''}
+                      ${ref.whyImportant ? `<div class="ref-meta"><strong>Why it matters:</strong> ${escapeHtml(ref.whyImportant)}</div>` : ''}
+                      ${ref.location ? `<div class="ref-meta"><strong>Trace:</strong> ${escapeHtml(ref.location)}</div>` : ''}
+                    </div>
+                  </details>
+                </article>
+              `;
+            }).join('')}
+          </div>
+          <div class="mobile-reference-pagination">
+            <button type="button" class="mobile-page-button" data-reference-page="prev" ${referencePage === 1 ? 'disabled' : ''}>Previous</button>
+            <div class="mobile-reference-page-label">Page ${referencePage} of ${totalPages}</div>
+            <button type="button" class="mobile-page-button" data-reference-page="next" ${referencePage === totalPages ? 'disabled' : ''}>Next</button>
+          </div>
+        `;
+        document.querySelectorAll('[data-reference-page]').forEach(button => {
+          button.addEventListener('click', () => {
+            referencePage += button.dataset.referencePage === 'next' ? 1 : -1;
+            renderReferences();
+          });
+        });
+        document.querySelectorAll('[data-reference-card]').forEach(card => {
+          card.addEventListener('click', (event) => {
+            if (event.target.closest('.ref-icon-link') || event.target.closest('summary')) return;
+            showReferenceInspector(card.dataset.refId);
+          });
+        });
+        applyHighlightState();
+        return;
+      }
+
+      setText('reference-summary', `${refs.length} reference entries available. Use the link icon to open the original source.`);
 
       const grouped = Object.fromEntries(DATA.referenceGroups.map(group => [group.key, []]));
       refs.forEach(ref => {
@@ -3367,6 +3966,12 @@
             </div>
           </section>
         `).join('');
+      document.querySelectorAll('#reference-stack .ref-card[data-ref-id]').forEach(card => {
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('.ref-icon-link')) return;
+          showReferenceInspector(card.dataset.refId);
+        });
+      });
       applyHighlightState();
     }
 
@@ -3423,6 +4028,20 @@
     document.getElementById('inspector-close').addEventListener('click', closeInspector);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeInspector();
+    });
+
+    let viewportTier = getViewportTier();
+    window.addEventListener('resize', () => {
+      const nextTier = getViewportTier();
+      if (nextTier === viewportTier) return;
+      viewportTier = nextTier;
+      renderHero();
+      renderEvidence();
+      renderOptionTabs();
+      renderOptionDetail();
+      renderScenarioSection();
+      renderAssumptions();
+      renderReferences();
     });
 
     renderHero();
