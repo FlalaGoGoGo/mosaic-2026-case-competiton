@@ -361,6 +361,17 @@
       color: var(--muted);
       line-height: 1.6;
     }
+    .proof-section .section-head {
+      margin-bottom: 22px;
+    }
+    .proof-section .section-head > div {
+      width: min(1180px, 100%);
+    }
+    .proof-section .section-head p {
+      max-width: min(1160px, 100%);
+      font-size: 16px;
+      line-height: 1.7;
+    }
     .panel {
       padding: 22px;
     }
@@ -383,12 +394,56 @@
       margin-bottom: 8px;
       font-weight: 700;
     }
+    .proof-panel .question-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      line-height: 1.35;
+      letter-spacing: 0.16em;
+      margin-bottom: 14px;
+    }
+    .proof-panel .question-kicker::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--ey);
+      flex: 0 0 auto;
+      opacity: 0.92;
+    }
+    .proof-panel .panel-title {
+      font-size: clamp(24px, 2.2vw, 30px);
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+    .proof-panel .panel-copy {
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .proof-panel .so-what {
+      margin: 14px 0 22px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
     .panel-subtitle {
       margin: 0 0 12px;
       font-size: 13px;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.12em;
+    }
+    .proof-subsection-block {
+      margin-top: 26px;
+      margin-bottom: 10px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .proof-subsection-block .panel-subtitle {
+      margin-bottom: 18px;
+      color: #d9dee6;
+      letter-spacing: 0.14em;
     }
     .so-what {
       margin: 12px 0 18px;
@@ -2148,7 +2203,7 @@
       </article>
     </section>
 
-    <section class="section" id="proof">
+    <section class="section proof-section" id="proof">
       <div class="section-head">
         <div>
           <div class="eyebrow">Proof stack</div>
@@ -2156,19 +2211,19 @@
           <p id="proof-copy"></p>
         </div>
       </div>
-      <article class="panel">
+      <article class="panel proof-panel">
         <div class="question-kicker" id="platform-question"></div>
         <h3 class="panel-title">Platform breadth and price-position proof</h3>
         <p class="panel-copy" id="platform-copy"></p>
         <div class="so-what" id="platform-implication"></div>
         <div class="platform-grid" id="platform-grid"></div>
-        <div class="subsection-block">
+        <div class="subsection-block proof-subsection-block">
           <div class="panel-subtitle">Premium lunch / foodware price ladder</div>
           <div class="price-ladder-list" id="price-ladder"></div>
         </div>
         <div class="footnote-row" id="footnote-platform-proof"></div>
       </article>
-      <article class="panel" style="margin-top:16px;">
+      <article class="panel proof-panel" style="margin-top:16px;">
         <div class="question-kicker" id="channel-question"></div>
         <h3 class="panel-title">Channel economics and public-peer guardrails</h3>
         <p class="panel-copy" id="channel-copy"></p>
@@ -2177,7 +2232,7 @@
         <div class="signal-grid" id="channel-signals"></div>
         <div class="footnote-row" id="footnote-channel-proof"></div>
       </article>
-      <article class="panel" style="margin-top:16px;">
+      <article class="panel proof-panel" style="margin-top:16px;">
         <div class="question-kicker" id="cash-proof-question"></div>
         <h3 class="panel-title">Cash conversion and working-capital guardrails</h3>
         <p class="panel-copy" id="cash-proof-copy"></p>
@@ -2185,7 +2240,7 @@
         <div class="benchmark-grid" id="cash-conversion-grid"></div>
         <div class="footnote-row" id="footnote-cash-conversion"></div>
       </article>
-      <article class="panel" style="margin-top:16px;">
+      <article class="panel proof-panel" style="margin-top:16px;">
         <div class="question-kicker" id="consumer-question"></div>
         <h3 class="panel-title">Relevance pressure from official consulting research</h3>
         <p class="panel-copy" id="consumer-copy"></p>
