@@ -2688,6 +2688,72 @@
       node.textContent = presentText(value, options);
     }
 
+    function measureSvgTextWidth(text, fontSize = 11, fontWeight = 500) {
+      const canvas = measureSvgTextWidth.canvas || (measureSvgTextWidth.canvas = document.createElement('canvas'));
+      const context = canvas.getContext('2d');
+      if (!context) return String(text).length * fontSize * 0.6;
+      context.font = `${fontWeight} ${fontSize}px Arial`;
+      return context.measureText(text).width;
+    }
+
+    function wrapSvgLabel(text, maxWidth, { fontSize = 11, fontWeight = 500, maxLines = 4 } = {}) {
+      const words = String(text).split(/\s+/).filter(Boolean);
+      if (!words.length) return [''];
+
+      const splitLongToken = (token) => {
+        if (measureSvgTextWidth(token, fontSize, fontWeight) <= maxWidth) return [token];
+        const segments = [];
+        let current = '';
+        for (const char of token) {
+          const candidate = current + char;
+          if (current && measureSvgTextWidth(candidate, fontSize, fontWeight) > maxWidth) {
+            segments.push(current);
+            current = char;
+          } else {
+            current = candidate;
+          }
+        }
+        if (current) segments.push(current);
+        return segments;
+      };
+
+      const lines = [];
+      let currentLine = '';
+      words.forEach(word => {
+        splitLongToken(word).forEach(segment => {
+          if (!currentLine) {
+            currentLine = segment;
+            return;
+          }
+          const candidate = `${currentLine} ${segment}`;
+          if (measureSvgTextWidth(candidate, fontSize, fontWeight) <= maxWidth) {
+            currentLine = candidate;
+            return;
+          }
+          lines.push(currentLine);
+          currentLine = segment;
+        });
+      });
+      if (currentLine) lines.push(currentLine);
+      if (lines.length <= maxLines) return lines;
+
+      const clamped = lines.slice(0, maxLines);
+      let lastLine = clamped[maxLines - 1];
+      while (lastLine && measureSvgTextWidth(`${lastLine}…`, fontSize, fontWeight) > maxWidth) {
+        lastLine = lastLine.slice(0, -1);
+      }
+      clamped[maxLines - 1] = `${lastLine.replace(/[.,;:!?-]$/, '')}…`;
+      return clamped;
+    }
+
+    function multilineSvgLabel(x, y, lines, { fill = 'rgba(255,255,255,0.62)', fontSize = 11, fontWeight = 500, lineHeight = 12 } = {}) {
+      return `
+        <text x="${x}" y="${y}" fill="${fill}" font-size="${fontSize}" font-weight="${fontWeight}" text-anchor="middle">
+          ${lines.map((line, index) => `<tspan x="${x}" dy="${index === 0 ? 0 : lineHeight}">${escapeHtml(line)}</tspan>`).join('')}
+        </text>
+      `;
+    }
+
     function lineChartSvg(chartId, labels, series, { minValue = null, yFormatter = formatCompactCurrency, showPoints = true } = {}) {
       const width = 620;
       const height = 320;
@@ -2800,9 +2866,31 @@
 
     function waterfallSvg(chartId, steps) {
       const width = 620;
-      const height = 300;
+      const labelFontSize = 10.5;
+      const labelLineHeight = 12;
+      const labelRowGap = 6;
+      const labelRows = 2;
       const pad = { top: 18, right: 18, bottom: 42, left: 48 };
       const slot = (width - pad.left - pad.right) / steps.length;
+      const labelMaxWidth = Math.max(slot * 1.72, 56);
+      const wrappedLabels = steps.map(step => wrapSvgLabel(step.label, labelMaxWidth, {
+        fontSize: labelFontSize,
+        fontWeight: 600,
+        maxLines: 3
+      }));
+      const rowMaxLines = Array.from({ length: labelRows }, (_, row) => {
+        const rowLabels = wrappedLabels.filter((_, index) => index % labelRows === row);
+        return Math.max(...rowLabels.map(lines => lines.length), 1);
+      });
+      const rowOffsets = [];
+      let currentOffset = 18;
+      rowMaxLines.forEach((lineCount, row) => {
+        rowOffsets[row] = currentOffset;
+        currentOffset += lineCount * labelLineHeight;
+        if (row < labelRows - 1) currentOffset += labelRowGap;
+      });
+      pad.bottom = currentOffset + 10;
+      const height = pad.top + 230 + pad.bottom;
       let running = 0;
       const computed = steps.map(step => {
         let startValue = 0;
@@ -2844,9 +2932,16 @@
             const fill = step.type === 'delta'
               ? (step.value >= 0 ? '#78dce8' : '#ff8b6a')
               : '#ffe600';
+            const labelX = barX + barWidth / 2;
+            const labelY = height - pad.bottom + rowOffsets[index % labelRows];
             return `
               <rect class="chart-point" x="${barX}" y="${rectY}" width="${barWidth}" height="${rectHeight}" rx="10" fill="${fill}" data-chart="${chartId}" data-series="${escapeHtml(step.label)}" data-index="${index}" data-point-key="${chartId}-${index}"></rect>
-              <text x="${barX + barWidth / 2}" y="${height - 12}" fill="rgba(255,255,255,0.62)" font-size="11" text-anchor="middle">${escapeHtml(step.label)}</text>
+              ${multilineSvgLabel(labelX, labelY, wrappedLabels[index], {
+                fill: 'rgba(255,255,255,0.62)',
+                fontSize: labelFontSize,
+                fontWeight: 600,
+                lineHeight: labelLineHeight
+              })}
             `;
           }).join('')}
         </svg>
