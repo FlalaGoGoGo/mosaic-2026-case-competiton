@@ -349,6 +349,9 @@
       margin-bottom: 16px;
       flex-wrap: wrap;
     }
+    .section-head > div {
+      width: min(1180px, 100%);
+    }
     .section-head h2 {
       margin: 0;
       font-size: clamp(24px, 3vw, 38px);
@@ -357,9 +360,10 @@
     }
     .section-head p {
       margin: 8px 0 0;
-      max-width: 700px;
+      max-width: min(1160px, 100%);
       color: var(--muted);
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.7;
     }
     .proof-section .section-head {
       margin-bottom: 22px;
